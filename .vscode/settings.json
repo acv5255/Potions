@@ -1,0 +1,7 @@
+{
+    "FSharp.suggestGitignore": false,
+    "files.associations": {
+        "chrono": "cpp",
+        "armadillo": "cpp"
+    }
+}
