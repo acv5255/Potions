@@ -16,14 +16,16 @@
             "includePath": [
                 "${workspaceFolder}/external/armadillo-code/include/",
                 "${workspaceFolder}/external/matplotlib-cpp/",
-                "${workspaceFolder}/external/nlopt/src/api/",
+                "${workspaceFolder}/external/yaml-cpp/include/",
+                "${workspaceFolder}/my_libs/optimization/include/",
+                "${workspaceFolder}/my_libs/ode/include/",
                 "${workspaceFolder}/include/",
                 "${workspaceFolder}/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
-            "cppStandard": "c++14",
+            "cppStandard": "c++20",
             "intelliSenseMode": "linux-gcc-x64"
         }
     ],

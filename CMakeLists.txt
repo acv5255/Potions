@@ -5,9 +5,12 @@ set(CMAKE_CXX_STANDARD 20)
 project(Potions VERSION 0.1)
 
 add_subdirectory(external/armadillo-code)
-add_subdirectory(external/nlopt)
 add_subdirectory(external/yaml-cpp)
 add_subdirectory(external/matplotlib-cpp)
 add_subdirectory(external/Catch2)
+
+# My libraries
+add_subdirectory(my_libs/optimization)
+add_subdirectory(my_libs/ode)
 
 add_subdirectory(src)
