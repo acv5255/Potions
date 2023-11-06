@@ -13,17 +13,8 @@ int main(int argc, char* argv[]) {
     // Construct the data structures for solving the problem
     if (modelInputs.runType() == EQUILIBRIUM) {
         std::cout << "Beginning equilibrium solution\n";
-        EquilibriumSolution solver = EquilibriumSolution::Initialize(modelInputs);
-        auto primConcInit = solver.primConc();
-        const auto[primConc, conc] = solver.solve(primConcInit);
-        solver.updatePrimConc(primConc);
-        solver.updateConcentration(conc);
-
-        // Now, write the outputs
-        solver.saveSolution(outputFilename);
-
-        std::cout << "Successfully computed equilibrium solution\n";
-        std::cout << "Wrote solution to: '" << outputFilename.string() << "'\n";
+        
+        throw NotImplemented();
     }
     else if (modelInputs.runType() == KINETIC)
     {

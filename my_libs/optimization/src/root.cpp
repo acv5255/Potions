@@ -1,5 +1,7 @@
 #include "optimization.hpp"
 
+const double TOLERANCE = 1e-10;
+
 template<typename T>
 optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T>(Col<T>)>& jac, const Col<T>& x0) {
     /*

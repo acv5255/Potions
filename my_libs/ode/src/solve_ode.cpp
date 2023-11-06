@@ -16,7 +16,7 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt
     bool use_explicit = true;
     for (auto e_i: eigen_values) {
         const double mod = std::sqrt(
-            e_i.imag * e_i.imag + e_i.real * e_i.real
+            (double)e_i.imag * (double)e_i.imag + (double)e_i.real * (double)e_i.real
         );
 
         const double z = mod * dt;

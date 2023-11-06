@@ -1,18 +1,12 @@
+#pragma once
+
 #include <functional>
 #include <stdexcept>
 #include "armadillo"
 #include "optimization.hpp"
 
-class NotImplemented : public std::logic_error {
-    public:
-        NotImplemented() : std::logic_error("Function not yet implemented") { };
-};
-
 using arma::Col;
 using std::function;
-
-const double TOLERANCE = 1e-10;  // Tolerance for implicit ODE
-
 
 // Solve the ODE using the 4th order method
 template<typename T>
