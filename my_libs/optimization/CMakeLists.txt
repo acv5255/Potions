@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_library(
     optimization 
+    STATIC
     src/jacobian.cpp 
     src/root.cpp
 )
@@ -12,4 +13,10 @@ target_include_directories(
     optimization
     PUBLIC
     include
+)
+
+target_link_libraries(
+    optimization
+    PUBLIC
+    armadillo
 )

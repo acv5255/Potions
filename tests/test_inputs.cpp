@@ -197,12 +197,12 @@ TEST_CASE("[ModelInputs::equilibriumConstants]") {
 
     EquilibriumConstants eq = mod.equilibriumConstants();
 
-    REQUIRE(eq.stoich_mat.n_cols == 5);
-    REQUIRE(eq.stoich_mat.n_rows == 2);
-    REQUIRE(eq.eq_consts.size() == 2);
+    REQUIRE(eq.stoichMat.n_cols == 5);
+    REQUIRE(eq.stoichMat.n_rows == 2);
+    REQUIRE(eq.eqConsts.size() == 2);
 
-    const arma::mat err_stoich = stoich_mat - eq.stoich_mat;
-    const arma::vec err_log_k = log_k - eq.eq_consts;
+    const arma::mat err_stoich = stoich_mat - eq.stoichMat;
+    const arma::vec err_log_k = log_k - eq.eqConsts;
 
     REQUIRE(arma::abs(err_stoich).max() < 1e-12);
     REQUIRE(arma::abs(err_log_k).max() < 1e-12);

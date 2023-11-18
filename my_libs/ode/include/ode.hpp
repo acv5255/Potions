@@ -7,16 +7,16 @@
 
 using arma::Col;
 using std::function;
+using f64 = double;
 
 // Solve the ODE using the 4th order method
 template<typename T>
-Col<T> RungeKuttaExplicit(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt);
-
+Col<T> RungeKuttaExplicit(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt);
 
 // Solve an ODE using an implicit Runge-Kutta method
 template<typename T>
-Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt);
+Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt);
 
 // Solve an ODE using either explicit or implicit method
 template<typename T>
-Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt);
+Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt);

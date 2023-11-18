@@ -11,6 +11,7 @@ class RunOptions {
     bool _plotKineticOutputs;    // Whether or not to plot the kinetic outputs
 
     public:
+        RunOptions() { };
         string outputName();
         bool writeOutputs();
         bool plotKineticOutputs();

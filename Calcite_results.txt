@@ -1,0 +1,7 @@
+Species,Concentration
+name,molar
+Ca++,0.001
+H+,0.00200124
+HCO3-,2.66513e-10
+CO3--,0.002
+CO2(aq),9.36589e-16

@@ -4,7 +4,7 @@
 using arma::cx_vec;
 
 template<typename T>
-Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt) {
+Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt) {
     /*
         Solve the ODE by stiffness detection. If the time step is not stable, then
         use the implicit rule
@@ -16,7 +16,7 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt
     bool use_explicit = true;
     for (auto e_i: eigen_values) {
         const double mod = std::sqrt(
-            (double)e_i.imag * (double)e_i.imag + (double)e_i.real * (double)e_i.real
+            (double)e_i.imag() * (double)e_i.imag() + (double)e_i.real() * (double)e_i.real()
         );
 
         const double z = mod * dt;
@@ -38,3 +38,5 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T> x0, double dt
         return RungeKuttaImplicit(func, x0, dt);
     }
 }
+
+template Col<f64> SolveODE<f64>(const function<Col<f64>(Col<f64>)>& func, const Col<f64>& x0, f64 dt);

@@ -1,17 +1,29 @@
 #include "potions.hpp"
 
 RunOptions RunOptions::FromArguments(int argc, char* argv[]) {
-    throw NotImplemented();
+    RunOptions options;
+    if (argc == 2) {
+        options._outputName = string(argv[1]);
+    }
+    else {
+        std::cerr << "Expected only input name, other functions not implemented\n";
+        exit(-1);
+    }
+
+    options._writeOutputs = true;
+    options._plotKineticOutputs = true;
+
+    return options;
 }
 
 string RunOptions::outputName() {
-    throw NotImplemented();
+    return _outputName;
 }
 
 bool RunOptions::writeOutputs() {
-    throw NotImplemented();
+    return _writeOutputs;
 }
 
 bool RunOptions::plotKineticOutputs() {
-    throw NotImplemented();
+    return _plotKineticOutputs;
 }

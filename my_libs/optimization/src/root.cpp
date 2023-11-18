@@ -1,3 +1,4 @@
+#include <iostream>
 #include "optimization.hpp"
 
 const double TOLERANCE = 1e-10;
@@ -16,6 +17,17 @@ optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T
     };
 
     for (int i = 0; i < MAX_ITERATIONS; i++) {
+        // std::cout << "Starting iteration " << i << "\n";
+        Mat<T> jac_mat = jac(x);
+
+        // std::cout << "Jacobian: \n";
+        // for (int i = 0; i < jac_mat.n_rows; i++) {
+        //     for (int j = 0; j < jac_mat.n_cols; j++) {
+        //         std::cout << jac_mat(i,j) << " ";
+        //     }
+        //     std::cout << "\n";
+        // }
+
         const Col<T> dx = arma::solve(jac(x), func(x));
         x = x + (-dx);
 
@@ -26,3 +38,5 @@ optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T
 
     return std::nullopt;
 }
+
+template optional<Col<f64>> root<f64>(const function<Col<f64>(Col<f64>)>& func, const function<Mat<f64>(Col<f64>)>& jac, const Col<f64>& x0);

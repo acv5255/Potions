@@ -12,5 +12,8 @@ add_subdirectory(external/Catch2)
 # My libraries
 add_subdirectory(my_libs/optimization)
 add_subdirectory(my_libs/ode)
+add_subdirectory(tests)
+
+enable_testing()
 
 add_subdirectory(src)

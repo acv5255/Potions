@@ -1,0 +1,11 @@
+SimulationType:
+  Equilibrium   # Other option is "Kinetic"
+PrimarySpecies:
+  H+: 0.0      # The value H+ is arbitrary
+  Ca++: 1e-3
+  HCO3-: 2e-3
+SecondarySpecies:
+  - CO3--
+  - CO2(aq)
+MineralSpecies:
+  Calcite: 1.0  # Surface area: m^2/g

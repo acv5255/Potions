@@ -11,6 +11,7 @@ using arma::Col;
 using arma::Mat;
 
 const unsigned int MAX_ITERATIONS = 50;
+using f64 = double;
 
 template<typename T>
 Mat<T> jacobian(const function<Col<T>(Col<T>)>& func, const Col<T>& x);
