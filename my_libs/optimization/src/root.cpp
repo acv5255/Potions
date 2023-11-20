@@ -1,7 +1,7 @@
 #include <iostream>
 #include "optimization.hpp"
 
-const double TOLERANCE = 1e-10;
+const double TOLERANCE = 1e-7;
 
 template<typename T>
 optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T>(Col<T>)>& jac, const Col<T>& x0) {
@@ -15,6 +15,8 @@ optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T
         T mean_val = arma::sum(x_sqr) / x.size();
         return mean_val;
     };
+
+    double max_err = 9999.0;
 
     for (int i = 0; i < MAX_ITERATIONS; i++) {
         // std::cout << "Starting iteration " << i << "\n";
@@ -31,7 +33,10 @@ optional<Col<T>> root(const function<Col<T>(Col<T>)>& func, const function<Mat<T
         const Col<T> dx = arma::solve(jac(x), func(x));
         x = x + (-dx);
 
-        if (err(x) < TOLERANCE) {
+        max_err = err(x);
+        std::cout << "Error after iteration " << i << ": " << max_err << "\n";
+
+        if (max_err < TOLERANCE) {
             return optional<Col<T>>(x);
         }
     }
