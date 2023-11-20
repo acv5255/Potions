@@ -1,6 +1,6 @@
 #include "optimization.hpp"
 
-const double DX = 0.01;
+const double DX = 0.0001;
 
 template<typename T>
 Mat<T> jacobian(const function<Col<T>(Col<T>)>& func, const Col<T>& x) {

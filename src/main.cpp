@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
 
     // Get model output directory
     const string outputFilename = getOutputFilepath(runOptions.outputName());
-    std::cout << "Writing results to: " << outputFilename << "\n";
+    cout << "Writing results to: " << outputFilename << "\n";
 
     // Construct the data structures for solving the problem
     if (modelInputs.runType() == EQUILIBRIUM) {
@@ -70,9 +70,52 @@ int main(int argc, char* argv[]) {
     }
     else if (modelInputs.runType() == KINETIC)
     {
-        std::cout << "Beginning kinetic solution\n";
+        cout << "Beginning kinetic solution\n";
+        cout << "================================\n";
 
-        throw NotImplemented();
+        // 1) Construct initial chemical state
+        ChemicalState chem = modelInputs.initChemState();
+        const map<string, double> surfaceAreaMap = modelInputs.surfaceAreas();
+        const map<string, unsigned int> minMap = modelInputs.chem().mineralMap();
+        vec surfaceArea = arma::zeros(surfaceAreaMap.size());
+
+        cout << "Mineral surface areas: \n";
+        for (auto x: surfaceAreaMap) {
+            auto index = minMap.at(x.first);
+            surfaceArea[index] = surfaceAreaMap.at(x.first);
+            cout << x.first << ": " << surfaceArea[index];
+        }
+        cout << "\n";
+        const TotalConstants totConsts = modelInputs.totalConstants();
+        const EquilibriumConstants eqConsts = modelInputs.equilibriumConstants();
+        const KineticConstants kinConsts = modelInputs.kineticConstants();
+
+        chem = SolveEquilibrium(chem.totalConcentration, eqConsts, totConsts);
+
+        // 2) Get model time steps
+        const int startTime = 0.0;
+        const int endTime = modelInputs.chem().endTime();
+        const int numSteps = modelInputs.chem().numSteps();
+        const double dt = (endTime - startTime) / (double)numSteps;
+        const vec timeSteps = arma::linspace(dt, endTime, numSteps);
+
+        // 3) Construct model outputs
+        vector<pair<double, ChemicalState>> results(modelInputs.chem().numSteps() + 1);
+        results[0] = {0.0, chem};
+
+        // 4) Run the model
+        for (int i = 0; i < numSteps; i++) {
+            chem = SolveKineticEquilibrium(chem, surfaceArea, kinConsts, eqConsts, totConsts, dt);
+            results[i+1] = {timeSteps[i], chem};
+        }
+
+        // 5) Save outputs
+        SaveKineticResults(results, modelInputs.speciesNames(), outputFilename);
+
+        // 6) Plot outputs
+        std::cerr << "ERROR: cannot yet plot model outputs\n";
+
+        // throw NotImplemented();
     }
     else {
         std::cerr << "Error: expected EQUILIBRIUM or KINETIC run types\n";

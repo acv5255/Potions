@@ -31,23 +31,39 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
         return f(x0 + a21 * k1 * dt + a22 * k2 * dt) - k2;
     };
 
-    auto residual = [&] (const Col<T>& k1, const Col<T>& k2) {
-        Col<T> ks = arma::zeros(2 * N);
+    Col<T> ks_0 = arma::zeros(2 * N);
+    Col<T> k_guess = f(x0);
+    for (int i = 0; i < N; i++) {
+        ks_0[i] = k_guess[i];
+        ks_0[i + N] = k_guess[i];
+    }
 
+    function<Col<T>(Col<T>)> residual = [&] (const Col<T>& ks) -> Col<T> {
+        Col<T> res = arma::zeros(2 * N);
+        Col<T> k1 = arma::zeros(N);
+        Col<T> k2 = arma::zeros(N);
         for (int i = 0; i < N; i++) {
-            ks[i] = k1[i];
-            ks[i + N] = k2[i];
+            k1[i] = ks[i];
+            k2[i] = ks[i+N];
         }
 
-        return ks;
+        Col<T> k1_val = k1_res(k1, k2);
+        Col<T> k2_val = k2_res(k1, k2);
+
+        for (int i = 0; i < N; i++) {
+            res[i] = k1_val[i];
+            res[i + N] = k2_val[i];
+        }
+
+        return res;
     };
 
     auto jac = [&] (const Col<T>& x) {
-        return jacobian(f, x);
+        return jacobian<T>(residual, x);
     };
 
     // Now, find the root of this function
-    optional<Col<T>> ks_root_option = root<T>(f, jac, x0);
+    optional<Col<T>> ks_root_option = root<T>(residual, jac, ks_0);
 
     if (!ks_root_option.has_value()) {
         std::cerr << "Failed to find root in Implicit Runge-Kutta solver\n";

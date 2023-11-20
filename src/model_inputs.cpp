@@ -36,7 +36,7 @@ ModelInputs::ModelInputs(ChemFile chem, Database cdbs) {
     // Create the mineral map
     _mineralMap = {};
     int min_id = 0;
-    for (auto x: chem.mineralSpecies()) {
+    for (auto x: chem.mineralSurfaceAreas()) {
         _mineralMap[x.first] = min_id;
         min_id += 1;
     }
@@ -89,7 +89,7 @@ ModelInputs ModelInputs::ReadInputs(const string& inputName) {
     // Create the mineral map
     map<string, unsigned int> mineralMap = {};
     int min_id = 0;
-    for (auto x: chem.mineralSpecies()) {
+    for (auto x: chem.mineralSurfaceAreas()) {
         mineralMap[x.first] = min_id;
         min_id += 1;
     }
@@ -205,7 +205,7 @@ TotalConstants ModelInputs::totalConstants() {
 
 KineticConstants ModelInputs::kineticConstants() {
     const int numSpecies = _speciesMap.size();
-    const int numMinerals = _chem.mineralSpecies().size();
+    const int numMinerals = _chem.mineralSurfaceAreas().size();
 
     // std::cerr << "Mineral map: \n";
     // for (auto x: _mineralMap) {
@@ -216,7 +216,7 @@ KineticConstants ModelInputs::kineticConstants() {
     vec eq_const = arma::zeros(numMinerals);
     vec kin_const = arma::zeros(numMinerals);
 
-    for (auto chemMineral: _chem.mineralSpecies()) {
+    for (auto chemMineral: _chem.mineralSurfaceAreas()) {
         const string mineralName = chemMineral.first;
         if (!_dbs.getMineralSpecies().contains(mineralName)) {
             std::cerr << "Database does not contain mineral: " << mineralName << "\n";

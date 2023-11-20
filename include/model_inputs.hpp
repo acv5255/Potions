@@ -20,6 +20,8 @@ const string SECONDARY_SECTION_TOKEN = "SecondarySpecies";
 const string MINERAL_SECTION_TOKEN = "MineralSpecies";
 const string SIMTYPE_EQ_TOKEN = "Equilibrium";  // Specifies an equilibrium simulation
 const string SIMTYPE_KIN_TOKEN = "Kinetic";     // Specifies a kinetic simulation
+const string END_TIME_TOKEN = "EndTime";
+const string NUM_STEPS = "NumSteps";
 
 // Database tokens type
 const string DBS_ID_TOKEN = "Database";
@@ -40,6 +42,9 @@ class ChemFile {
         map<string, double> _primarySpecies;
         vector<string> _secondarySpecies;
         map<string, double> _mineralSpecies;
+        map<string, unsigned int> _mineralMap;
+        double _endTime;
+        int _numSteps;
 
     public:
         ChemFile();
@@ -48,7 +53,10 @@ class ChemFile {
         static ChemFile FromString(const string& yamlString);
         map<string, double> primarySpecies();
         vector<string> secondarySpecies();
-        map<string, double> mineralSpecies();
+        map<string, double> mineralSurfaceAreas();
+        map<string, unsigned int> mineralMap() { return _mineralMap; };
+        double endTime() { return _endTime; };
+        int numSteps() { return _numSteps; };
 };
 
 // Database files
@@ -128,5 +136,7 @@ class ModelInputs {
         map<string, unsigned int> speciesMap();
         ChemFile chem() { return _chem;};
         Database database() { return _dbs;};
+        map<string, double> surfaceAreas() { return _chem.mineralSurfaceAreas(); };
+        // map<string, unsigned int> mineralMap() { return _chem.min}
         void print();
 };

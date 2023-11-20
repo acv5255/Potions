@@ -102,7 +102,7 @@ TEST_CASE("Test reading 'chem.yaml'", "[ChemFile::FromFile]") {
 
     REQUIRE(compare_maps(chem.primarySpecies(), CHEM_PRIM_SPECIES));
     REQUIRE(chem.secondarySpecies() == CHEM_SEC_SPECIES);
-    REQUIRE(compare_maps(chem.mineralSpecies(), CHEM_MIN_SPECIES));
+    REQUIRE(compare_maps(chem.mineralSurfaceAreas(), CHEM_MIN_SPECIES));
 }
 
 TEST_CASE("[SecondarySpecies::FromYaml]") {

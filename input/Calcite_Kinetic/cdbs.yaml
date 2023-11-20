@@ -1,0 +1,25 @@
+PrimarySpecies:
+  - Ca++
+  - H+
+  - HCO3-
+SecondarySpecies:
+  CO3--:
+    stoichiometry:
+      H+: 1
+      HCO3-: -1
+    logK: 9.617
+  CO2(aq):
+    stoichiometry:
+      H+: -1
+      HCO3-: -1
+    logK: -6.3447
+MineralSpecies:
+  Calcite:
+    stoichiometry:
+      Ca++: 1
+      HCO3-: 1
+      H+: -1
+    logK: -7.30
+    rate: -9.19
+    molarVolume: 2.5
+    molarMass: 2.5

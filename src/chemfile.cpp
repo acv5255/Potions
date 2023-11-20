@@ -56,6 +56,29 @@ ChemFile ChemFile::FromString(const string& yamlString) {
         exit(-1);
     }
 
+    // End time
+    double endTime = 0.0;
+    if (root[END_TIME_TOKEN]) {
+        endTime = root[END_TIME_TOKEN].as<double>();
+
+        if (endTime < 0.0) {
+            std::cerr << "End time for kinetic simulation must be > 0\n";
+            exit(-1);
+        }
+    }
+
+    // Number of simulation steps
+    int numSteps = 1;
+    if (root[NUM_STEPS]) {
+        numSteps = root[NUM_STEPS].as<int>();
+
+        if (numSteps < 1) {
+            std::cerr << "Number of steps must be > 0\n";
+            exit(-1);
+        }
+    }
+
+
     // Primary species
     if (!(primNode.Type() == YAML::NodeType::Map)) {
         std::cerr << "Error: Primary species section must be a YAML Map\n";
@@ -88,6 +111,13 @@ ChemFile ChemFile::FromString(const string& yamlString) {
     for (YAML::const_iterator it=minNode.begin(); it != minNode.end(); it++) {
         minAreas[it->first.as<string>()] = it->second.as<double>();
     }
+
+    map<string, unsigned int> minMap;
+    unsigned int count = 0;
+    for (auto x: minAreas) {
+        minMap[x.first] = count;
+        count += 1;
+    }
     //=====================================//
 
     // Construct object and return
@@ -96,6 +126,9 @@ ChemFile ChemFile::FromString(const string& yamlString) {
     chem._primarySpecies = primSpec;
     chem._secondarySpecies = secSpec;
     chem._mineralSpecies = minAreas;
+    chem._endTime = endTime;
+    chem._numSteps = numSteps;
+    chem._mineralMap = minMap;
 
     return chem;
 }
@@ -108,7 +141,7 @@ vector<string> ChemFile::secondarySpecies() {
     return _secondarySpecies;
 }
 
-map<string, double> ChemFile::mineralSpecies() {
+map<string, double> ChemFile::mineralSurfaceAreas() {
     return _mineralSpecies;
 }
 

@@ -9,7 +9,7 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt) {
         Solve the ODE by stiffness detection. If the time step is not stable, then
         use the implicit rule
      */
-    const Mat<T> jac = jacobian<T>(func, x0);
+    const Mat<T> jac = jacobian<T>(func, x0);   // <- this is the problem line
     const cx_vec eigen_values = arma::eig_gen(jac);
     
     // Get the maximum modulus of the eigenvalue
@@ -31,10 +31,12 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt) {
         }
     }
 
-    if (use_explicit) {
+    if (false) {
+        std::cerr << "Using explicit method\n";
         return RungeKuttaExplicit(func, x0, dt);
     }
     else {
+        std::cerr << "Using implicit method\n";
         return RungeKuttaImplicit(func, x0, dt);
     }
 }

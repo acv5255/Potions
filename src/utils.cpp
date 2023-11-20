@@ -34,10 +34,38 @@ bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, c
 
         std::cout << "Equilibrium results written to: " << filePath  << "\n";
 
+        file.close();
+
         return true;
     }
     catch (const std::exception&) {
-        std::cerr << "Failed to write equilibrium reuslts\n";
+        std::cerr << "Failed to write equilibrium results\n";
+        return false;
+    }
+}
+
+bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath) {
+    try {
+        ofstream file;
+        file.open(filePath);
+        file << "Time,";
+        for (auto x: species) file << x << ",";
+        file << "\n";
+
+        for (auto pt: res) {
+            file << pt.first << ",";
+            for (auto s: pt.second.concentration) file << s << ",";
+            file << "\n";
+        }
+        file << "\n";
+
+        file.close();
+        std::cout << "Equilibrium results written to: " << filePath  << "\n";
+        return true;
+
+    }
+    catch (const std::exception&) {
+        std::cerr << "Failed to write kinetic results\n";
         return false;
     }
 }
