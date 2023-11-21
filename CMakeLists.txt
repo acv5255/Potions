@@ -9,6 +9,15 @@ add_subdirectory(external/yaml-cpp)
 add_subdirectory(external/matplotplusplus)
 add_subdirectory(external/Catch2)
 
+include_directories(
+    external/matplotplusplus/source/
+    build/external/matplotplusplus/source/matplot/
+)
+
+link_libraries(
+    matplot
+)
+
 # My libraries
 add_subdirectory(my_libs/optimization)
 add_subdirectory(my_libs/ode)

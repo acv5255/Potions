@@ -10,6 +10,10 @@ add_library(
     src/solve_ode.cpp
 )
 
+add_compile_options(
+    -O3
+)
+
 target_include_directories(
     ode
     PUBLIC

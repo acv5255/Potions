@@ -2,9 +2,11 @@
 #include <sstream>
 #include <algorithm>
 #include "potions.hpp"
+#include <matplot/matplot.h>
 
 using std::ofstream;
 using std::stringstream;
+using namespace matplot;
 
 string getOutputFilepath(string simulationName) {
     /*
@@ -18,9 +20,6 @@ string getOutputFilepath(string simulationName) {
     return s.str();
 }
 
-// bool compare_doubles(double a, double b) {
-//     return  (std::abs(a - b) < 1e-12);
-// }
 
 bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, const string& filePath) {
     try {
@@ -43,6 +42,7 @@ bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, c
         return false;
     }
 }
+
 
 bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath) {
     try {
@@ -70,12 +70,14 @@ bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const ve
     }
 }
 
+
 int getCharge(const string& name) {
     const int positiveCharge = std::count(name.cbegin(), name.cend(), '+');
     const int negativeCharge = std::count(name.cbegin(), name.cend(), '-');
 
     return positiveCharge - negativeCharge;
 }
+
 
 template<typename T>
 void PrintMatrix(const Mat<T>& m) {
@@ -86,4 +88,43 @@ void PrintMatrix(const Mat<T>& m) {
 
         std::cout << "\n";
     }
+}
+
+bool PlotResults(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames) {
+    /*
+        Plot the kinetic time-series results
+     */
+    // Construct input arrays 
+    const int N = results.size();
+    const int numSpecies = speciesNames.size();
+    vector<double> ts(N);
+    vector<vector<double>> data(numSpecies);
+    for (int i = 0; i < numSpecies; i++) {
+        data[i] = vector<double>(N);
+    }
+
+    int counter = 0;
+    for (auto x: results) {
+        ts[counter] = x.first;
+        for (int j = 0; j < numSpecies; j++) {
+            data[j][counter] = x.second.concentration[j];
+        }
+
+        counter += 1;
+    }
+
+    // Plot results
+    hold(on);
+    for (int i = 0; i < numSpecies; i++) {
+        semilogy(ts, data[i]);
+    }
+    legend(speciesNames);
+
+    // Show plot
+    show();
+    title("Kinetic solution");
+    xlabel("Time [s]");
+    ylabel("Concentration [molar]");
+
+    return true;
 }

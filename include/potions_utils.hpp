@@ -18,3 +18,5 @@ int  getCharge(const string& name);
 
 template<typename T>
 void PrintMatrix(const Mat<T>& m);
+
+bool PlotResults(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames);

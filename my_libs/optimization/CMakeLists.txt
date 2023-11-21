@@ -9,6 +9,10 @@ add_library(
     src/root.cpp
 )
 
+add_compile_options(
+    -O3
+)
+
 target_include_directories(
     optimization
     PUBLIC

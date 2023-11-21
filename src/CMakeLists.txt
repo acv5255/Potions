@@ -13,9 +13,12 @@ add_executable(
     solution.cpp
 )
 
-include_directories(
+target_include_directories(
+    potions
+    PRIVATE
+    ../external/matplotplusplus/source/
+    ../build/external/matplotplusplus/source/matplot/
     ../external/armadillo-code/include/
-    ../external/matplotlib-cpp/
     ../my_libs/optimization/include/
     ../my_libs/ode/include/
     ../external/yaml-cpp/include/
@@ -24,23 +27,27 @@ include_directories(
 
 target_link_libraries(
     potions
-    PUBLIC
+    PRIVATE
     armadillo
     yaml-cpp
+    matplot
+    nodesoup
     optimization
     ode
 )
 
 target_link_directories(
     potions
-    PUBLIC
+    PRIVATE
     ../build/external/yaml-cpp/
+    ../build/external/matplotplusplus/source/matplot
     ../build/my_libs/optimization/
     ../build/my_libs/ode/
 )
 
 add_compile_options(
-    -g
+    # -g
+    -O3
 )
 
 set_target_properties(

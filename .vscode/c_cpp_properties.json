@@ -15,7 +15,8 @@
             "name": "Potions",
             "includePath": [
                 "${workspaceFolder}/external/armadillo-code/include/",
-                "${workspaceFolder}/external/matplotplusplus/",
+                "${workspaceFolder}/external/matplotplusplus/source/",
+                "${workspaceFolder}/build/external/matplotplusplus/source/matplot/",
                 "${workspaceFolder}/external/yaml-cpp/include/",
                 "${workspaceFolder}/my_libs/optimization/include/",
                 "${workspaceFolder}/my_libs/ode/include/",

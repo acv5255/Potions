@@ -1,5 +1,7 @@
+#include <chrono>
 #include "potions.hpp"
 using std::cout;
+using namespace std::chrono;
 
 int main(int argc, char* argv[]) {
     // Handle command line input
@@ -12,6 +14,8 @@ int main(int argc, char* argv[]) {
     // Get model output directory
     const string outputFilename = getOutputFilepath(runOptions.outputName());
     cout << "Writing results to: " << outputFilename << "\n";
+
+    auto start = high_resolution_clock::now();
 
     // Construct the data structures for solving the problem
     if (modelInputs.runType() == EQUILIBRIUM) {
@@ -66,6 +70,11 @@ int main(int argc, char* argv[]) {
             totConsts
         );
 
+        auto stop = high_resolution_clock::now();
+        auto duration = (long)duration_cast<milliseconds>(stop - start).count();
+        double seconds = (double)duration / 1000.0;
+        cout << "Time for equilibrium simulation: " << seconds << " seconds\n";
+
         SaveEquilibriumResults(chemFinal, modelInputs.speciesNames(), outputFilename);
     }
     else if (modelInputs.runType() == KINETIC)
@@ -108,12 +117,17 @@ int main(int argc, char* argv[]) {
             chem = SolveKineticEquilibrium(chem, surfaceArea, kinConsts, eqConsts, totConsts, dt);
             results[i+1] = {timeSteps[i], chem};
         }
+        auto stop = high_resolution_clock::now();
+        auto duration = (long)duration_cast<milliseconds>(stop - start).count();
+        double seconds = (double)duration / 1000.0;
+        cout << "Time for kinetic simulation: " << seconds << "seconds\n";
 
         // 5) Save outputs
         SaveKineticResults(results, modelInputs.speciesNames(), outputFilename);
 
         // 6) Plot outputs
-        std::cerr << "ERROR: cannot yet plot model outputs\n";
+        // std::cerr << "ERROR: cannot yet plot model outputs\n";
+        PlotResults(results, modelInputs.speciesNames());
 
         // throw NotImplemented();
     }
@@ -124,6 +138,7 @@ int main(int argc, char* argv[]) {
 
     // Plot the solution
     std::cout << "Successfully ran Potions simulation\n";
+
 
     return 0;
 }
