@@ -24,11 +24,13 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
 
     // Construct the functions
     auto k1_res = [&] (const Col<T>& k1, const Col<T>& k2)  {
-        return f(x0 + a11 * k1 * dt + a12 * k2 * dt) - k1;
+        Col<T> val = f(x0 + a11 * k1 * dt + a12 * k2 * dt) - k1;
+        return val;
     };
 
     auto k2_res = [&] (const Col<T>& k1, const Col<T>& k2) {
-        return f(x0 + a21 * k1 * dt + a22 * k2 * dt) - k2;
+        Col<T> val = f(x0 + a21 * k1 * dt + a22 * k2 * dt) - k2;
+        return val;
     };
 
     Col<T> ks_0 = arma::zeros(2 * N);
@@ -58,11 +60,15 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
         return res;
     };
 
-    auto jac = [&] (const Col<T>& x) {
-        return jacobian<T>(residual, x);
+    auto jac = [&] (const Col<T>& val) {
+        return jacobian<T>(residual, val);
     };
 
+    Col<T> res_k0 = residual(ks_0);
+    Mat<T> jac_k0 = jac(ks_0);
+
     // Now, find the root of this function
+    // std::cerr << "About to call roots on the ks...\n";
     optional<Col<T>> ks_root_option = root<T>(residual, jac, ks_0);
 
     if (!ks_root_option.has_value()) {

@@ -24,7 +24,10 @@ Mat<T> jacobian(const function<Col<T>(Col<T>)>& func, const Col<T>& x) {
 
     // Compute the jacobian element-wise
     for (int i = 0; i < n; i++) {
-        // double dx_i = std::abs(0.01 * x[i]);
+        double dx_i = std::abs(0.01 * x[i]);
+        if (dx_i < 1e-15) {
+            dx_i = 0.0001;
+        }
 
         Col<T> x_up = copyVec();
         Col<T> x_dn = copyVec();

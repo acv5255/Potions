@@ -32,11 +32,11 @@ Col<T> SolveODE(const function<Col<T>(Col<T>)>& func, const Col<T>& x0, T dt) {
     }
 
     if (false) {
-        std::cerr << "Using explicit method\n";
+        // std::cerr << "Using explicit method\n";
         return RungeKuttaExplicit(func, x0, dt);
     }
     else {
-        std::cerr << "Using implicit method\n";
+        // std::cerr << "Using implicit method\n";
         return RungeKuttaImplicit(func, x0, dt);
     }
 }

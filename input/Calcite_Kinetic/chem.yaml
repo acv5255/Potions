@@ -3,8 +3,8 @@ EndTime: 1000.0
 NumSteps: 2
 PrimarySpecies:
   H+: 0.0      # The value H+ is arbitrary
-  Ca++: 1e-3
-  HCO3-: 2e-3
+  Ca++: 1e-1
+  HCO3-: 2e-1
 SecondarySpecies:
   - CO3--
   - CO2(aq)

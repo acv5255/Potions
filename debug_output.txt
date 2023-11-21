@@ -1,0 +1,9 @@
+Model folder name: Calcite_Kinetic
+Writing results to: Calcite_Kinetic_results.txt
+Beginning kinetic solution
+================================
+Mineral surface areas: 
+Calcite: 1
+Equilibrium results written to: Calcite_Kinetic_results.txt
+ERROR: cannot yet plot model outputs
+Successfully ran Potions simulation

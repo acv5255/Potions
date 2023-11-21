@@ -15,3 +15,6 @@ bool compare_doubles(double a, double b);
 bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, const string& filePath);
 bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath);
 int  getCharge(const string& name);
+
+template<typename T>
+void PrintMatrix(const Mat<T>& m);
