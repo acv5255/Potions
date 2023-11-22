@@ -1,9 +1,13 @@
 #include "potions.hpp"
 
+// Default constructor, never used
 ChemFile::ChemFile() {
 
 }
 
+/*
+    Read the chem.yaml input file and produce a chemfile object.
+ */
 ChemFile ChemFile::from_file(const string& filePath) {
     // Read the file from a string into a ChemFile object
     std::ifstream file(filePath);
@@ -13,8 +17,12 @@ ChemFile ChemFile::from_file(const string& filePath) {
     return ChemFile::from_string(buffer.str());
 }
 
-ChemFile ChemFile::from_string(const string& yamlString) {
-    YAML::Node root = YAML::Load(yamlString);
+/*
+    Produce a ChemFile object from a complete file string.
+    This function exists to make testing easier.
+ */
+ChemFile ChemFile::from_string(const string& yaml_string) {
+    YAML::Node root = YAML::Load(yaml_string);
 
     // Check for required sections
     if (!root[SIMULATION_TYPE_TOKEN]) {

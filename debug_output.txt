@@ -1,9 +1,0 @@
-Model folder name: Calcite_Kinetic
-Writing results to: Calcite_Kinetic_results.txt
-Beginning kinetic solution
-================================
-Mineral surface areas: 
-Calcite: 1
-Time for kinetic simulation: 14.054seconds
-Equilibrium results written to: Calcite_Kinetic_results.txt
-Press ENTER to continue...Successfully ran Potions simulation

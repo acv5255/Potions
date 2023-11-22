@@ -1,5 +1,10 @@
 #include "potions.hpp"
 
+/*
+    This function reads the command line parameters and constructs
+    the run options structure. This is a bare-bones data structure,
+    but it is set up so that it can be edited in the future.
+ */
 RunOptions RunOptions::from_arguments(int argc, char* argv[]) {
     RunOptions options;
     if (argc == 2) {
@@ -10,20 +15,5 @@ RunOptions RunOptions::from_arguments(int argc, char* argv[]) {
         exit(-1);
     }
 
-    options._write_outputs = true;
-    options._plot_kinetic_outputs = true;
-
     return options;
-}
-
-string RunOptions::output_name() {
-    return _output_name;
-}
-
-bool RunOptions::write_outputs() {
-    return _write_outputs;
-}
-
-bool RunOptions::plot_kinetic_outputs() {
-    return _plot_kinetic_outputs;
 }
