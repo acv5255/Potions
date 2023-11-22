@@ -36,107 +36,126 @@ const string DBS_RATE_CONST_TOKEN = "rate";
 
 bool operator==(const map<string, double>& l, const map<string, double>& r);
 
+
 class ChemFile {
     private:
-        PotionsRunType _runType;
-        map<string, double> _primarySpecies;
-        vector<string> _secondarySpecies;
-        map<string, double> _mineralSpecies;
-        map<string, unsigned int> _mineralMap;
-        double _endTime;
-        int _numSteps;
+        PotionsRunType _run_type;
+        map<string, double> _primary_species;
+        vector<string> _secondary_species;
+        map<string, double> _mineral_species;
+        map<string, unsigned int> _mineral_map;
+        double _end_time;
+        int _num_steps;
 
     public:
         ChemFile();
-        PotionsRunType runType();
-        static ChemFile FromFile(const string& filePath);
-        static ChemFile FromString(const string& yamlString);
-        map<string, double> primarySpecies();
-        vector<string> secondarySpecies();
-        map<string, double> mineralSurfaceAreas();
-        map<string, unsigned int> mineralMap() { return _mineralMap; };
-        double endTime() { return _endTime; };
-        int numSteps() { return _numSteps; };
+        PotionsRunType run_type();
+        static ChemFile from_file(const string& filePath);
+        static ChemFile from_string(const string& yamlString);
+        map<string, double> primary_species();
+        vector<string> secondary_species();
+        map<string, double> mineral_surface_areas();
+        map<string, unsigned int> mineral_map() {
+            return _mineral_map;
+        }
+        double endTime() {
+            return _end_time;
+        }
+        int numSteps() {
+            return _num_steps;
+        }
 };
+
 
 // Database files
 struct SecondarySpecies {
     map<string, double> stoichiometry;
-    double equilibriumConstant;
+    double equilibrium_constant;
     
-    static SecondarySpecies FromYaml(const YAML::Node& node);
+    static SecondarySpecies from_yaml(const YAML::Node& node);
     SecondarySpecies();
-    SecondarySpecies(map<string,double>& stoichiometry, double equilibriumConstant) : stoichiometry(stoichiometry), equilibriumConstant(equilibriumConstant) { };
+    SecondarySpecies(map<string,double>& stoichiometry, double equilibriumConstant) : stoichiometry(stoichiometry), equilibrium_constant(equilibriumConstant) { };
     bool operator==(const SecondarySpecies& other);
 };
 
-bool operator==(const map<string, SecondarySpecies>& l, const map<string, SecondarySpecies>& r);
+bool operator==(
+    const map<string, SecondarySpecies>& l,
+    const map<string, SecondarySpecies>& r
+);
 
 struct MineralSpecies {
     map<string, double> stoichiometry;  // Map of the stoichiometry in this mineral
-    double molarVolume;                 
-    double molarMass;          
-    double rateConstant;                // Rate constant of the kinetic reaction
-    double equilibriumConstant;
+    double molar_volume;                 
+    double molar_mass;          
+    double rate_constant;                // Rate constant of the kinetic reaction
+    double equilibrium_constant;
 
-    static MineralSpecies FromYaml(const YAML::Node& node);
+    static MineralSpecies from_yaml(const YAML::Node& node);
     MineralSpecies();
     MineralSpecies(
-        const map<string, double>& stoichiometry, 
-        double molarVolume, 
-        double molarMass,
-        double rateConstant,
-        double equilibriumConstant
-        ) : stoichiometry(stoichiometry), molarMass(molarMass), molarVolume(molarVolume),
-            rateConstant(rateConstant), equilibriumConstant(equilibriumConstant) { };
+        const map<string, double>& stoichiometry,
+        double molar_volume,
+        double molar_mass,
+        double rate_constant,
+        double equilibrium_constant) :
+            stoichiometry(stoichiometry),
+            molar_mass(molar_mass),
+            molar_volume(molar_volume),
+            rate_constant(rate_constant),
+            equilibrium_constant(equilibrium_constant) { };
     bool operator==(const MineralSpecies& other);
 };
 
-bool operator==(const map<string, MineralSpecies>& l, const map<string, MineralSpecies>& r);
+bool operator==(
+    const map<string, MineralSpecies>& l,
+    const map<string, MineralSpecies>& r);
 
 class Database {
     private:
-        vector<string> _primSpec;
-        map<string, SecondarySpecies> _secSpec;
-        map<string, MineralSpecies> _minKin;
+        vector<string> _primary_species;
+        map<string, SecondarySpecies> _secondary_species;
+        map<string, MineralSpecies> _mineral_kinetic;
 
     public:
         Database();
-        Database(vector<string> primSpecies, map<string, SecondarySpecies> secSpecies, map<string, MineralSpecies> minSpecies) :
-            _primSpec(primSpecies), _secSpec(secSpecies), _minKin(minSpecies) { };
-        static Database FromFile(const string& filePath);
-        static Database FromString(const string& yamlString);
-        map<string, double> getEquilibriumConstants();
-        vector<string> getPrimarySpecies();
-        map<string, SecondarySpecies> getSecondarySpecies();
-        map<string, MineralSpecies> getMineralSpecies();
+        Database(
+            vector<string> primary_species,
+            map<string, SecondarySpecies> secondary_species,
+            map<string, MineralSpecies> mineral_species) :
+                _primary_species(primary_species),
+                _secondary_species(secondary_species),
+                _mineral_kinetic(mineral_species) { }
+        static Database from_file(const string& file_path);
+        static Database from_string(const string& yaml_string);
+        map<string, double> equilibrium_constants();
+        vector<string> get_primary_species();
+        map<string, SecondarySpecies> get_secondary_species();
+        map<string, MineralSpecies> get_mineral_species();
 };
 
 class ModelInputs {
     private:
-        map<string, unsigned int> _speciesMap;
-        map<string, unsigned int> _mineralMap;
-        PotionsRunType _runType;
+        map<string, unsigned int> _species_map;
+        map<string, unsigned int> _mineral_map;
+        PotionsRunType _run_type;
         ChemFile _chem;
         Database _dbs;
-        EquilibriumConstants _eq_consts;
-        TotalConstants _tot_consts;
-        KineticConstants _kin_consts;
+        EquilibriumConstants _equilibrium_constants;
+        TotalConstants _total_constants;
+        KineticConstants _kinetic_constants;
 
     public:
-        static ModelInputs ReadInputs(const string& inputName);
+        static ModelInputs read_inputs(const string& inputName);
         ModelInputs();
         ModelInputs(ChemFile chem, Database cdbs);
-        PotionsRunType runType();
-        ChemicalState initChemState();
-        EquilibriumConstants equilibriumConstants();
-        TotalConstants totalConstants();
-        KineticConstants kineticConstants();
-        vector<string> speciesNames();
-        map<string, unsigned int> speciesMap();
+        PotionsRunType run_type();
+        ChemicalState initial_chem_state();
+        EquilibriumConstants equilibrium_constants();
+        TotalConstants total_constants();
+        KineticConstants kinetic_constants();
+        vector<string> species_names();
+        map<string, unsigned int> species_map();
         ChemFile chem() { return _chem;};
         Database database() { return _dbs;};
-        map<string, double> surfaceAreas() { return _chem.mineralSurfaceAreas(); };
-        // map<string, unsigned int> mineralMap() { return _chem.min}
-        void print();
+        map<string, double> surface_areas() { return _chem.mineral_surface_areas(); };
 };

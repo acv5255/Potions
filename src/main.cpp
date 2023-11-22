@@ -5,52 +5,52 @@ using namespace std::chrono;
 
 int main(int argc, char* argv[]) {
     // Handle command line input
-    RunOptions runOptions = RunOptions::FromArguments(argc, argv);
+    RunOptions runOptions = RunOptions::from_arguments(argc, argv);
 
     // Read the model inputs
-    ModelInputs modelInputs = ModelInputs::ReadInputs(runOptions.outputName());
-    std::cout << "Model folder name: " << runOptions.outputName() << "\n";
+    ModelInputs modelInputs = ModelInputs::read_inputs(runOptions.output_name());
+    std::cout << "Model folder name: " << runOptions.output_name() << "\n";
 
     // Get model output directory
-    const string outputFilename = getOutputFilepath(runOptions.outputName());
+    const string outputFilename = get_output_file_path(runOptions.output_name());
     cout << "Writing results to: " << outputFilename << "\n";
 
     auto start = high_resolution_clock::now();
 
     // Construct the data structures for solving the problem
-    if (modelInputs.runType() == EQUILIBRIUM) {
+    if (modelInputs.run_type() == EQUILIBRIUM) {
         std::cout << "\nBeginning equilibrium solution\n";
         std::cout << "================================\n";
-        const ChemicalState chemInit = modelInputs.initChemState();
+        const ChemicalState chemInit = modelInputs.initial_chem_state();
 
         std::cout << "Total concentrations:\n";
-        for (auto x: modelInputs.chem().primarySpecies()) {
+        for (auto x: modelInputs.chem().primary_species()) {
             std::cout << x.first << ": " << x.second << "\n";
         }
         std::cout << std::endl;
 
-        EquilibriumConstants eqConsts = modelInputs.equilibriumConstants();
+        EquilibriumConstants eqConsts = modelInputs.equilibrium_constants();
 
         // Print out equilibrium parameters
         {
             cout.precision(3);
             cout << "Equilibrium parameters:\n";
             cout << "Stoichiometry matrix\n";
-            for (int i = 0; i < eqConsts.stoichMat.n_rows; i++) {
-                for (int j = 0; j < eqConsts.stoichMat.n_cols; j++) {
-                    cout << eqConsts.stoichMat(i,j) << " ";
+            for (int i = 0; i < eqConsts.stoichiometry_matrix.n_rows; i++) {
+                for (int j = 0; j < eqConsts.stoichiometry_matrix.n_cols; j++) {
+                    cout << eqConsts.stoichiometry_matrix(i,j) << " ";
                 }
                 cout << "\n";
             }
             cout << "\n";
             cout << "Log10 of Equilibrium constants\n";
-            for (int i = 0; i < eqConsts.eqConsts.size(); i++) {
-                cout << eqConsts.eqConsts[i] << "\n";
+            for (int i = 0; i < eqConsts.equilibrium_constants.size(); i++) {
+                cout << eqConsts.equilibrium_constants[i] << "\n";
             }
             cout << "\n";
         }
 
-        TotalConstants totConsts = modelInputs.totalConstants();
+        TotalConstants totConsts = modelInputs.total_constants();
 
         {
             // Print out total constant parameters
@@ -64,8 +64,8 @@ int main(int argc, char* argv[]) {
             cout << "\n";
         }
 
-        const ChemicalState chemFinal = SolveEquilibrium(
-            chemInit.totalConcentration,
+        const ChemicalState chemFinal = solve_equilibrium(
+            chemInit.total_concentration,
             eqConsts,
             totConsts
         );
@@ -75,17 +75,17 @@ int main(int argc, char* argv[]) {
         double seconds = (double)duration / 1000.0;
         cout << "Time for equilibrium simulation: " << seconds << " seconds\n";
 
-        SaveEquilibriumResults(chemFinal, modelInputs.speciesNames(), outputFilename);
+        save_equilibrium_results(chemFinal, modelInputs.species_names(), outputFilename);
     }
-    else if (modelInputs.runType() == KINETIC)
+    else if (modelInputs.run_type() == KINETIC)
     {
         cout << "Beginning kinetic solution\n";
         cout << "================================\n";
 
         // 1) Construct initial chemical state
-        ChemicalState chem = modelInputs.initChemState();
-        const map<string, double> surfaceAreaMap = modelInputs.surfaceAreas();
-        const map<string, unsigned int> minMap = modelInputs.chem().mineralMap();
+        ChemicalState chem = modelInputs.initial_chem_state();
+        const map<string, double> surfaceAreaMap = modelInputs.surface_areas();
+        const map<string, unsigned int> minMap = modelInputs.chem().mineral_map();
         vec surfaceArea = arma::zeros(surfaceAreaMap.size());
 
         cout << "Mineral surface areas: \n";
@@ -95,11 +95,11 @@ int main(int argc, char* argv[]) {
             cout << x.first << ": " << surfaceArea[index];
         }
         cout << "\n";
-        const TotalConstants totConsts = modelInputs.totalConstants();
-        const EquilibriumConstants eqConsts = modelInputs.equilibriumConstants();
-        const KineticConstants kinConsts = modelInputs.kineticConstants();
+        const TotalConstants totConsts = modelInputs.total_constants();
+        const EquilibriumConstants eqConsts = modelInputs.equilibrium_constants();
+        const KineticConstants kinConsts = modelInputs.kinetic_constants();
 
-        chem = SolveEquilibrium(chem.totalConcentration, eqConsts, totConsts);
+        chem = solve_equilibrium(chem.total_concentration, eqConsts, totConsts);
 
         // 2) Get model time steps
         const int startTime = 0.0;
@@ -114,20 +114,20 @@ int main(int argc, char* argv[]) {
 
         // 4) Run the model
         for (int i = 0; i < numSteps; i++) {
-            chem = SolveKineticEquilibrium(chem, surfaceArea, kinConsts, eqConsts, totConsts, dt);
+            chem = solve_kinetic_equilibrium(chem, surfaceArea, kinConsts, eqConsts, totConsts, dt);
             results[i+1] = {timeSteps[i], chem};
         }
         auto stop = high_resolution_clock::now();
         auto duration = (long)duration_cast<milliseconds>(stop - start).count();
         double seconds = (double)duration / 1000.0;
-        cout << "Time for kinetic simulation: " << seconds << "seconds\n";
+        cout << "Time for kinetic simulation: " << seconds << " seconds\n";
 
         // 5) Save outputs
-        SaveKineticResults(results, modelInputs.speciesNames(), outputFilename);
+        save_kinetic_results(results, modelInputs.species_names(), outputFilename);
 
         // 6) Plot outputs
         // std::cerr << "ERROR: cannot yet plot model outputs\n";
-        PlotResults(results, modelInputs.speciesNames());
+        plot_results(results, modelInputs.species_names());
 
         // throw NotImplemented();
     }

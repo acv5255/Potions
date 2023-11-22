@@ -4,7 +4,7 @@
 const double TOLERANCE = 1e-7;
 
 template<typename T>
-void PrintMatrix(const Mat<T>& m) {
+void print_matrix(const Mat<T>& m) {
     for (int i = 0; i < m.n_rows; i++) {
         for (int j = 0; j < m.n_cols; j++) {
             std::cout << m(i,j) << " ";

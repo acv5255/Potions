@@ -10,8 +10,8 @@ bool compare_doubles(double a, double b) {
 }
 
 
-PotionsRunType ModelInputs::runType() {
-    return _chem.runType();
+PotionsRunType ModelInputs::run_type() {
+    return _chem.run_type();
 }
 
 
@@ -23,31 +23,31 @@ ModelInputs::ModelInputs() {
 ModelInputs::ModelInputs(ChemFile chem, Database cdbs) {
     unsigned int counter = 0;
     map<string, unsigned int> speciesMap;
-    for (auto x: chem.primarySpecies()) {
+    for (auto x: chem.primary_species()) {
         speciesMap[x.first] = counter;
         counter += 1;
     }
 
-    for (auto x: chem.secondarySpecies()) {
+    for (auto x: chem.secondary_species()) {
         speciesMap[x] = counter;
         counter += 1;
     }
 
     // Create the mineral map
-    _mineralMap = {};
+    _mineral_map = {};
     int min_id = 0;
-    for (auto x: chem.mineralSurfaceAreas()) {
-        _mineralMap[x.first] = min_id;
+    for (auto x: chem.mineral_surface_areas()) {
+        _mineral_map[x.first] = min_id;
         min_id += 1;
     }
 
     this->_chem = chem;
     this->_dbs = cdbs;
-    this->_speciesMap = speciesMap;
+    this->_species_map = speciesMap;
 }
 
 
-ModelInputs ModelInputs::ReadInputs(const string& inputName) {
+ModelInputs ModelInputs::read_inputs(const string& inputName) {
     // Read chem.yaml and cdbs.yaml
     const path inputDir = current_path() / "input" / inputName;
     const path cdbs_path = inputDir / "cdbs.yaml";
@@ -70,18 +70,18 @@ ModelInputs ModelInputs::ReadInputs(const string& inputName) {
 
     ModelInputs modelInputs;
 
-    ChemFile chem = ChemFile::FromFile(chem_path.string());
-    Database cdbs = Database::FromFile(cdbs_path.string());
+    ChemFile chem = ChemFile::from_file(chem_path.string());
+    Database cdbs = Database::from_file(cdbs_path.string());
 
     // Construct the species map
     unsigned int counter = 0;
     map<string, unsigned int> speciesMap;
-    for (auto x: chem.primarySpecies()) {
+    for (auto x: chem.primary_species()) {
         speciesMap[x.first] = counter;
         counter += 1;
     }
 
-    for (auto x: chem.secondarySpecies()) {
+    for (auto x: chem.secondary_species()) {
         speciesMap[x] = counter;
         counter += 1;
     }
@@ -89,42 +89,42 @@ ModelInputs ModelInputs::ReadInputs(const string& inputName) {
     // Create the mineral map
     map<string, unsigned int> mineralMap = {};
     int min_id = 0;
-    for (auto x: chem.mineralSurfaceAreas()) {
+    for (auto x: chem.mineral_surface_areas()) {
         mineralMap[x.first] = min_id;
         min_id += 1;
     }
 
     modelInputs._chem = chem;
     modelInputs._dbs = cdbs;
-    modelInputs._speciesMap = speciesMap;
-    modelInputs._mineralMap = mineralMap;
+    modelInputs._species_map = speciesMap;
+    modelInputs._mineral_map = mineralMap;
 
     return modelInputs;
 }
 
 
-ChemicalState ModelInputs::initChemState() {
-    vec conc = arma::zeros(_speciesMap.size());
+ChemicalState ModelInputs::initial_chem_state() {
+    vec conc = arma::zeros(_species_map.size());
     conc = 1e-7;
-    vec totConc = arma::zeros(_chem.primarySpecies().size());
-    for (auto x: _chem.primarySpecies()) {
-        if (x.first == "H+") totConc[_speciesMap.at("H+")] == 0.0;
-        else totConc[_speciesMap.at(x.first)] = x.second;
+    vec totConc = arma::zeros(_chem.primary_species().size());
+    for (auto x: _chem.primary_species()) {
+        if (x.first == "H+") totConc[_species_map.at("H+")] == 0.0;
+        else totConc[_species_map.at(x.first)] = x.second;
     }
 
     return ChemicalState(conc, totConc);
 }
 
 
-EquilibriumConstants ModelInputs::equilibriumConstants() {
+EquilibriumConstants ModelInputs::equilibrium_constants() {
     vector<string> primSpecies;
     vector<string> secSpecies;
 
-    for (auto x: _chem.primarySpecies()) {
+    for (auto x: _chem.primary_species()) {
         primSpecies.push_back(x.first);
     }
 
-    for (auto x: _chem.secondarySpecies()) {
+    for (auto x: _chem.secondary_species()) {
         secSpecies.push_back(x);
     }
 
@@ -134,7 +134,7 @@ EquilibriumConstants ModelInputs::equilibriumConstants() {
     const int numRows = secSpecies.size();  // The number of equilibrium reactions is the number of secondary species
     const int numCols = numSpecies;
 
-    const map<string, unsigned int> specMap = this->speciesMap();
+    const map<string, unsigned int> specMap = this->species_map();
 
     // Create the stoichiometry matrix
     mat stoich = arma::zeros(secSpecies.size(), numSpecies);
@@ -142,11 +142,11 @@ EquilibriumConstants ModelInputs::equilibriumConstants() {
 
     unsigned int counter = 0;
     for (auto spec: secSpecies) {
-        if (!_dbs.getSecondarySpecies().contains(spec)) {
+        if (!_dbs.get_secondary_species().contains(spec)) {
             std::cerr << "Error: database does not contain the secondary species " << spec << "\n";
             exit(-1);
         }
-        const SecondarySpecies s = _dbs.getSecondarySpecies().at(spec);
+        const SecondarySpecies s = _dbs.get_secondary_species().at(spec);
 
         if (!specMap.contains(spec)) {
             std::cerr << "Species map does not contain entry: '" << spec << "'\n";
@@ -160,7 +160,7 @@ EquilibriumConstants ModelInputs::equilibriumConstants() {
             stoich(counter, index ) = entry.second;
         }
 
-        logK[counter] = s.equilibriumConstant;
+        logK[counter] = s.equilibrium_constant;
 
         counter += 1;
     }
@@ -169,31 +169,31 @@ EquilibriumConstants ModelInputs::equilibriumConstants() {
 }
 
 
-TotalConstants ModelInputs::totalConstants() {
-    const unsigned int numSpecies = _speciesMap.size();
-    const unsigned int numTotalSpecies = _chem.primarySpecies().size();
+TotalConstants ModelInputs::total_constants() {
+    const unsigned int numSpecies = _species_map.size();
+    const unsigned int numTotalSpecies = _chem.primary_species().size();
 
     mat tot_mat = arma::zeros(numTotalSpecies, numSpecies);
 
-    for (auto x: _chem.primarySpecies()) {
-        const auto rowId = _speciesMap.at(x.first);
+    for (auto x: _chem.primary_species()) {
+        const auto rowId = _species_map.at(x.first);
         const string primSpecies = x.first;
 
         if (x.first == "H+") {
             // Charge balance
-            for (auto s: speciesNames()) {
-                const auto colId = _speciesMap.at(s);
-                tot_mat(rowId,colId) = getCharge(s);
+            for (auto s: species_names()) {
+                const auto colId = _species_map.at(s);
+                tot_mat(rowId,colId) = get_charge(s);
             }
         }
         else {
-            const auto colId = _speciesMap.at(x.first);
+            const auto colId = _species_map.at(x.first);
             // Set the primary species
             tot_mat(rowId, colId) = 1.0;
             // Go through the secondary species now
-            for (auto y: _chem.secondarySpecies()) {
-                if (_dbs.getSecondarySpecies().at(y).stoichiometry.contains(primSpecies)) {
-                    tot_mat(rowId, _speciesMap.at(y)) = std::abs(_dbs.getSecondarySpecies().at(y).stoichiometry.at(primSpecies));
+            for (auto y: _chem.secondary_species()) {
+                if (_dbs.get_secondary_species().at(y).stoichiometry.contains(primSpecies)) {
+                    tot_mat(rowId, _species_map.at(y)) = std::abs(_dbs.get_secondary_species().at(y).stoichiometry.at(primSpecies));
                 }
             }
         }
@@ -203,9 +203,9 @@ TotalConstants ModelInputs::totalConstants() {
 }
 
 
-KineticConstants ModelInputs::kineticConstants() {
-    const int numSpecies = _speciesMap.size();
-    const int numMinerals = _chem.mineralSurfaceAreas().size();
+KineticConstants ModelInputs::kinetic_constants() {
+    const int numSpecies = _species_map.size();
+    const int numMinerals = _chem.mineral_surface_areas().size();
 
     // std::cerr << "Mineral map: \n";
     // for (auto x: _mineralMap) {
@@ -216,20 +216,20 @@ KineticConstants ModelInputs::kineticConstants() {
     vec eq_const = arma::zeros(numMinerals);
     vec kin_const = arma::zeros(numMinerals);
 
-    for (auto chemMineral: _chem.mineralSurfaceAreas()) {
+    for (auto chemMineral: _chem.mineral_surface_areas()) {
         const string mineralName = chemMineral.first;
-        if (!_dbs.getMineralSpecies().contains(mineralName)) {
+        if (!_dbs.get_mineral_species().contains(mineralName)) {
             std::cerr << "Database does not contain mineral: " << mineralName << "\n";
             exit(-1);
         }
-        const MineralSpecies mineral = _dbs.getMineralSpecies().at(mineralName);
-        const unsigned int minId = _mineralMap.at(mineralName);
+        const MineralSpecies mineral = _dbs.get_mineral_species().at(mineralName);
+        const unsigned int minId = _mineral_map.at(mineralName);
 
-        eq_const[minId] = mineral.equilibriumConstant;
-        kin_const[minId] = mineral.rateConstant;
+        eq_const[minId] = mineral.equilibrium_constant;
+        kin_const[minId] = mineral.rate_constant;
 
         for (auto y: mineral.stoichiometry) {
-            const unsigned int colId = _speciesMap.at(y.first);
+            const unsigned int colId = _species_map.at(y.first);
             kin_mat(minId, colId) = y.second;
         }
     }
@@ -238,17 +238,17 @@ KineticConstants ModelInputs::kineticConstants() {
 }
 
 
-vector<string> ModelInputs::speciesNames() {
+vector<string> ModelInputs::species_names() {
     /*
         Return a list of the chemical species the system (in order)
      */
     vector<string> names;
 
-    for (auto x: _chem.primarySpecies()) {
+    for (auto x: _chem.primary_species()) {
         names.push_back(x.first);
     }
 
-    for (auto x: _chem.secondarySpecies()) {
+    for (auto x: _chem.secondary_species()) {
         names.push_back(x);
     }
 
@@ -256,12 +256,6 @@ vector<string> ModelInputs::speciesNames() {
 }
 
 
-map<string, unsigned int> ModelInputs::speciesMap() {
-    return _speciesMap;
-}
-
-
-void ModelInputs::print() {
-    // Print the model inputs
-    throw NotImplemented();
+map<string, unsigned int> ModelInputs::species_map() {
+    return _species_map;
 }

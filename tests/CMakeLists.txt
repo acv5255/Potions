@@ -11,6 +11,7 @@ add_executable(
     ../src/chemfile.cpp
     ../src/database.cpp
     ../src/utils.cpp
+    ../src/solution.cpp
 )
 
 add_executable(

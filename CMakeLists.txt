@@ -4,6 +4,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 project(Potions VERSION 0.1)
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+
 add_subdirectory(external/armadillo-code)
 add_subdirectory(external/yaml-cpp)
 add_subdirectory(external/matplotplusplus)

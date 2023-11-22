@@ -4,16 +4,16 @@ ChemFile::ChemFile() {
 
 }
 
-ChemFile ChemFile::FromFile(const string& filePath) {
+ChemFile ChemFile::from_file(const string& filePath) {
     // Read the file from a string into a ChemFile object
     std::ifstream file(filePath);
     std::stringstream buffer;
     buffer << file.rdbuf();
 
-    return ChemFile::FromString(buffer.str());
+    return ChemFile::from_string(buffer.str());
 }
 
-ChemFile ChemFile::FromString(const string& yamlString) {
+ChemFile ChemFile::from_string(const string& yamlString) {
     YAML::Node root = YAML::Load(yamlString);
 
     // Check for required sections
@@ -122,29 +122,29 @@ ChemFile ChemFile::FromString(const string& yamlString) {
 
     // Construct object and return
     ChemFile chem;
-    chem._runType = simulationType;
-    chem._primarySpecies = primSpec;
-    chem._secondarySpecies = secSpec;
-    chem._mineralSpecies = minAreas;
-    chem._endTime = endTime;
-    chem._numSteps = numSteps;
-    chem._mineralMap = minMap;
+    chem._run_type = simulationType;
+    chem._primary_species = primSpec;
+    chem._secondary_species = secSpec;
+    chem._mineral_species = minAreas;
+    chem._end_time = endTime;
+    chem._num_steps = numSteps;
+    chem._mineral_map = minMap;
 
     return chem;
 }
 
-map<string, double> ChemFile::primarySpecies() {
-    return _primarySpecies;
+map<string, double> ChemFile::primary_species() {
+    return _primary_species;
 }
 
-vector<string> ChemFile::secondarySpecies() {
-    return _secondarySpecies;
+vector<string> ChemFile::secondary_species() {
+    return _secondary_species;
 }
 
-map<string, double> ChemFile::mineralSurfaceAreas() {
-    return _mineralSpecies;
+map<string, double> ChemFile::mineral_surface_areas() {
+    return _mineral_species;
 }
 
-PotionsRunType ChemFile::runType() {
-    return _runType;
+PotionsRunType ChemFile::run_type() {
+    return _run_type;
 }

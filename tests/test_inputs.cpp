@@ -88,7 +88,7 @@ bool compare_maps(const map<string,double>& a, const map<string,double>& b) {
 }
 
 TEST_CASE("Test reading 'chem.yaml'", "[ChemFile::FromFile]") {
-    ChemFile chem = ChemFile::FromString(CHEMFILE_STR);
+    ChemFile chem = ChemFile::from_string(CHEMFILE_STR);
 
     const map<string, double> CHEM_PRIM_SPECIES = {
       {"H+", -999.0 }, 
@@ -98,11 +98,11 @@ TEST_CASE("Test reading 'chem.yaml'", "[ChemFile::FromFile]") {
     const vector<string> CHEM_SEC_SPECIES = {"CO3--", "CO2(aq)"};
     const map<string, double> CHEM_MIN_SPECIES = {{"Calcite", 1.0}};
 
-    REQUIRE(chem.runType() == PotionsRunType::EQUILIBRIUM);
+    REQUIRE(chem.run_type() == PotionsRunType::EQUILIBRIUM);
 
-    REQUIRE(compare_maps(chem.primarySpecies(), CHEM_PRIM_SPECIES));
-    REQUIRE(chem.secondarySpecies() == CHEM_SEC_SPECIES);
-    REQUIRE(compare_maps(chem.mineralSurfaceAreas(), CHEM_MIN_SPECIES));
+    REQUIRE(compare_maps(chem.primary_species(), CHEM_PRIM_SPECIES));
+    REQUIRE(chem.secondary_species() == CHEM_SEC_SPECIES);
+    REQUIRE(compare_maps(chem.mineral_surface_areas(), CHEM_MIN_SPECIES));
 }
 
 TEST_CASE("[SecondarySpecies::FromYaml]") {
@@ -110,18 +110,18 @@ TEST_CASE("[SecondarySpecies::FromYaml]") {
         // Case 1
         const YAML::Node node1 = YAML::Load(secString1);
         map<string, double> s1_stoich = {{"H+",-1.0}, {"HCO3-", 1.0}};
-        SecondarySpecies s1 = SecondarySpecies::FromYaml(node1);
+        SecondarySpecies s1 = SecondarySpecies::from_yaml(node1);
         REQUIRE(s1.stoichiometry == s1_stoich);
-        REQUIRE(compare_float(s1.equilibriumConstant, 9.617));
+        REQUIRE(compare_float(s1.equilibrium_constant, 9.617));
     }
 
     {
         // Case 2
         YAML::Node node2 = YAML::Load(secString2);
         map<string, double> s2_stoich = {{"H+", 1.0}, {"HCO3-", 1.0}};
-        SecondarySpecies s2 = SecondarySpecies::FromYaml(node2);
+        SecondarySpecies s2 = SecondarySpecies::from_yaml(node2);
         REQUIRE(s2.stoichiometry == s2_stoich);
-        REQUIRE(compare_float(s2.equilibriumConstant, -6.3447));
+        REQUIRE(compare_float(s2.equilibrium_constant, -6.3447));
     }
 
 }
@@ -135,17 +135,17 @@ TEST_CASE("[MineralSpecies::FromYaml]") {
             {"H+", -1}
         };
 
-        MineralSpecies minSpec = MineralSpecies::FromYaml(node);
+        MineralSpecies minSpec = MineralSpecies::from_yaml(node);
 
         REQUIRE(compare_maps(minSpec.stoichiometry, stoich));
-        REQUIRE(compare_float(minSpec.rateConstant, -9.19));
-        REQUIRE(compare_float(minSpec.equilibriumConstant, -7.30));
+        REQUIRE(compare_float(minSpec.rate_constant, -9.19));
+        REQUIRE(compare_float(minSpec.equilibrium_constant, -7.30));
     }
 }
 
 TEST_CASE("Test reading 'cdbs.yaml'", "[Database::FromString]") {
     
-    Database cdbs = Database::FromString(DATABASE_STR);
+    Database cdbs = Database::from_string(DATABASE_STR);
 
     // Define expected values
     vector<string> expectedPrimSpec = {"Ca++", "H+", "HCO3-"};
@@ -159,25 +159,25 @@ TEST_CASE("Test reading 'cdbs.yaml'", "[Database::FromString]") {
       {"Calcite", MineralSpecies({{"Ca++", 1}, {"HCO3-", 1}, {"H+", -1.0}}, 2.5, 2.5, -9.19, -7.30)}
     };
 
-    REQUIRE(cdbs.getPrimarySpecies() == expectedPrimSpec);
-    REQUIRE(cdbs.getSecondarySpecies() == expectedSecSpec);
-    REQUIRE(cdbs.getMineralSpecies() == expectedMinSpec);
+    REQUIRE(cdbs.get_primary_species() == expectedPrimSpec);
+    REQUIRE(cdbs.get_secondary_species() == expectedSecSpec);
+    REQUIRE(cdbs.get_mineral_species() == expectedMinSpec);
 }
 
 
 // Model inputs
 TEST_CASE("[ModelInputs::initChemState]") {
-    ChemFile chem = ChemFile::FromString(CHEMFILE_STR);
-    Database cdbs = Database::FromString(DATABASE_STR);
+    ChemFile chem = ChemFile::from_string(CHEMFILE_STR);
+    Database cdbs = Database::from_string(DATABASE_STR);
     ModelInputs mod = ModelInputs(chem, cdbs);
 
     vec tot_conc = {1e-3, 0.0, 2e-3};
 
-    ChemicalState chms = mod.initChemState();
+    ChemicalState chms = mod.initial_chem_state();
     
-    REQUIRE(chms.totalConcentration.size() == 3);
+    REQUIRE(chms.total_concentration.size() == 3);
 
-    vec err = tot_conc - chms.totalConcentration;
+    vec err = tot_conc - chms.total_concentration;
     REQUIRE(arma::abs(err).max() < 1e-12);
     REQUIRE(arma::abs(chms.concentration).max() < 1e-18);
     REQUIRE(chms.concentration.size() == 5);
@@ -191,18 +191,18 @@ TEST_CASE("[ModelInputs::equilibriumConstants]") {
     };
     const arma::vec log_k = {9.617, -6.3447};
 
-    ChemFile chem = ChemFile::FromString(CHEMFILE_STR);
-    Database cdbs = Database::FromString(DATABASE_STR);
+    ChemFile chem = ChemFile::from_string(CHEMFILE_STR);
+    Database cdbs = Database::from_string(DATABASE_STR);
     ModelInputs mod = ModelInputs(chem, cdbs);
 
-    EquilibriumConstants eq = mod.equilibriumConstants();
+    EquilibriumConstants eq = mod.equilibrium_constants();
 
-    REQUIRE(eq.stoichMat.n_cols == 5);
-    REQUIRE(eq.stoichMat.n_rows == 2);
-    REQUIRE(eq.eqConsts.size() == 2);
+    REQUIRE(eq.stoichiometry_matrix.n_cols == 5);
+    REQUIRE(eq.stoichiometry_matrix.n_rows == 2);
+    REQUIRE(eq.equilibrium_constants.size() == 2);
 
-    const arma::mat err_stoich = stoich_mat - eq.stoichMat;
-    const arma::vec err_log_k = log_k - eq.eqConsts;
+    const arma::mat err_stoich = stoich_mat - eq.stoichiometry_matrix;
+    const arma::vec err_log_k = log_k - eq.equilibrium_constants;
 
     REQUIRE(arma::abs(err_stoich).max() < 1e-12);
     REQUIRE(arma::abs(err_log_k).max() < 1e-12);
@@ -216,11 +216,11 @@ TEST_CASE("[ModelInputs::totalConstants]") {
         {0, 0, 1, 1, 1}     // HCO3-
     };
 
-    ChemFile chem = ChemFile::FromString(CHEMFILE_STR);
-    Database cdbs = Database::FromString(DATABASE_STR);
+    ChemFile chem = ChemFile::from_string(CHEMFILE_STR);
+    Database cdbs = Database::from_string(DATABASE_STR);
     ModelInputs mod = ModelInputs(chem, cdbs);
 
-    const arma::mat calc_mat = mod.totalConstants().tot_mat;
+    const arma::mat calc_mat = mod.total_constants().tot_mat;
     const arma::mat err = tot_mat - calc_mat;
 
     REQUIRE(calc_mat.n_rows == 3);
@@ -236,11 +236,11 @@ TEST_CASE("[ModelInputs::kineticConstants]") {
     const arma::vec eq_consts = {-7.30};
     const arma::vec kin_consts = {-9.19};
     
-    ChemFile chem = ChemFile::FromString(CHEMFILE_STR);
-    Database cdbs = Database::FromString(DATABASE_STR);
+    ChemFile chem = ChemFile::from_string(CHEMFILE_STR);
+    Database cdbs = Database::from_string(DATABASE_STR);
     ModelInputs mod = ModelInputs(chem, cdbs);
 
-    KineticConstants kin = mod.kineticConstants();
+    KineticConstants kin = mod.kinetic_constants();
 
     REQUIRE(kin.kin_mat.n_rows == 1);
     REQUIRE(kin.kin_mat.n_cols == 5);

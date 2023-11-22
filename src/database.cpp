@@ -4,12 +4,12 @@ Database::Database() {
 
 }
 
-Database Database::FromFile(const string& filePath) {
+Database Database::from_file(const string& filePath) {
     std::ifstream file(filePath);
     std::stringstream buffer;
     buffer << file.rdbuf();
 
-    return Database::FromString(buffer.str());
+    return Database::from_string(buffer.str());
 }
 
 bool operator==(const map<string, double>& a, const map<string, double>& b) {
@@ -30,28 +30,28 @@ bool operator==(const map<string, double>& a, const map<string, double>& b) {
 
 SecondarySpecies::SecondarySpecies() {
     stoichiometry = {};
-    equilibriumConstant = 1.0;
+    equilibrium_constant = 1.0;
 }
 
 bool SecondarySpecies::operator==(const SecondarySpecies& other) {
-    return (compare_doubles(this->equilibriumConstant, other.equilibriumConstant))
+    return (compare_doubles(this->equilibrium_constant, other.equilibrium_constant))
     && (this->stoichiometry == other.stoichiometry);
 }
 
 MineralSpecies::MineralSpecies() {
     stoichiometry = {};
-    equilibriumConstant = 1.0;
-    rateConstant = 1.0;
-    molarMass = 0.0;
-    molarVolume = 0.0;
+    equilibrium_constant = 1.0;
+    rate_constant = 1.0;
+    molar_mass = 0.0;
+    molar_volume = 0.0;
 }
 
 bool MineralSpecies::operator==(const MineralSpecies& other) {
     return (this->stoichiometry == other.stoichiometry) 
-    && (compare_doubles(this->equilibriumConstant, other.equilibriumConstant))
-    && (compare_doubles(this->molarMass, other.molarMass))
-    && (compare_doubles(this->molarVolume, other.molarVolume))
-    && (compare_doubles(this->rateConstant, other.rateConstant));
+    && (compare_doubles(this->equilibrium_constant, other.equilibrium_constant))
+    && (compare_doubles(this->molar_mass, other.molar_mass))
+    && (compare_doubles(this->molar_volume, other.molar_volume))
+    && (compare_doubles(this->rate_constant, other.rate_constant));
 }
 
 bool operator==(const map<string, SecondarySpecies>& l, const map<string, SecondarySpecies>& r) {
@@ -78,7 +78,7 @@ bool operator==(const map<string, MineralSpecies>& l, const map<string, MineralS
     return true;   
 }
 
-SecondarySpecies SecondarySpecies::FromYaml(const YAML::Node& node) {
+SecondarySpecies SecondarySpecies::from_yaml(const YAML::Node& node) {
     // Check for required sections
     if (!node[DBS_STOICHIOMETRY_TOKEN]) {
         std::cerr << "Stoichiometry section missing\n";
@@ -101,7 +101,7 @@ SecondarySpecies SecondarySpecies::FromYaml(const YAML::Node& node) {
     return SecondarySpecies(stoich, logK);
 }
 
-MineralSpecies MineralSpecies::FromYaml(const YAML::Node& node) {
+MineralSpecies MineralSpecies::from_yaml(const YAML::Node& node) {
     // Check for required species
     if (!node[DBS_STOICHIOMETRY_TOKEN]) {
         std::cerr << "Mineral species missing stoichiometry\n";
@@ -142,7 +142,7 @@ MineralSpecies MineralSpecies::FromYaml(const YAML::Node& node) {
     return MineralSpecies(stoich, molar_volume, molar_mass, rate_const, logK);
 }
 
-Database Database::FromString(const string& yamlString) {
+Database Database::from_string(const string& yamlString) {
     const YAML::Node node = YAML::Load(yamlString);
 
     // Check for sections
@@ -175,24 +175,24 @@ Database Database::FromString(const string& yamlString) {
     }
 
     for (YAML::const_iterator it = sec_node.begin(); it != sec_node.end(); it++) {
-        sec_species[it->first.as<string>()] = SecondarySpecies::FromYaml(it->second);
+        sec_species[it->first.as<string>()] = SecondarySpecies::from_yaml(it->second);
     }
 
     for (YAML::const_iterator it = min_node.begin(); it != min_node.end(); it++) {
-        min_species[it->first.as<string>()] = MineralSpecies::FromYaml(it->second);
+        min_species[it->first.as<string>()] = MineralSpecies::from_yaml(it->second);
     }
 
     return Database(primary_species, sec_species, min_species);
 }
 
-vector<string> Database::getPrimarySpecies() {
-    return _primSpec;
+vector<string> Database::get_primary_species() {
+    return _primary_species;
 }
 
-map<string, SecondarySpecies> Database::getSecondarySpecies() {
-    return _secSpec;
+map<string, SecondarySpecies> Database::get_secondary_species() {
+    return _secondary_species;
 }
 
-map<string, MineralSpecies> Database::getMineralSpecies() {
-    return _minKin;
+map<string, MineralSpecies> Database::get_mineral_species() {
+    return _mineral_kinetic;
 }

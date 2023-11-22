@@ -1,13 +1,13 @@
-#include <stdexcept>
 #include "ode.hpp"
 
-class NotImplemented : public std::logic_error {
-    public:
-        NotImplemented() : std::logic_error("Function not yet implemented") { };
-};
-
+/*
+    Solves the differential equation system described by `f` using the 4th-order consistent
+    Runge-Kutta-Gauss method, an implicit collocation method. Because it is an implicit method,
+    this solver requires numerical optimization, which is implemented by my other package `optimization`
+    using Newton-Raphson iteration.
+ */
 template<typename T>
-Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T dt) {
+Col<T> runge_kutta_implicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T dt) {
     /*
         Solve the autonomous system using Runge-Kutta method
      */
@@ -22,7 +22,7 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
     const double a21 = 0.25 + std::sqrt(3) / 6.0;
     const double a22 = 0.25;
 
-    // Construct the functions
+    // Construct the residual functions for rootfinding
     auto k1_res = [&] (const Col<T>& k1, const Col<T>& k2)  {
         Col<T> val = f(x0 + a11 * k1 * dt + a12 * k2 * dt) - k1;
         return val;
@@ -40,6 +40,7 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
         ks_0[i + N] = k_guess[i];
     }
 
+    // Combine the two residual vectors into a single function to provide the numerical optimizer
     function<Col<T>(Col<T>)> residual = [&] (const Col<T>& ks) -> Col<T> {
         Col<T> res = arma::zeros(2 * N);
         Col<T> k1 = arma::zeros(N);
@@ -60,19 +61,19 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
         return res;
     };
 
+    // Define the jacobian function for the Newton-Raphson iteration
     auto jac = [&] (const Col<T>& val) {
         return jacobian<T>(residual, val);
     };
 
+    // Need an initial gues for the solution
     Col<T> res_k0 = residual(ks_0);
-    Mat<T> jac_k0 = jac(ks_0);
 
     // Now, find the root of this function
-    // std::cerr << "About to call roots on the ks...\n";
     optional<Col<T>> ks_root_option = root<T>(residual, jac, ks_0);
 
     if (!ks_root_option.has_value()) {
-        std::cerr << "Failed to find root in Implicit Runge-Kutta solver\n";
+        std::cerr << "Error: Failed to find root in Implicit Runge-Kutta solver\n";
         exit(-1);
     }
 
@@ -86,7 +87,8 @@ Col<T> RungeKuttaImplicit(const function<Col<T>(Col<T>)>& f, const Col<T>& x0, T
         k2[i] = ks[i + N];
     }
 
+    // Determine the next step with the calculated Runge-Kutta parameters
     return x0 + dt * (b1 * k1 + b2 * k2);
 }
 
-template Col<f64> RungeKuttaImplicit<f64>(const function<Col<f64>(Col<f64>)>&, const Col<f64>&, f64);
+template Col<f64> runge_kutta_implicit<f64>(const function<Col<f64>(Col<f64>)>&, const Col<f64>&, f64);

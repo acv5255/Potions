@@ -2,11 +2,11 @@
 #include "ode.hpp"
 
 
-vec KineticRate(const vec& totConc, const vec& surface_area, const EquilibriumConstants& eq, const KineticConstants& kin, const TotalConstants& tot) {
+vec kinetic_rate(const vec& totConc, const vec& surface_area, const EquilibriumConstants& eq, const KineticConstants& kin, const TotalConstants& tot) {
     /*
         Takes in concentrations and returns the rate of the change of hte total concentrations
      */
-    ChemicalState chem = SolveEquilibrium(totConc, eq, tot);
+    ChemicalState chem = solve_equilibrium(totConc, eq, tot);
 
     const vec log_c = arma::log(chem.concentration);
 
@@ -29,7 +29,7 @@ vec KineticRate(const vec& totConc, const vec& surface_area, const EquilibriumCo
     return tot.tot_mat * speciesRate;
 }
 
-ChemicalState SolveKineticEquilibrium(
+ChemicalState solve_kinetic_equilibrium(
     const ChemicalState& chem,
     const vec& surfaceArea,
     const KineticConstants& kin,
@@ -39,12 +39,12 @@ ChemicalState SolveKineticEquilibrium(
 ) {
     // Construct the ODE
     auto getKineticRate = [&] (const vec& totConc) {
-        return KineticRate(totConc, surfaceArea, eq, kin, tot);
+        return kinetic_rate(totConc, surfaceArea, eq, kin, tot);
     };
 
-    auto func_val = getKineticRate(chem.totalConcentration);
+    auto func_val = getKineticRate(chem.total_concentration);
 
-    vec new_tot_conc = SolveODE<double>(getKineticRate, chem.totalConcentration, dt);
+    vec new_tot_conc = solve_ode<double>(getKineticRate, chem.total_concentration, dt);
 
-    return SolveEquilibrium(new_tot_conc, eq, tot);
+    return solve_equilibrium(new_tot_conc, eq, tot);
 }

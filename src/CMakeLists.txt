@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.25)
 add_executable(
     potions
     main.cpp
+    solution.cpp
     equilibrium.cpp
     kinetic.cpp
     model_inputs.cpp
@@ -10,7 +11,6 @@ add_executable(
     utils.cpp
     chemfile.cpp
     database.cpp
-    solution.cpp
 )
 
 target_include_directories(

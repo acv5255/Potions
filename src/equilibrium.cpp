@@ -5,27 +5,11 @@
 
 using std::function;
 
-ChemicalState SolveEquilibrium(const vec& tot_conc, const EquilibriumConstants& eq_params, const TotalConstants& tot_params) {
-    const vec log_x_p = arma::pinv(eq_params.stoichMat) * eq_params.eqConsts;  // Particular solution
-    
-    // std::cout << "Particular solution: \n";
-    // for (auto x: log_x_p) std::cout << x << std::endl;
-    // std::cout << std::endl;
-
-    const mat stoich_mat_nullspace = arma::null(eq_params.stoichMat);
-
-    // std::cout << "Null space: \n";
-    // for (int i = 0; i < stoich_mat_nullspace.n_rows; i++) {
-    //     for (int j = 0; j < stoich_mat_nullspace.n_cols; j++) {
-    //         std::cout << stoich_mat_nullspace(i,j) << " ";
-    //     }
-    //     std::cout << "\n";
-    // }
-    
-    // std::cout << std::endl;
+ChemicalState solve_equilibrium(const vec& tot_conc, const EquilibriumConstants& eq_params, const TotalConstants& tot_params) {
+    // const vec log_x_p = arma::pinv(eq_params.stoichiometry_matrix) * eq_params.equilibrium_constants;  // Particular solution
 
     auto log_c = [&] (const vec& log_x) -> vec {
-        return log_x_p + stoich_mat_nullspace * log_x;
+        return eq_params.conc_particular_solution + eq_params.stoich_null_space * log_x;
     };
 
     auto mass_err = [&] (const vec& log_x) -> const vec {
@@ -36,7 +20,7 @@ ChemicalState SolveEquilibrium(const vec& tot_conc, const EquilibriumConstants& 
 
     auto jac = [&] (const vec& x) -> mat {
         /*
-            Jacobian function
+            Jacobian function for the concentration residual
          */
         return jacobian<double>(mass_err, x);
     };

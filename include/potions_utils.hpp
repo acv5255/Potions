@@ -9,14 +9,14 @@ using std::filesystem::path;
 using std::vector;
 using std::pair;
 
-string getOutputFilepath(string simulationName);
+string get_output_file_path(string simulation_name);
 
 bool compare_doubles(double a, double b);
-bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, const string& filePath);
-bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath);
-int  getCharge(const string& name);
+bool save_equilibrium_results(const ChemicalState& chms, vector<string> species, const string& file_path);
+bool save_kinetic_results(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath);
+int  get_charge(const string& name);
 
 template<typename T>
-void PrintMatrix(const Mat<T>& m);
+void print_matrix(const Mat<T>& m);
 
-bool PlotResults(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames);
+bool plot_results(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames);

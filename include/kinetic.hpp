@@ -5,9 +5,9 @@
 /*
     Return the kinetic rates for each species in moles per second
  */
-vec KineticRate(const vec& totConc, const vec& surface_area, const EquilibriumConstants& eq, const KineticConstants& kin_params, const TotalConstants& tot_params);
+vec kinetic_rate(const vec& totConc, const vec& surface_area, const EquilibriumConstants& eq, const KineticConstants& kin_params, const TotalConstants& tot_params);
 
-ChemicalState SolveKineticEquilibrium(
+ChemicalState solve_kinetic_equilibrium(
     const ChemicalState& chem,
     const vec& surfaceArea,
     const KineticConstants& kin,

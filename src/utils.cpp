@@ -8,7 +8,7 @@ using std::ofstream;
 using std::stringstream;
 using namespace matplot;
 
-string getOutputFilepath(string simulationName) {
+string get_output_file_path(string simulationName) {
     /*
         Return the filepath of the output filename for this object
         Attaches the simulation name and date-time stamp for the simulation
@@ -21,7 +21,7 @@ string getOutputFilepath(string simulationName) {
 }
 
 
-bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, const string& filePath) {
+bool save_equilibrium_results(const ChemicalState& chms, vector<string> species, const string& filePath) {
     try {
         ofstream file;
         file.open(filePath);
@@ -44,7 +44,7 @@ bool SaveEquilibriumResults(const ChemicalState& chms, vector<string> species, c
 }
 
 
-bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath) {
+bool save_kinetic_results(const vector<pair<double, ChemicalState>>& res, const vector<string>& species, const string& filePath) {
     try {
         ofstream file;
         file.open(filePath);
@@ -71,7 +71,7 @@ bool SaveKineticResults(const vector<pair<double, ChemicalState>>& res, const ve
 }
 
 
-int getCharge(const string& name) {
+int get_charge(const string& name) {
     const int positiveCharge = std::count(name.cbegin(), name.cend(), '+');
     const int negativeCharge = std::count(name.cbegin(), name.cend(), '-');
 
@@ -80,7 +80,7 @@ int getCharge(const string& name) {
 
 
 template<typename T>
-void PrintMatrix(const Mat<T>& m) {
+void print_matrix(const Mat<T>& m) {
     for (int i = 0; i < m.n_rows; i++) {
         for (int j = 0; j < m.n_cols; j++) {
             std::cout << m(i,j) << " ";
@@ -90,7 +90,7 @@ void PrintMatrix(const Mat<T>& m) {
     }
 }
 
-bool PlotResults(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames) {
+bool plot_results(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames) {
     /*
         Plot the kinetic time-series results
      */
