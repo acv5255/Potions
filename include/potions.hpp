@@ -7,7 +7,7 @@
 #include "model_inputs.hpp"
 #include "kinetic.hpp"
 #include "equilibrium.hpp"
-#include "potions_utils.hpp"
+#include "utils.hpp"
 
 class NotImplemented : public std::logic_error {
     public:

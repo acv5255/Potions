@@ -20,31 +20,19 @@ bool compare_doubles(double a, double b) {
     return  (std::abs(a - b) < 1e-12);
 }
 
-/**
- * @brief Returns the the model run type, Equilibrium or Kinetic
- * @return The enum type of the model run
-*/
+
 PotionsRunType ModelInputs::run_type() {
     return _chem.run_type();
 }
 
 
-/**
- * @brief Default constructor for ModelInputs
-*/
+
 ModelInputs::ModelInputs() {
 
 }
 
 
-/**
- * Construct the model inputs from a ChemFile object and Database object.
- * There is post-processing with some of this data to be done.
- * @brief Construct the model inputs from a ChemFile and Database
- * @param chem The ChemFile read from an 'chem.yaml' file
- * @param cdbs The Database read from the 'cdbs.yaml' file
- * @return none
-*/
+
 ModelInputs::ModelInputs(ChemFile chem, Database cdbs) {
     unsigned int counter = 0;
     map<string, unsigned int> speciesMap;
@@ -71,12 +59,7 @@ ModelInputs::ModelInputs(ChemFile chem, Database cdbs) {
     this->_species_map = speciesMap;
 }
 
-/**
- * Static method for reading the input files 
- * @brief Read input files
- * @param input_name The name of the folder in the input folder containing your input files
- * @return The model inputs object after having read the inputs
-*/
+
 ModelInputs ModelInputs::read_inputs(const string& input_name) {
     // Read chem.yaml and cdbs.yaml
     const path inputDir = current_path() / "input" / input_name;
@@ -137,14 +120,7 @@ ModelInputs ModelInputs::read_inputs(const string& input_name) {
     return model_inputs;
 }
 
-/**
- * Read the initial total concentrations from the chem.yaml file and
- * initialize the total concentration vector. The concentration vector is set at a 
- * uniform value of 1e-7 moles per liter. This number is arbitrary and only intended 
- * so that the concentrations are not zero, which could be a problem later on.
- * @brief Determine initial chemical state
- * @return Returns the total concentrations at the start and a uniform concentration vector
-*/
+
 ChemicalState ModelInputs::initial_chem_state() {
     vec conc = arma::zeros(_species_map.size());
     conc = 1e-7;
@@ -158,15 +134,6 @@ ChemicalState ModelInputs::initial_chem_state() {
 }
 
 
-/**
- * This function reads the list of primary and secondary species from the ChemFile object
- * and determines the stoichiometry and equilibrium parameters from the Database object. 
- * The stoichiometry matrix describes how changes in concentrations propagate throughout
- * the system, and the equilibrium parameters sets the requirement for a system at 
- * equilibrium.
- * @brief Construct the equilibrium parameters for this chemical system
- * @return The EquilibriumConstants object for this chemical system
-*/
 EquilibriumConstants ModelInputs::equilibrium_constants() {
     vector<string> primSpecies;
     vector<string> secSpecies;
@@ -220,15 +187,6 @@ EquilibriumConstants ModelInputs::equilibrium_constants() {
 }
 
 
-/**
- * This function constructs the mass conservation matrix from the list of primary
- * species in this model. This matrix represents how each of the secondary species 
- * relate to the primary species. This model does not explicitly track H+ and instead
- * uses a charge balance for all species for the entire solution. This allows the 
- * system to have closure while also imposing another physical law on the system.
- * @brief Construct the mass conservation matrix
- * @return The TotalConstants object for this chemical system
-*/
 TotalConstants ModelInputs::total_constants() {
     const unsigned int numSpecies = _species_map.size();
     const unsigned int numTotalSpecies = _chem.primary_species().size();
@@ -263,15 +221,6 @@ TotalConstants ModelInputs::total_constants() {
 }
 
 
-/**
- * This function construct the kinetic constants data structures for this chemical 
- * system. This function takes the minerals listed in the ChemFile object and 
- * reads the stoichiometry, rate constant, and kinetic equilibrium parameters from
- * the Database object. These parameters are used in the kinetic portions of the 
- * model, which uses a Transition-State-Theory-type rate law.
- * @brief Construct the kinetic mass constants
- * @return The KineticConstants object for this chemical system
-*/
 KineticConstants ModelInputs::kinetic_constants() {
     const int numSpecies = _species_map.size();
     const int numMinerals = _chem.mineral_surface_areas().size();
@@ -301,11 +250,7 @@ KineticConstants ModelInputs::kinetic_constants() {
     return KineticConstants(kin_mat, kin_const, eq_const);
 }
 
-/**
- * @brief Get a vector of the species names for this chemical system in the order
- * that they appear in the solution.
- * @return An ordered vector of species names 
-*/
+
 vector<string> ModelInputs::species_names() {
     /*
         Return a list of the chemical species the system (in order)
@@ -323,10 +268,7 @@ vector<string> ModelInputs::species_names() {
     return names;
 }
 
-/**
- * @brief Get a map of aqueous species names and indices in the system
- * @return A map of aqueous species in this system.
-*/
+
 map<string, unsigned int> ModelInputs::species_map() {
     return _species_map;
 }

@@ -6,7 +6,7 @@
 #include <string.h>
 #include <array>
 #include "potions.hpp"
-#include <matplot/matplot.h>
+#include "matplot/matplot.h"
 
 using std::ofstream;
 using std::stringstream;
@@ -15,6 +15,22 @@ using namespace std::chrono;
 using std::time_t;
 using std::ctime;
 using std::array;
+
+bool operator==(const map<string, double>& a, const map<string, double>& b) {
+    if (a.size() != b.size()) return false;
+
+    for (auto a_i: a) {
+        if (!b.contains(a_i.first)) {
+            return false;
+        }
+
+        if (!(std::abs(a_i.second - b.at(a_i.first)) - 1e-12)) {
+        return false;
+        }
+    }
+
+  return true;
+}
 
 /*
     Return a timestamp in the format of YYYYMMHH_HHMMSS

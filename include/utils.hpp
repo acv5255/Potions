@@ -20,3 +20,4 @@ template<typename T>
 void print_matrix(const Mat<T>& m);
 
 bool plot_results(const vector<pair<double, ChemicalState>>& results, const vector<string>& speciesNames);
+bool operator==(const map<string, double>& l, const map<string, double>& r);

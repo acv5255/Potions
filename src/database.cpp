@@ -12,21 +12,7 @@ Database Database::from_file(const string& filePath) {
     return Database::from_string(buffer.str());
 }
 
-bool operator==(const map<string, double>& a, const map<string, double>& b) {
-    if (a.size() != b.size()) return false;
 
-    for (auto a_i: a) {
-        if (!b.contains(a_i.first)) {
-            return false;
-        }
-
-        if (!(std::abs(a_i.second - b.at(a_i.first)) - 1e-12)) {
-        return false;
-        }
-    }
-
-  return true;
-}
 
 SecondarySpecies::SecondarySpecies() {
     stoichiometry = {};
