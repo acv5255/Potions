@@ -2,7 +2,7 @@ SimulationType: Kinetic   # Options: "Kinetic" and "Equilibrium"
 EndTime: 10000.0
 NumSteps: 500
 PrimarySpecies:
-  H+: 0.0      # The value H+ is arbitrary
+  H+: 0.0      # The value H+
   Ca++: 1e-1
   HCO3-: 2e-1
 SecondarySpecies:
