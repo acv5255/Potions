@@ -1,0 +1,209 @@
+\doxysection{utils.\+hpp File Reference}
+\label{utils_8hpp}\index{utils.hpp@{utils.hpp}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$utility$>$}\newline
+{\ttfamily \#include \char`\"{}model\+\_\+inputs.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ get\+\_\+output\+\_\+file\+\_\+path} (string simulation\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Construct the output file path Construct the output file path to write the simulation results to. The file path has the format \char`\"{}$<$sim\+\_\+name$>$\+\_\+\+YYYYMMDD\+\_\+\+HHMMSS\+\_\+results.\+csv\char`\"{}, where YYYYMMDD\+\_\+\+HHMMSS is a time stamp for the simulation time and \textquotesingle{}sim\+\_\+name\textquotesingle{} is the name of the input folder. This is intended so that the results name will always be unique and always be idenfitiable. The results are written in a comma-\/separated format, so the file is a CSV file. \end{DoxyCompactList}\item 
+bool \textbf{ compare\+\_\+doubles} (double a, double b)
+\begin{DoxyCompactList}\small\item\em Compare floating point numbers safely. \end{DoxyCompactList}\item 
+bool \textbf{ save\+\_\+equilibrium\+\_\+results} (const \textbf{ Chemical\+State} \&chms, vector$<$ string $>$ species, const string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Write the results of an equilibrium simulation to a file This function writes the equilibrium concentrations to a CSV file with 2 columns\+: \end{DoxyCompactList}\item 
+bool \textbf{ save\+\_\+kinetic\+\_\+results} (const vector$<$ pair$<$ double, \textbf{ Chemical\+State} $>$$>$ \&res, const vector$<$ string $>$ \&species, const string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Write the results of a kinetic simulation to a CSV file This function writes the results of the simulation to a CSV file as a table. Only the concentrations, not total concentrations, are written to the file. The first row of the CSV file are the column names. The first is the time (in seconds), followed by each chemical species name. The columns in this file are\+: \end{DoxyCompactList}\item 
+int \textbf{ get\+\_\+charge} (const string \&name)
+\begin{DoxyCompactList}\small\item\em Get the ionic charge of a chemical species Determine the ionic charge of a chemical species by its formula. Example\+: get\+\_\+charge(\char`\"{}\+Cl-\/\char`\"{}) -\/$>$ -\/1 get\+\_\+charge(\char`\"{}\+Ca++\char`\"{}) -\/$>$ 2 get\+\_\+charge(\char`\"{}\+H2\+CO3\char`\"{}) -\/$>$ 0. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \textbf{ print\+\_\+matrix} (const Mat$<$ T $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Print the contents of a matrix to the standard output. \end{DoxyCompactList}\item 
+bool \textbf{ plot\+\_\+results} (const vector$<$ pair$<$ double, \textbf{ Chemical\+State} $>$$>$ \&results, const vector$<$ string $>$ \&species\+\_\+names)
+\begin{DoxyCompactList}\small\item\em Produce a plot of the kinetic simulation results Produce a time series line plot of the concentrations of each chemical species from a kinetic simulation. \end{DoxyCompactList}\item 
+bool \textbf{ operator==} (const map$<$ string, double $>$ \&l, const map$<$ string, double $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Utility function to compare maps of doubles. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{utils_8hpp_ad8199e93006b6e30225cd7f77644083c}} 
+\index{utils.hpp@{utils.hpp}!compare\_doubles@{compare\_doubles}}
+\index{compare\_doubles@{compare\_doubles}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{compare\_doubles()}
+{\footnotesize\ttfamily bool compare\+\_\+doubles (\begin{DoxyParamCaption}\item[{double}]{a,  }\item[{double}]{b }\end{DoxyParamCaption})}
+
+
+
+Compare floating point numbers safely. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & \\
+\hline
+{\em b} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\label{utils_8hpp_acfed65bf973b7964ae0049b551cf7aa0}} 
+\index{utils.hpp@{utils.hpp}!get\_charge@{get\_charge}}
+\index{get\_charge@{get\_charge}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{get\_charge()}
+{\footnotesize\ttfamily int get\+\_\+charge (\begin{DoxyParamCaption}\item[{const string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Get the ionic charge of a chemical species Determine the ionic charge of a chemical species by its formula. Example\+: get\+\_\+charge(\char`\"{}\+Cl-\/\char`\"{}) -\/$>$ -\/1 get\+\_\+charge(\char`\"{}\+Ca++\char`\"{}) -\/$>$ 2 get\+\_\+charge(\char`\"{}\+H2\+CO3\char`\"{}) -\/$>$ 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\label{utils_8hpp_aacc5ae3992d9d256c098077285ff71f1}} 
+\index{utils.hpp@{utils.hpp}!get\_output\_file\_path@{get\_output\_file\_path}}
+\index{get\_output\_file\_path@{get\_output\_file\_path}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{get\_output\_file\_path()}
+{\footnotesize\ttfamily string get\+\_\+output\+\_\+file\+\_\+path (\begin{DoxyParamCaption}\item[{string}]{simulation\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Construct the output file path Construct the output file path to write the simulation results to. The file path has the format \char`\"{}$<$sim\+\_\+name$>$\+\_\+\+YYYYMMDD\+\_\+\+HHMMSS\+\_\+results.\+csv\char`\"{}, where YYYYMMDD\+\_\+\+HHMMSS is a time stamp for the simulation time and \textquotesingle{}sim\+\_\+name\textquotesingle{} is the name of the input folder. This is intended so that the results name will always be unique and always be idenfitiable. The results are written in a comma-\/separated format, so the file is a CSV file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em simulation\+\_\+name} & The name of the input folders \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\mbox{\label{utils_8hpp_a949971f4efa5ad1eb5cfa3c4ab5777b4}} 
+\index{utils.hpp@{utils.hpp}!operator==@{operator==}}
+\index{operator==@{operator==}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{operator==()}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const map$<$ string, double $>$ \&}]{l,  }\item[{const map$<$ string, double $>$ \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Utility function to compare maps of doubles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\label{utils_8hpp_ab075f77034a7eb8005a47586eb847524}} 
+\index{utils.hpp@{utils.hpp}!plot\_results@{plot\_results}}
+\index{plot\_results@{plot\_results}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{plot\_results()}
+{\footnotesize\ttfamily bool plot\+\_\+results (\begin{DoxyParamCaption}\item[{const vector$<$ pair$<$ double, \textbf{ Chemical\+State} $>$$>$ \&}]{results,  }\item[{const vector$<$ string $>$ \&}]{species\+\_\+names }\end{DoxyParamCaption})}
+
+
+
+Produce a plot of the kinetic simulation results Produce a time series line plot of the concentrations of each chemical species from a kinetic simulation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em results} & The vector of pairs of simulation step results \\
+\hline
+{\em species\+\_\+names} & The vector of species names \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\label{utils_8hpp_a468e9bf98168655a34d37e4357af560f}} 
+\index{utils.hpp@{utils.hpp}!print\_matrix@{print\_matrix}}
+\index{print\_matrix@{print\_matrix}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{print\_matrix()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void print\+\_\+matrix (\begin{DoxyParamCaption}\item[{const Mat$<$ T $>$ \&}]{m }\end{DoxyParamCaption})}
+
+
+
+Print the contents of a matrix to the standard output. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em m} & \\
+\hline
+\end{DoxyParams}
+\mbox{\label{utils_8hpp_a3edaeea402bf1320495a5e1adeb261f2}} 
+\index{utils.hpp@{utils.hpp}!save\_equilibrium\_results@{save\_equilibrium\_results}}
+\index{save\_equilibrium\_results@{save\_equilibrium\_results}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{save\_equilibrium\_results()}
+{\footnotesize\ttfamily bool save\+\_\+equilibrium\+\_\+results (\begin{DoxyParamCaption}\item[{const \textbf{ Chemical\+State} \&}]{chms,  }\item[{vector$<$ string $>$}]{species,  }\item[{const string \&}]{file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Write the results of an equilibrium simulation to a file This function writes the equilibrium concentrations to a CSV file with 2 columns\+: 
+
+
+\begin{DoxyEnumerate}
+\item The name of each of the species
+\item The concentration (in molars) of each species 
+\begin{DoxyParams}{Parameters}
+{\em chms} & \\
+\hline
+{\em species} & \\
+\hline
+{\em file\+\_\+path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+\end{DoxyEnumerate}\mbox{\label{utils_8hpp_aae5b1fee18a01d3dd116742a47864e63}} 
+\index{utils.hpp@{utils.hpp}!save\_kinetic\_results@{save\_kinetic\_results}}
+\index{save\_kinetic\_results@{save\_kinetic\_results}!utils.hpp@{utils.hpp}}
+\doxysubsubsection{save\_kinetic\_results()}
+{\footnotesize\ttfamily bool save\+\_\+kinetic\+\_\+results (\begin{DoxyParamCaption}\item[{const vector$<$ pair$<$ double, \textbf{ Chemical\+State} $>$$>$ \&}]{res,  }\item[{const vector$<$ string $>$ \&}]{species,  }\item[{const string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Write the results of a kinetic simulation to a CSV file This function writes the results of the simulation to a CSV file as a table. Only the concentrations, not total concentrations, are written to the file. The first row of the CSV file are the column names. The first is the time (in seconds), followed by each chemical species name. The columns in this file are\+: 
+
+
+\begin{DoxyEnumerate}
+\item The time (in seconds) for the simulation step
+\item From now on, the concentrations of each species 
+\begin{DoxyParams}{Parameters}
+{\em res} & \\
+\hline
+{\em species} & \\
+\hline
+{\em file\+Path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+\end{DoxyEnumerate}

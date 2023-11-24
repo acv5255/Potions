@@ -1,0 +1,114 @@
+\doxysection{Secondary\+Species Struct Reference}
+\label{struct_secondary_species}\index{SecondarySpecies@{SecondarySpecies}}
+
+
+The secondary species information struct This data structure contains the information for how to represent a secondary species in terms of primary species.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+inputs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_secondary_species_a3184b6b54e0ea46219fa0357705642b3}} 
+\textbf{ Secondary\+Species} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Secondary Species object. \end{DoxyCompactList}\item 
+\textbf{ Secondary\+Species} (map$<$ string, double $>$ \&stoichiometry, double \textbf{ log\+\_\+eq\+\_\+const})
+\begin{DoxyCompactList}\small\item\em Construct a new Secondary Species object. \end{DoxyCompactList}\item 
+bool \textbf{ operator==} (const \textbf{ Secondary\+Species} \&other)
+\begin{DoxyCompactList}\small\item\em Compare two \doxyref{Secondary\+Species}{p.}{struct_secondary_species} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Secondary\+Species} \textbf{ from\+\_\+yaml} (const YAML\+::\+Node \&node)
+\begin{DoxyCompactList}\small\item\em Produce a \doxyref{Secondary\+Species}{p.}{struct_secondary_species} object from a YAML node object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_secondary_species_a19682923cadce6cc4322514e383f3b1a}} 
+map$<$ string, double $>$ {\bfseries stoichiometry}
+\item 
+double \textbf{ log\+\_\+eq\+\_\+const}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The secondary species information struct This data structure contains the information for how to represent a secondary species in terms of primary species. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{struct_secondary_species_a99d3e4e6edefab578803e04918fc99c2}} 
+\index{SecondarySpecies@{SecondarySpecies}!SecondarySpecies@{SecondarySpecies}}
+\index{SecondarySpecies@{SecondarySpecies}!SecondarySpecies@{SecondarySpecies}}
+\doxysubsubsection{SecondarySpecies()}
+{\footnotesize\ttfamily Secondary\+Species\+::\+Secondary\+Species (\begin{DoxyParamCaption}\item[{map$<$ string, double $>$ \&}]{stoichiometry,  }\item[{double}]{log\+\_\+eq\+\_\+const }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Secondary Species object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stoichiometry} & The stoichiometric coefficients for this object \\
+\hline
+{\em log\+\_\+eq\+\_\+const} & The base-\/10 logarithm of the equilibrium constant for this species \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{struct_secondary_species_aa4a5d5ce34459898541ee56e806f6e33}} 
+\index{SecondarySpecies@{SecondarySpecies}!from\_yaml@{from\_yaml}}
+\index{from\_yaml@{from\_yaml}!SecondarySpecies@{SecondarySpecies}}
+\doxysubsubsection{from\_yaml()}
+{\footnotesize\ttfamily static \textbf{ Secondary\+Species} Secondary\+Species\+::from\+\_\+yaml (\begin{DoxyParamCaption}\item[{const YAML\+::\+Node \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Produce a \doxyref{Secondary\+Species}{p.}{struct_secondary_species} object from a YAML node object. 
+
+The base-\/10 logarithm of the equilibrium constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The YAML node object representing the secondary species object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Secondary\+Species}{p.}{struct_secondary_species} 
+\end{DoxyReturn}
+\mbox{\label{struct_secondary_species_afa11fddcffe7754fa2c03e81793a260e}} 
+\index{SecondarySpecies@{SecondarySpecies}!operator==@{operator==}}
+\index{operator==@{operator==}!SecondarySpecies@{SecondarySpecies}}
+\doxysubsubsection{operator==()}
+{\footnotesize\ttfamily bool Secondary\+Species\+::operator== (\begin{DoxyParamCaption}\item[{const \textbf{ Secondary\+Species} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Compare two \doxyref{Secondary\+Species}{p.}{struct_secondary_species} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{struct_secondary_species_af4b14b127447275b256b410e52a57a6a}} 
+\index{SecondarySpecies@{SecondarySpecies}!log\_eq\_const@{log\_eq\_const}}
+\index{log\_eq\_const@{log\_eq\_const}!SecondarySpecies@{SecondarySpecies}}
+\doxysubsubsection{log\_eq\_const}
+{\footnotesize\ttfamily double Secondary\+Species\+::log\+\_\+eq\+\_\+const}
+
+Map of stoichiometric coefficients of primary species 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ model\+\_\+inputs.\+hpp}\end{DoxyCompactItemize}

@@ -8,9 +8,9 @@ ChemFile::ChemFile() {
 /*
     Read the chem.yaml input file and produce a chemfile object.
  */
-ChemFile ChemFile::from_file(const string& filePath) {
+ChemFile ChemFile::from_file(const string& file_path) {
     // Read the file from a string into a ChemFile object
-    std::ifstream file(filePath);
+    std::ifstream file(file_path);
     std::stringstream buffer;
     buffer << file.rdbuf();
 
@@ -110,14 +110,16 @@ ChemFile ChemFile::from_string(const string& yaml_string) {
     }
 
     // Mineral species
-    if (!minNode.IsMap()) {
-        std::cerr << "Error: Mineral species section must be a YAML Map\n";
-        exit(-1);
-    }
 
     map<string, double> minAreas;       // Mineral surface areas
-    for (YAML::const_iterator it=minNode.begin(); it != minNode.end(); it++) {
-        minAreas[it->first.as<string>()] = it->second.as<double>();
+    if (minNode.size() > 0) {
+        if (!minNode.IsMap()) {
+            std::cerr << "Error: Mineral species section must be a YAML Map\n";
+            exit(-1);
+        }
+        for (YAML::const_iterator it=minNode.begin(); it != minNode.end(); it++) {
+            minAreas[it->first.as<string>()] = it->second.as<double>();
+        }
     }
 
     map<string, unsigned int> minMap;

@@ -1,0 +1,43 @@
+\doxysection{equilibrium.\+hpp File Reference}
+\label{equilibrium_8hpp}\index{equilibrium.hpp@{equilibrium.hpp}}
+{\ttfamily \#include \char`\"{}armadillo\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}potions.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Chemical\+State} \textbf{ solve\+\_\+equilibrium} (const vec \&tot\+\_\+conc, const \textbf{ Equilibrium\+Constants} \&eq\+\_\+params, const \textbf{ Total\+Constants} \&tot\+\_\+params)
+\begin{DoxyCompactList}\small\item\em Solve for the thermodynamic equilibrium This functions solves for the equilibrium speciation for primary and secondary species. In general solving for equilibrium is a highly nonlinear process that involves numerical optimization. The number of equations that we must solve is equal to the number of primary species plus the number of secondary species, and the governing equations come from satisfying both a mass balance and the equilibrium relations\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{equilibrium_8hpp_aaa39d260af28eded106a1b7e1d44b742}} 
+\index{equilibrium.hpp@{equilibrium.hpp}!solve\_equilibrium@{solve\_equilibrium}}
+\index{solve\_equilibrium@{solve\_equilibrium}!equilibrium.hpp@{equilibrium.hpp}}
+\doxysubsubsection{solve\_equilibrium()}
+{\footnotesize\ttfamily \textbf{ Chemical\+State} solve\+\_\+equilibrium (\begin{DoxyParamCaption}\item[{const vec \&}]{tot\+\_\+conc,  }\item[{const \textbf{ Equilibrium\+Constants} \&}]{eq\+\_\+params,  }\item[{const \textbf{ Total\+Constants} \&}]{tot\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+Solve for the thermodynamic equilibrium This functions solves for the equilibrium speciation for primary and secondary species. In general solving for equilibrium is a highly nonlinear process that involves numerical optimization. The number of equations that we must solve is equal to the number of primary species plus the number of secondary species, and the governing equations come from satisfying both a mass balance and the equilibrium relations\+: 
+
+
+\begin{DoxyItemize}
+\item For ever primary species, there is one mass conservation relationship$\ast$
+\begin{DoxyItemize}
+\item $\ast$\+For H+, we use a charge balance rather than a conservation of H+
+\end{DoxyItemize}
+\item For every secondary species, there is an equilibrium relationship to satisfy
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em tot\+\_\+conc} & The vector of total concentrations for each species for the mass balance. \\
+\hline
+{\em eq\+\_\+params} & The stoichiometry matrix and equilibrium constants for the chemical system \\
+\hline
+{\em tot\+\_\+params} & The mass concentration matrix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Chemical\+State}{p.}{struct_chemical_state} The \doxyref{Chemical\+State}{p.}{struct_chemical_state} object of equilibrium concentrations and a copy of the total concentrations at equilibrium. 
+\end{DoxyReturn}

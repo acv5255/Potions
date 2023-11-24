@@ -1,0 +1,83 @@
+\doxysection{Kinetic\+Constants Struct Reference}
+\label{struct_kinetic_constants}\index{KineticConstants@{KineticConstants}}
+
+
+Data structure containing the kinetic reaction coefficients.  
+
+
+
+
+{\ttfamily \#include $<$solution.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Kinetic\+Constants} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Kinetic Constants object. \end{DoxyCompactList}\item 
+\textbf{ Kinetic\+Constants} (const mat \&kin\+\_\+mat, const vec \&kin\+\_\+consts, const vec \&\textbf{ eq\+\_\+const})
+\begin{DoxyCompactList}\small\item\em Construct a new Kinetic Constants object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_kinetic_constants_ad29433115e04c6e1ff3ef8f8791780ae}} 
+mat {\bfseries kin\+\_\+mat}
+\item 
+vec \textbf{ kin\+\_\+const}
+\item 
+vec \textbf{ eq\+\_\+const}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data structure containing the kinetic reaction coefficients. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{struct_kinetic_constants_a7eb89796ca777cc0573dfcaf52511046}} 
+\index{KineticConstants@{KineticConstants}!KineticConstants@{KineticConstants}}
+\index{KineticConstants@{KineticConstants}!KineticConstants@{KineticConstants}}
+\doxysubsubsection{KineticConstants()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Kinetic\+Constants\+::\+Kinetic\+Constants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Kinetic Constants object. 
+
+Vector of the base-\/10 logarithm of the equilibrium constants \mbox{\label{struct_kinetic_constants_ac3e1b2d68fb0c5672fbf027589d43c19}} 
+\index{KineticConstants@{KineticConstants}!KineticConstants@{KineticConstants}}
+\index{KineticConstants@{KineticConstants}!KineticConstants@{KineticConstants}}
+\doxysubsubsection{KineticConstants()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Kinetic\+Constants\+::\+Kinetic\+Constants (\begin{DoxyParamCaption}\item[{const mat \&}]{kin\+\_\+mat,  }\item[{const vec \&}]{kin\+\_\+consts,  }\item[{const vec \&}]{eq\+\_\+const }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Kinetic Constants object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kin\+\_\+mat} & \\
+\hline
+{\em kin\+\_\+consts} & \\
+\hline
+{\em eq\+\_\+const} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{struct_kinetic_constants_a1196c829a311ff91f4197655d96cf752}} 
+\index{KineticConstants@{KineticConstants}!eq\_const@{eq\_const}}
+\index{eq\_const@{eq\_const}!KineticConstants@{KineticConstants}}
+\doxysubsubsection{eq\_const}
+{\footnotesize\ttfamily vec Kinetic\+Constants\+::eq\+\_\+const}
+
+Vector of the Base-\/10 logarithm of the kinetic rate constants \mbox{\label{struct_kinetic_constants_aca61a1aa751d09451aa3ec223e36e8fa}} 
+\index{KineticConstants@{KineticConstants}!kin\_const@{kin\_const}}
+\index{kin\_const@{kin\_const}!KineticConstants@{KineticConstants}}
+\doxysubsubsection{kin\_const}
+{\footnotesize\ttfamily vec Kinetic\+Constants\+::kin\+\_\+const}
+
+Kinetic stoichiometry matrix where each row is the formula for the ionic activity product for each mineral 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ solution.\+hpp}\end{DoxyCompactItemize}

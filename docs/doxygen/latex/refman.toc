@@ -1,0 +1,147 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Class Index}{1}{}%
+\contentsline {section}{\numberline {1.1}Class List}{1}{}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{}%
+\contentsline {section}{\numberline {2.1}File List}{3}{}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{}%
+\contentsline {section}{\numberline {3.1}Chem\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}File Class Reference}{5}{}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{6}{}%
+\contentsline {subsection}{\numberline {3.1.2}Constructor \& Destructor Documentation}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}ChemFile()}{6}{}%
+\contentsline {subsection}{\numberline {3.1.3}Member Function Documentation}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.1}end\_time()}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.2}from\_file()}{6}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.3}from\_string()}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.4}mineral\_map()}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.5}mineral\_surface\_areas()}{7}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.6}num\_steps()}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.7}primary\_species()}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.8}run\_type()}{8}{}%
+\contentsline {subsubsection}{\numberline {3.1.3.9}secondary\_species()}{8}{}%
+\contentsline {section}{\numberline {3.2}Chemical\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}State Struct Reference}{8}{}%
+\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{9}{}%
+\contentsline {subsection}{\numberline {3.2.2}Constructor \& Destructor Documentation}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}ChemicalState()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}ChemicalState()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{9}{}%
+\contentsline {subsection}{\numberline {3.2.3}Member Data Documentation}{9}{}%
+\contentsline {subsubsection}{\numberline {3.2.3.1}total\_concentration}{10}{}%
+\contentsline {section}{\numberline {3.3}Database Class Reference}{10}{}%
+\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{10}{}%
+\contentsline {subsection}{\numberline {3.3.2}Constructor \& Destructor Documentation}{11}{}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}Database()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{11}{}%
+\contentsline {subsubsection}{\numberline {3.3.2.2}Database()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{11}{}%
+\contentsline {subsection}{\numberline {3.3.3}Member Function Documentation}{11}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.1}from\_file()}{11}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.2}from\_string()}{12}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.3}get\_mineral\_species()}{12}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.4}get\_primary\_species()}{12}{}%
+\contentsline {subsubsection}{\numberline {3.3.3.5}get\_secondary\_species()}{12}{}%
+\contentsline {section}{\numberline {3.4}Equilibrium\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Constants Struct Reference}{13}{}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{13}{}%
+\contentsline {subsection}{\numberline {3.4.2}Constructor \& Destructor Documentation}{13}{}%
+\contentsline {subsubsection}{\numberline {3.4.2.1}EquilibriumConstants()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{13}{}%
+\contentsline {subsubsection}{\numberline {3.4.2.2}EquilibriumConstants()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{13}{}%
+\contentsline {subsection}{\numberline {3.4.3}Member Data Documentation}{14}{}%
+\contentsline {subsubsection}{\numberline {3.4.3.1}conc\_particular\_solution}{14}{}%
+\contentsline {subsubsection}{\numberline {3.4.3.2}log\_eq\_consts}{14}{}%
+\contentsline {subsubsection}{\numberline {3.4.3.3}stoich\_null\_space}{14}{}%
+\contentsline {section}{\numberline {3.5}Kinetic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Constants Struct Reference}{14}{}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{15}{}%
+\contentsline {subsection}{\numberline {3.5.2}Constructor \& Destructor Documentation}{15}{}%
+\contentsline {subsubsection}{\numberline {3.5.2.1}KineticConstants()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{15}{}%
+\contentsline {subsubsection}{\numberline {3.5.2.2}KineticConstants()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{15}{}%
+\contentsline {subsection}{\numberline {3.5.3}Member Data Documentation}{15}{}%
+\contentsline {subsubsection}{\numberline {3.5.3.1}eq\_const}{15}{}%
+\contentsline {subsubsection}{\numberline {3.5.3.2}kin\_const}{16}{}%
+\contentsline {section}{\numberline {3.6}Mineral\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Species Struct Reference}{16}{}%
+\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{16}{}%
+\contentsline {subsection}{\numberline {3.6.2}Constructor \& Destructor Documentation}{16}{}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}MineralSpecies()}{17}{}%
+\contentsline {subsection}{\numberline {3.6.3}Member Function Documentation}{18}{}%
+\contentsline {subsubsection}{\numberline {3.6.3.1}from\_yaml()}{18}{}%
+\contentsline {subsubsection}{\numberline {3.6.3.2}operator==()}{18}{}%
+\contentsline {subsection}{\numberline {3.6.4}Member Data Documentation}{19}{}%
+\contentsline {subsubsection}{\numberline {3.6.4.1}log\_eq\_const}{19}{}%
+\contentsline {subsubsection}{\numberline {3.6.4.2}log\_kin\_const}{19}{}%
+\contentsline {subsubsection}{\numberline {3.6.4.3}molar\_mass}{19}{}%
+\contentsline {subsubsection}{\numberline {3.6.4.4}molar\_volume}{19}{}%
+\contentsline {section}{\numberline {3.7}Model\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Inputs Class Reference}{19}{}%
+\contentsline {subsection}{\numberline {3.7.1}Detailed Description}{20}{}%
+\contentsline {subsection}{\numberline {3.7.2}Constructor \& Destructor Documentation}{20}{}%
+\contentsline {subsubsection}{\numberline {3.7.2.1}ModelInputs()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{20}{}%
+\contentsline {subsubsection}{\numberline {3.7.2.2}ModelInputs()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{21}{}%
+\contentsline {subsection}{\numberline {3.7.3}Member Function Documentation}{21}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.1}chem()}{21}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.2}database()}{21}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.3}equilibrium\_constants()}{22}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.4}initial\_chem\_state()}{22}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.5}kinetic\_constants()}{22}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.6}read\_inputs()}{22}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.7}run\_type()}{23}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.8}species\_map()}{23}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.9}species\_names()}{23}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.10}surface\_areas()}{24}{}%
+\contentsline {subsubsection}{\numberline {3.7.3.11}total\_constants()}{24}{}%
+\contentsline {section}{\numberline {3.8}Run\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Options Class Reference}{24}{}%
+\contentsline {subsection}{\numberline {3.8.1}Detailed Description}{25}{}%
+\contentsline {subsection}{\numberline {3.8.2}Constructor \& Destructor Documentation}{25}{}%
+\contentsline {subsubsection}{\numberline {3.8.2.1}RunOptions()}{25}{}%
+\contentsline {subsection}{\numberline {3.8.3}Member Function Documentation}{25}{}%
+\contentsline {subsubsection}{\numberline {3.8.3.1}from\_arguments()}{25}{}%
+\contentsline {subsubsection}{\numberline {3.8.3.2}output\_name()}{25}{}%
+\contentsline {section}{\numberline {3.9}Secondary\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Species Struct Reference}{26}{}%
+\contentsline {subsection}{\numberline {3.9.1}Detailed Description}{26}{}%
+\contentsline {subsection}{\numberline {3.9.2}Constructor \& Destructor Documentation}{26}{}%
+\contentsline {subsubsection}{\numberline {3.9.2.1}SecondarySpecies()}{26}{}%
+\contentsline {subsection}{\numberline {3.9.3}Member Function Documentation}{27}{}%
+\contentsline {subsubsection}{\numberline {3.9.3.1}from\_yaml()}{27}{}%
+\contentsline {subsubsection}{\numberline {3.9.3.2}operator==()}{27}{}%
+\contentsline {subsection}{\numberline {3.9.4}Member Data Documentation}{27}{}%
+\contentsline {subsubsection}{\numberline {3.9.4.1}log\_eq\_const}{28}{}%
+\contentsline {section}{\numberline {3.10}Total\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Constants Struct Reference}{28}{}%
+\contentsline {subsection}{\numberline {3.10.1}Detailed Description}{28}{}%
+\contentsline {subsection}{\numberline {3.10.2}Constructor \& Destructor Documentation}{28}{}%
+\contentsline {subsubsection}{\numberline {3.10.2.1}TotalConstants()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{28}{}%
+\contentsline {subsubsection}{\numberline {3.10.2.2}TotalConstants()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{28}{}%
+\contentsline {chapter}{\numberline {4}File Documentation}{31}{}%
+\contentsline {section}{\numberline {4.1}constants.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{31}{}%
+\contentsline {section}{\numberline {4.2}equilibrium.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{31}{}%
+\contentsline {subsection}{\numberline {4.2.1}Function Documentation}{31}{}%
+\contentsline {subsubsection}{\numberline {4.2.1.1}solve\_equilibrium()}{32}{}%
+\contentsline {section}{\numberline {4.3}kinetic.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{32}{}%
+\contentsline {subsection}{\numberline {4.3.1}Function Documentation}{32}{}%
+\contentsline {subsubsection}{\numberline {4.3.1.1}kinetic\_rate()}{33}{}%
+\contentsline {section}{\numberline {4.4}model\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}inputs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{33}{}%
+\contentsline {subsection}{\numberline {4.4.1}Function Documentation}{34}{}%
+\contentsline {subsubsection}{\numberline {4.4.1.1}operator==()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{34}{}%
+\contentsline {subsubsection}{\numberline {4.4.1.2}operator==()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{35}{}%
+\contentsline {subsection}{\numberline {4.4.2}Variable Documentation}{35}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}DBS\_ID\_TOKEN}{35}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}DBS\_LOGK\_TOKEN}{35}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}DBS\_MINERAL\_SECTION\_TOKEN}{35}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.4}DBS\_MOLAR\_MASS\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.5}DBS\_MOLAR\_VOLUME\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.6}DBS\_PRIMARY\_SECTION\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.7}DBS\_RATE\_CONST\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.8}DBS\_SECONDARY\_SECTION\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.9}DBS\_STOICHIOMETRY\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.10}END\_TIME\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.11}MINERAL\_SECTION\_TOKEN}{36}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.12}NUM\_STEPS}{37}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.13}PRIMARY\_SECTION\_TOKEN}{37}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.14}SECONDARY\_SECTION\_TOKEN}{37}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.15}SIMTYPE\_EQ\_TOKEN}{37}{}%
+\contentsline {subsubsection}{\numberline {4.4.2.16}SIMTYPE\_KIN\_TOKEN}{37}{}%
+\contentsline {section}{\numberline {4.5}potions\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}input.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{37}{}%
+\contentsline {section}{\numberline {4.6}solution.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{37}{}%
+\contentsline {section}{\numberline {4.7}utils.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{38}{}%
+\contentsline {subsection}{\numberline {4.7.1}Function Documentation}{39}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.1}compare\_doubles()}{39}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.2}get\_charge()}{39}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.3}get\_output\_file\_path()}{39}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.4}operator==()}{40}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.5}plot\_results()}{40}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.6}print\_matrix()}{41}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.7}save\_equilibrium\_results()}{41}{}%
+\contentsline {subsubsection}{\numberline {4.7.1.8}save\_kinetic\_results()}{42}{}%
+\contentsline {chapter}{Index}{43}{}%

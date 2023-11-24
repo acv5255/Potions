@@ -1,0 +1,212 @@
+\doxysection{model\+\_\+inputs.\+hpp File Reference}
+\label{model__inputs_8hpp}\index{model\_inputs.hpp@{model\_inputs.hpp}}
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}yaml-\/cpp/yaml.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Chem\+File}
+\begin{DoxyCompactList}\small\item\em Chemical system parameters The class that contains the complete information about the primary species. This file contains the list of primary species including the total concentrations for each primary species. The Primary\+Species block requires both the name of the primary species and the total concentration. This section also requires the secondary species block to be populated with at least 1 secondary species. For a kinetic simulation, this requires the Mineral\+Kinetic block to have at least one mineral entry which contains both a mineral name and a mineral surface area. \end{DoxyCompactList}\item 
+struct \textbf{ Secondary\+Species}
+\begin{DoxyCompactList}\small\item\em The secondary species information struct This data structure contains the information for how to represent a secondary species in terms of primary species. \end{DoxyCompactList}\item 
+struct \textbf{ Mineral\+Species}
+\begin{DoxyCompactList}\small\item\em Data structure containing information for a mineral species. \end{DoxyCompactList}\item 
+class \textbf{ Database}
+\begin{DoxyCompactList}\small\item\em Data structure for data contained in the chemical database, \textquotesingle{}cdbs.\+yaml\textquotesingle{} This data structure contains all of the chemical information that the user does not need to change. In the database, there is a list of primary species, secondary species, including the equilibrium parameters, and mineral species including the kinetic and equilibrium parameters. \end{DoxyCompactList}\item 
+class \textbf{ Model\+Inputs}
+\begin{DoxyCompactList}\small\item\em Wrapper for the model inputs Data structure containing the input data to run the simulations. This is a way to interface with both the \doxyref{Chem\+File}{p.}{class_chem_file} and \doxyref{Database}{p.}{class_database} objects to simplify the model interface, as this class contains methods to construct the mass conservation, equilibrium, and kinetic constants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \textbf{ operator==} (const map$<$ string, \textbf{ Secondary\+Species} $>$ \&l, const map$<$ string, \textbf{ Secondary\+Species} $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Compare two maps of secondary species objects. \end{DoxyCompactList}\item 
+bool \textbf{ operator==} (const map$<$ string, \textbf{ Mineral\+Species} $>$ \&l, const map$<$ string, \textbf{ Mineral\+Species} $>$ \&r)
+\begin{DoxyCompactList}\small\item\em Compare maps of \doxyref{Mineral\+Species}{p.}{struct_mineral_species} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{model__inputs_8hpp_a6ec3a5ad8851665543a870c5588c77a4}} 
+const string {\bfseries SIMULATION\+\_\+\+TYPE\+\_\+\+TOKEN} = \char`\"{}Simulation\+Type\char`\"{}
+\item 
+const string \textbf{ PRIMARY\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Primary\+Species\char`\"{}
+\item 
+const string \textbf{ SECONDARY\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Secondary\+Species\char`\"{}
+\item 
+const string \textbf{ MINERAL\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Mineral\+Species\char`\"{}
+\item 
+const string \textbf{ SIMTYPE\+\_\+\+EQ\+\_\+\+TOKEN} = \char`\"{}Equilibrium\char`\"{}
+\item 
+const string \textbf{ SIMTYPE\+\_\+\+KIN\+\_\+\+TOKEN} = \char`\"{}Kinetic\char`\"{}
+\item 
+const string \textbf{ END\+\_\+\+TIME\+\_\+\+TOKEN} = \char`\"{}End\+Time\char`\"{}
+\item 
+const string \textbf{ NUM\+\_\+\+STEPS} = \char`\"{}Num\+Steps\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+ID\+\_\+\+TOKEN} = \char`\"{}Database\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+PRIMARY\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Primary\+Species\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+SECONDARY\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Secondary\+Species\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+MINERAL\+\_\+\+SECTION\+\_\+\+TOKEN} = \char`\"{}Mineral\+Species\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+STOICHIOMETRY\+\_\+\+TOKEN} = \char`\"{}stoichiometry\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+LOGK\+\_\+\+TOKEN} = \char`\"{}logK\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+MOLAR\+\_\+\+MASS\+\_\+\+TOKEN} = \char`\"{}molar\+Mass\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+MOLAR\+\_\+\+VOLUME\+\_\+\+TOKEN} = \char`\"{}molar\+Volume\char`\"{}
+\item 
+const string \textbf{ DBS\+\_\+\+RATE\+\_\+\+CONST\+\_\+\+TOKEN} = \char`\"{}rate\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{model__inputs_8hpp_a3249d2a37b2c824e6d1d82862975f53f}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!operator==@{operator==}}
+\index{operator==@{operator==}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{operator==()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const map$<$ string, \textbf{ Mineral\+Species} $>$ \&}]{l,  }\item[{const map$<$ string, \textbf{ Mineral\+Species} $>$ \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Compare maps of \doxyref{Mineral\+Species}{p.}{struct_mineral_species} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\label{model__inputs_8hpp_a2abc1740169cddbe00dff14e05af1a73}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!operator==@{operator==}}
+\index{operator==@{operator==}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{operator==()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool operator== (\begin{DoxyParamCaption}\item[{const map$<$ string, \textbf{ Secondary\+Species} $>$ \&}]{l,  }\item[{const map$<$ string, \textbf{ Secondary\+Species} $>$ \&}]{r }\end{DoxyParamCaption})}
+
+
+
+Compare two maps of secondary species objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & \\
+\hline
+{\em r} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\label{model__inputs_8hpp_abfa84e676d593b9a8680f36ef0db8708}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_ID\_TOKEN@{DBS\_ID\_TOKEN}}
+\index{DBS\_ID\_TOKEN@{DBS\_ID\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_ID\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+ID\+\_\+\+TOKEN = \char`\"{}Database\char`\"{}}
+
+Token for the number of steps to use in the simulation \mbox{\label{model__inputs_8hpp_a79f15c4491fde62f316ab67d9ee88f35}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_LOGK\_TOKEN@{DBS\_LOGK\_TOKEN}}
+\index{DBS\_LOGK\_TOKEN@{DBS\_LOGK\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_LOGK\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+LOGK\+\_\+\+TOKEN = \char`\"{}logK\char`\"{}}
+
+Token specifying a stoichiometry block in the database \mbox{\label{model__inputs_8hpp_a3c7a95232cec2d83dcfc07ea19463f08}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_MINERAL\_SECTION\_TOKEN@{DBS\_MINERAL\_SECTION\_TOKEN}}
+\index{DBS\_MINERAL\_SECTION\_TOKEN@{DBS\_MINERAL\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_MINERAL\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+MINERAL\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Mineral\+Species\char`\"{}}
+
+Token specifying the secondary block in \textquotesingle{}cdbs.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_ae88c6d07361961bc2ffbd5a9cb5dbedb}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_MOLAR\_MASS\_TOKEN@{DBS\_MOLAR\_MASS\_TOKEN}}
+\index{DBS\_MOLAR\_MASS\_TOKEN@{DBS\_MOLAR\_MASS\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_MOLAR\_MASS\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+MOLAR\+\_\+\+MASS\+\_\+\+TOKEN = \char`\"{}molar\+Mass\char`\"{}}
+
+Token specifying the equilibrium constant in the database \mbox{\label{model__inputs_8hpp_a70f1901345ffc6d62e22314e73a9eacf}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_MOLAR\_VOLUME\_TOKEN@{DBS\_MOLAR\_VOLUME\_TOKEN}}
+\index{DBS\_MOLAR\_VOLUME\_TOKEN@{DBS\_MOLAR\_VOLUME\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_MOLAR\_VOLUME\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+MOLAR\+\_\+\+VOLUME\+\_\+\+TOKEN = \char`\"{}molar\+Volume\char`\"{}}
+
+Token specifying the molar mass the \textquotesingle{}cdbs.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_a64235036c83465ab3cc87fa821bd1c42}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_PRIMARY\_SECTION\_TOKEN@{DBS\_PRIMARY\_SECTION\_TOKEN}}
+\index{DBS\_PRIMARY\_SECTION\_TOKEN@{DBS\_PRIMARY\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_PRIMARY\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+PRIMARY\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Primary\+Species\char`\"{}}
+
+Token for the database ID token \mbox{\label{model__inputs_8hpp_ae44546249921a87b7b84a49a669db857}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_RATE\_CONST\_TOKEN@{DBS\_RATE\_CONST\_TOKEN}}
+\index{DBS\_RATE\_CONST\_TOKEN@{DBS\_RATE\_CONST\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_RATE\_CONST\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+RATE\+\_\+\+CONST\+\_\+\+TOKEN = \char`\"{}rate\char`\"{}}
+
+Token specifying the molar volume in the \textquotesingle{}cdbs.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_a93d3b9091c864e0f24e55078e40c4c46}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_SECONDARY\_SECTION\_TOKEN@{DBS\_SECONDARY\_SECTION\_TOKEN}}
+\index{DBS\_SECONDARY\_SECTION\_TOKEN@{DBS\_SECONDARY\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_SECONDARY\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+SECONDARY\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Secondary\+Species\char`\"{}}
+
+Token specifying the primary section list in \textquotesingle{}cdbs.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_a935db9bf77a2ba72ec639a870d96777e}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!DBS\_STOICHIOMETRY\_TOKEN@{DBS\_STOICHIOMETRY\_TOKEN}}
+\index{DBS\_STOICHIOMETRY\_TOKEN@{DBS\_STOICHIOMETRY\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{DBS\_STOICHIOMETRY\_TOKEN}
+{\footnotesize\ttfamily const string DBS\+\_\+\+STOICHIOMETRY\+\_\+\+TOKEN = \char`\"{}stoichiometry\char`\"{}}
+
+Token specifying the mineral section in \textquotesingle{}cdbs.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_a61e55f945e6f80fccc38b134a003b4ef}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!END\_TIME\_TOKEN@{END\_TIME\_TOKEN}}
+\index{END\_TIME\_TOKEN@{END\_TIME\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{END\_TIME\_TOKEN}
+{\footnotesize\ttfamily const string END\+\_\+\+TIME\+\_\+\+TOKEN = \char`\"{}End\+Time\char`\"{}}
+
+Token specifying a kinetic simulation in \textquotesingle{}chem.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_ae949cf02c532268ffd4159b9fd0fec0c}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!MINERAL\_SECTION\_TOKEN@{MINERAL\_SECTION\_TOKEN}}
+\index{MINERAL\_SECTION\_TOKEN@{MINERAL\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{MINERAL\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string MINERAL\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Mineral\+Species\char`\"{}}
+
+Token for secondary species block in \textquotesingle{}chem.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_abb54d7f3efaacec0097edaa73408a38c}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!NUM\_STEPS@{NUM\_STEPS}}
+\index{NUM\_STEPS@{NUM\_STEPS}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{NUM\_STEPS}
+{\footnotesize\ttfamily const string NUM\+\_\+\+STEPS = \char`\"{}Num\+Steps\char`\"{}}
+
+Token specifying the time to run the simulation to \mbox{\label{model__inputs_8hpp_a09f95f36965d3a1c8cd8be8b09f0b775}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!PRIMARY\_SECTION\_TOKEN@{PRIMARY\_SECTION\_TOKEN}}
+\index{PRIMARY\_SECTION\_TOKEN@{PRIMARY\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{PRIMARY\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string PRIMARY\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Primary\+Species\char`\"{}}
+
+Name of the parameter for species \mbox{\label{model__inputs_8hpp_aad815790190f79cf498f25756b772615}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!SECONDARY\_SECTION\_TOKEN@{SECONDARY\_SECTION\_TOKEN}}
+\index{SECONDARY\_SECTION\_TOKEN@{SECONDARY\_SECTION\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{SECONDARY\_SECTION\_TOKEN}
+{\footnotesize\ttfamily const string SECONDARY\+\_\+\+SECTION\+\_\+\+TOKEN = \char`\"{}Secondary\+Species\char`\"{}}
+
+Token for the primary species block in \textquotesingle{}chem.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_a28fc1abc724ca6a61f15d0a28b6296fa}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!SIMTYPE\_EQ\_TOKEN@{SIMTYPE\_EQ\_TOKEN}}
+\index{SIMTYPE\_EQ\_TOKEN@{SIMTYPE\_EQ\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{SIMTYPE\_EQ\_TOKEN}
+{\footnotesize\ttfamily const string SIMTYPE\+\_\+\+EQ\+\_\+\+TOKEN = \char`\"{}Equilibrium\char`\"{}}
+
+Token for mineral species block in \textquotesingle{}chem.\+yaml\textquotesingle{} \mbox{\label{model__inputs_8hpp_aefc52ab310cc00526a07839175bced2e}} 
+\index{model\_inputs.hpp@{model\_inputs.hpp}!SIMTYPE\_KIN\_TOKEN@{SIMTYPE\_KIN\_TOKEN}}
+\index{SIMTYPE\_KIN\_TOKEN@{SIMTYPE\_KIN\_TOKEN}!model\_inputs.hpp@{model\_inputs.hpp}}
+\doxysubsubsection{SIMTYPE\_KIN\_TOKEN}
+{\footnotesize\ttfamily const string SIMTYPE\+\_\+\+KIN\+\_\+\+TOKEN = \char`\"{}Kinetic\char`\"{}}
+
+Token specifying an equilibrium simulation in \textquotesingle{}chem.\+yaml\textquotesingle{} 

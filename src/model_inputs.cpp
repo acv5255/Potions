@@ -178,7 +178,7 @@ EquilibriumConstants ModelInputs::equilibrium_constants() {
             stoich(counter, index ) = entry.second;
         }
 
-        logK[counter] = s.equilibrium_constant;
+        logK[counter] = s.log_eq_const;
 
         counter += 1;
     }
@@ -238,8 +238,8 @@ KineticConstants ModelInputs::kinetic_constants() {
         const MineralSpecies mineral = _dbs.get_mineral_species().at(mineralName);
         const unsigned int minId = _mineral_map.at(mineralName);
 
-        eq_const[minId] = mineral.equilibrium_constant;
-        kin_const[minId] = mineral.rate_constant;
+        eq_const[minId] = mineral.log_eq_const;
+        kin_const[minId] = mineral.log_kin_const;
 
         for (auto y: mineral.stoichiometry) {
             const unsigned int colId = _species_map.at(y.first);

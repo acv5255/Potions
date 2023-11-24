@@ -1,0 +1,149 @@
+\doxysection{Database Class Reference}
+\label{class_database}\index{Database@{Database}}
+
+
+Data structure for data contained in the chemical database, \textquotesingle{}cdbs.\+yaml\textquotesingle{} This data structure contains all of the chemical information that the user does not need to change. In the database, there is a list of primary species, secondary species, including the equilibrium parameters, and mineral species including the kinetic and equilibrium parameters.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+inputs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Database} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \doxyref{Database}{p.}{class_database} object. \end{DoxyCompactList}\item 
+\textbf{ Database} (vector$<$ string $>$ primary\+\_\+species, map$<$ string, \textbf{ Secondary\+Species} $>$ secondary\+\_\+species, map$<$ string, \textbf{ Mineral\+Species} $>$ mineral\+\_\+species)
+\begin{DoxyCompactList}\small\item\em Construct a new \doxyref{Database}{p.}{class_database} object. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \textbf{ get\+\_\+primary\+\_\+species} ()
+\begin{DoxyCompactList}\small\item\em Get the primary species vector. \end{DoxyCompactList}\item 
+map$<$ string, \textbf{ Secondary\+Species} $>$ \textbf{ get\+\_\+secondary\+\_\+species} ()
+\begin{DoxyCompactList}\small\item\em Get the secondary species map. \end{DoxyCompactList}\item 
+map$<$ string, \textbf{ Mineral\+Species} $>$ \textbf{ get\+\_\+mineral\+\_\+species} ()
+\begin{DoxyCompactList}\small\item\em Get the mineral kinetic species map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Database} \textbf{ from\+\_\+file} (const string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Read a \textquotesingle{}cdbs.\+yaml\textquotesingle{} file. \end{DoxyCompactList}\item 
+static \textbf{ Database} \textbf{ from\+\_\+string} (const string \&yaml\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Produce a \doxyref{Database}{p.}{class_database} object from a string containing the contents of the \textquotesingle{}cdbs.\+yaml\textquotesingle{} file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data structure for data contained in the chemical database, \textquotesingle{}cdbs.\+yaml\textquotesingle{} This data structure contains all of the chemical information that the user does not need to change. In the database, there is a list of primary species, secondary species, including the equilibrium parameters, and mineral species including the kinetic and equilibrium parameters. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_database_a4703c80e6969d33565ea340f768fdadf}} 
+\index{Database@{Database}!Database@{Database}}
+\index{Database@{Database}!Database@{Database}}
+\doxysubsubsection{Database()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Database\+::\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \doxyref{Database}{p.}{class_database} object. 
+
+Map of mineral species information in the database \mbox{\label{class_database_a92ea39ad295b751aabe9fce78c28386d}} 
+\index{Database@{Database}!Database@{Database}}
+\index{Database@{Database}!Database@{Database}}
+\doxysubsubsection{Database()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Database\+::\+Database (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{primary\+\_\+species,  }\item[{map$<$ string, \textbf{ Secondary\+Species} $>$}]{secondary\+\_\+species,  }\item[{map$<$ string, \textbf{ Mineral\+Species} $>$}]{mineral\+\_\+species }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new \doxyref{Database}{p.}{class_database} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em primary\+\_\+species} & \\
+\hline
+{\em secondary\+\_\+species} & \\
+\hline
+{\em mineral\+\_\+species} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_database_ad94863ee6ab031b994915dd7a07d1242}} 
+\index{Database@{Database}!from\_file@{from\_file}}
+\index{from\_file@{from\_file}!Database@{Database}}
+\doxysubsubsection{from\_file()}
+{\footnotesize\ttfamily static \textbf{ Database} Database\+::from\+\_\+file (\begin{DoxyParamCaption}\item[{const string \&}]{file\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read a \textquotesingle{}cdbs.\+yaml\textquotesingle{} file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The file path to the \textquotesingle{}cdbs.\+yaml\textquotesingle{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Database}{p.}{class_database} 
+\end{DoxyReturn}
+\mbox{\label{class_database_a34f6ea017d2784daa3054628bb3a9108}} 
+\index{Database@{Database}!from\_string@{from\_string}}
+\index{from\_string@{from\_string}!Database@{Database}}
+\doxysubsubsection{from\_string()}
+{\footnotesize\ttfamily static \textbf{ Database} Database\+::from\+\_\+string (\begin{DoxyParamCaption}\item[{const string \&}]{yaml\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Produce a \doxyref{Database}{p.}{class_database} object from a string containing the contents of the \textquotesingle{}cdbs.\+yaml\textquotesingle{} file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaml\+\_\+string} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Database}{p.}{class_database} 
+\end{DoxyReturn}
+\mbox{\label{class_database_a58d5526b89069344d40288ac4967b665}} 
+\index{Database@{Database}!get\_mineral\_species@{get\_mineral\_species}}
+\index{get\_mineral\_species@{get\_mineral\_species}!Database@{Database}}
+\doxysubsubsection{get\_mineral\_species()}
+{\footnotesize\ttfamily map$<$string, \textbf{ Mineral\+Species}$>$ Database\+::get\+\_\+mineral\+\_\+species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the mineral kinetic species map. 
+
+\begin{DoxyReturn}{Returns}
+map$<$string, Mineral\+Species$>$ 
+\end{DoxyReturn}
+\mbox{\label{class_database_a1e6ee70cdb1835bcf618c367c331db53}} 
+\index{Database@{Database}!get\_primary\_species@{get\_primary\_species}}
+\index{get\_primary\_species@{get\_primary\_species}!Database@{Database}}
+\doxysubsubsection{get\_primary\_species()}
+{\footnotesize\ttfamily vector$<$string$>$ Database\+::get\+\_\+primary\+\_\+species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the primary species vector. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$string$>$ 
+\end{DoxyReturn}
+\mbox{\label{class_database_ad62dada03ea0d675ad3cdc1fda94f621}} 
+\index{Database@{Database}!get\_secondary\_species@{get\_secondary\_species}}
+\index{get\_secondary\_species@{get\_secondary\_species}!Database@{Database}}
+\doxysubsubsection{get\_secondary\_species()}
+{\footnotesize\ttfamily map$<$string, \textbf{ Secondary\+Species}$>$ Database\+::get\+\_\+secondary\+\_\+species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the secondary species map. 
+
+\begin{DoxyReturn}{Returns}
+map$<$string, Secondary\+Species$>$ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ model\+\_\+inputs.\+hpp}\end{DoxyCompactItemize}

@@ -1,0 +1,40 @@
+\doxysection{kinetic.\+hpp File Reference}
+\label{kinetic_8hpp}\index{kinetic.hpp@{kinetic.hpp}}
+{\ttfamily \#include \char`\"{}potions.\+hpp\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+vec \textbf{ kinetic\+\_\+rate} (const vec \&tot\+\_\+conc, const vec \&surface\+\_\+area, const \textbf{ Equilibrium\+Constants} \&eq, const \textbf{ Kinetic\+Constants} \&kin\+\_\+params, const \textbf{ Total\+Constants} \&tot\+\_\+params)
+\begin{DoxyCompactList}\small\item\em Rate of change of species in terms of moles per liter Use the Transition-\/\+State-\/\+Theory type rate law to determine the rate of change of concentrations of each species in the system. This includes both primary and secondary species. Note\+: each evaluation of this functions involves solving equilibrium. \end{DoxyCompactList}\item 
+\mbox{\label{kinetic_8hpp_abf18313a66a36e8881301e2b5cc623d9}} 
+\textbf{ Chemical\+State} {\bfseries solve\+\_\+kinetic\+\_\+equilibrium} (const \textbf{ Chemical\+State} \&chem, const vec \&surface\+Area, const \textbf{ Kinetic\+Constants} \&kin, const \textbf{ Equilibrium\+Constants} \&eq, const \textbf{ Total\+Constants} \&tot, double dt)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{kinetic_8hpp_a112dd8a88dc8575a77e03e1998571394}} 
+\index{kinetic.hpp@{kinetic.hpp}!kinetic\_rate@{kinetic\_rate}}
+\index{kinetic\_rate@{kinetic\_rate}!kinetic.hpp@{kinetic.hpp}}
+\doxysubsubsection{kinetic\_rate()}
+{\footnotesize\ttfamily vec kinetic\+\_\+rate (\begin{DoxyParamCaption}\item[{const vec \&}]{tot\+\_\+conc,  }\item[{const vec \&}]{surface\+\_\+area,  }\item[{const \textbf{ Equilibrium\+Constants} \&}]{eq,  }\item[{const \textbf{ Kinetic\+Constants} \&}]{kin\+\_\+params,  }\item[{const \textbf{ Total\+Constants} \&}]{tot\+\_\+params }\end{DoxyParamCaption})}
+
+
+
+Rate of change of species in terms of moles per liter Use the Transition-\/\+State-\/\+Theory type rate law to determine the rate of change of concentrations of each species in the system. This includes both primary and secondary species. Note\+: each evaluation of this functions involves solving equilibrium. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tot\+\_\+conc} & The vector of total concentrations with the length being the number of species \\
+\hline
+{\em surface\+\_\+area} & The vector of mineral surface areas with the length being the number of minerals \\
+\hline
+{\em eq} & The equilibrium parameters for this system \\
+\hline
+{\em kin\+\_\+params} & The kinetic matrix, rate constants, and kinetic equilibrium constants \\
+\hline
+{\em tot\+\_\+params} & The mass conservation matrix wrapper structure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vec The rate of changes of species with the length being the number of species. 
+\end{DoxyReturn}

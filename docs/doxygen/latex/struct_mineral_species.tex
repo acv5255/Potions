@@ -1,0 +1,144 @@
+\doxysection{Mineral\+Species Struct Reference}
+\label{struct_mineral_species}\index{MineralSpecies@{MineralSpecies}}
+
+
+Data structure containing information for a mineral species.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+inputs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_mineral_species_a211d49c5d57cfc2aa12083a64c659928}} 
+\textbf{ Mineral\+Species} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Mineral Species object. \end{DoxyCompactList}\item 
+\textbf{ Mineral\+Species} (const map$<$ string, double $>$ \&stoichiometry, double \textbf{ molar\+\_\+volume}, double \textbf{ molar\+\_\+mass}, double rate\+\_\+constant, double equilibrium\+\_\+constant)
+\begin{DoxyCompactList}\small\item\em Construct a new Mineral Species object. \end{DoxyCompactList}\item 
+bool \textbf{ operator==} (const \textbf{ Mineral\+Species} \&other)
+\begin{DoxyCompactList}\small\item\em Compare two \doxyref{Mineral\+Species}{p.}{struct_mineral_species} objects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Mineral\+Species} \textbf{ from\+\_\+yaml} (const YAML\+::\+Node \&node)
+\begin{DoxyCompactList}\small\item\em Produce a \doxyref{Mineral\+Species}{p.}{struct_mineral_species} object from a YAML node object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_mineral_species_aa4eb86b4958db1adfe73944ceb16b76a}} 
+map$<$ string, double $>$ {\bfseries stoichiometry}
+\item 
+double \textbf{ molar\+\_\+volume}
+\item 
+double \textbf{ molar\+\_\+mass}
+\item 
+double \textbf{ log\+\_\+kin\+\_\+const}
+\item 
+double \textbf{ log\+\_\+eq\+\_\+const}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data structure containing information for a mineral species. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{struct_mineral_species_a9bbc297431ca6bb8857d50da801976c4}} 
+\index{MineralSpecies@{MineralSpecies}!MineralSpecies@{MineralSpecies}}
+\index{MineralSpecies@{MineralSpecies}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{MineralSpecies()}
+{\footnotesize\ttfamily Mineral\+Species\+::\+Mineral\+Species (\begin{DoxyParamCaption}\item[{const map$<$ string, double $>$ \&}]{stoichiometry,  }\item[{double}]{molar\+\_\+volume,  }\item[{double}]{molar\+\_\+mass,  }\item[{double}]{rate\+\_\+constant,  }\item[{double}]{equilibrium\+\_\+constant }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Mineral Species object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stoichiometry} & \\
+\hline
+{\em molar\+\_\+volume} & \\
+\hline
+{\em molar\+\_\+mass} & \\
+\hline
+{\em rate\+\_\+constant} & \\
+\hline
+{\em equilibrium\+\_\+constant} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{struct_mineral_species_a99e5f82279f737dd06e3a5ed365b15f4}} 
+\index{MineralSpecies@{MineralSpecies}!from\_yaml@{from\_yaml}}
+\index{from\_yaml@{from\_yaml}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{from\_yaml()}
+{\footnotesize\ttfamily static \textbf{ Mineral\+Species} Mineral\+Species\+::from\+\_\+yaml (\begin{DoxyParamCaption}\item[{const YAML\+::\+Node \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Produce a \doxyref{Mineral\+Species}{p.}{struct_mineral_species} object from a YAML node object. 
+
+Base-\/10 logarithm of the equilibrium constant
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Mineral\+Species}{p.}{struct_mineral_species} 
+\end{DoxyReturn}
+\mbox{\label{struct_mineral_species_a9e75fe370b2d46957a989c129e916ff0}} 
+\index{MineralSpecies@{MineralSpecies}!operator==@{operator==}}
+\index{operator==@{operator==}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{operator==()}
+{\footnotesize\ttfamily bool Mineral\+Species\+::operator== (\begin{DoxyParamCaption}\item[{const \textbf{ Mineral\+Species} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Compare two \doxyref{Mineral\+Species}{p.}{struct_mineral_species} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{struct_mineral_species_aae453744217f71140a889299a7a68f76}} 
+\index{MineralSpecies@{MineralSpecies}!log\_eq\_const@{log\_eq\_const}}
+\index{log\_eq\_const@{log\_eq\_const}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{log\_eq\_const}
+{\footnotesize\ttfamily double Mineral\+Species\+::log\+\_\+eq\+\_\+const}
+
+Base-\/10 logarithm of the kinetic constant \mbox{\label{struct_mineral_species_aff227d49db4bae1277a365fda55ba514}} 
+\index{MineralSpecies@{MineralSpecies}!log\_kin\_const@{log\_kin\_const}}
+\index{log\_kin\_const@{log\_kin\_const}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{log\_kin\_const}
+{\footnotesize\ttfamily double Mineral\+Species\+::log\+\_\+kin\+\_\+const}
+
+Mass of a mole of mineral, in g/mol \mbox{\label{struct_mineral_species_a2f6a945d4840a4bc84c791091a422d51}} 
+\index{MineralSpecies@{MineralSpecies}!molar\_mass@{molar\_mass}}
+\index{molar\_mass@{molar\_mass}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{molar\_mass}
+{\footnotesize\ttfamily double Mineral\+Species\+::molar\+\_\+mass}
+
+Volume per mole of mineral, in cm$^\wedge$3/mol \mbox{\label{struct_mineral_species_a23f13d334df5bcba87e7ed64fae22968}} 
+\index{MineralSpecies@{MineralSpecies}!molar\_volume@{molar\_volume}}
+\index{molar\_volume@{molar\_volume}!MineralSpecies@{MineralSpecies}}
+\doxysubsubsection{molar\_volume}
+{\footnotesize\ttfamily double Mineral\+Species\+::molar\+\_\+volume}
+
+Map for stoichiometry of the dissolution of this mineral 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ model\+\_\+inputs.\+hpp}\end{DoxyCompactItemize}

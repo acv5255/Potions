@@ -112,7 +112,7 @@ TEST_CASE("[SecondarySpecies::FromYaml]") {
         map<string, double> s1_stoich = {{"H+",-1.0}, {"HCO3-", 1.0}};
         SecondarySpecies s1 = SecondarySpecies::from_yaml(node1);
         REQUIRE(s1.stoichiometry == s1_stoich);
-        REQUIRE(compare_float(s1.equilibrium_constant, 9.617));
+        REQUIRE(compare_float(s1.log_eq_const, 9.617));
     }
 
     {
@@ -121,7 +121,7 @@ TEST_CASE("[SecondarySpecies::FromYaml]") {
         map<string, double> s2_stoich = {{"H+", 1.0}, {"HCO3-", 1.0}};
         SecondarySpecies s2 = SecondarySpecies::from_yaml(node2);
         REQUIRE(s2.stoichiometry == s2_stoich);
-        REQUIRE(compare_float(s2.equilibrium_constant, -6.3447));
+        REQUIRE(compare_float(s2.log_eq_const, -6.3447));
     }
 
 }
@@ -138,8 +138,8 @@ TEST_CASE("[MineralSpecies::FromYaml]") {
         MineralSpecies minSpec = MineralSpecies::from_yaml(node);
 
         REQUIRE(compare_maps(minSpec.stoichiometry, stoich));
-        REQUIRE(compare_float(minSpec.rate_constant, -9.19));
-        REQUIRE(compare_float(minSpec.equilibrium_constant, -7.30));
+        REQUIRE(compare_float(minSpec.log_kin_const, -9.19));
+        REQUIRE(compare_float(minSpec.log_eq_const, -7.30));
     }
 }
 
@@ -199,10 +199,10 @@ TEST_CASE("[ModelInputs::equilibriumConstants]") {
 
     REQUIRE(eq.stoichiometry_matrix.n_cols == 5);
     REQUIRE(eq.stoichiometry_matrix.n_rows == 2);
-    REQUIRE(eq.equilibrium_constants.size() == 2);
+    REQUIRE(eq.log_eq_consts.size() == 2);
 
     const arma::mat err_stoich = stoich_mat - eq.stoichiometry_matrix;
-    const arma::vec err_log_k = log_k - eq.equilibrium_constants;
+    const arma::vec err_log_k = log_k - eq.log_eq_consts;
 
     REQUIRE(arma::abs(err_stoich).max() < 1e-12);
     REQUIRE(arma::abs(err_log_k).max() < 1e-12);

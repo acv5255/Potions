@@ -44,8 +44,8 @@ int main(int argc, char* argv[]) {
             }
             cout << "\n";
             cout << "Log10 of Equilibrium constants\n";
-            for (int i = 0; i < eqConsts.equilibrium_constants.size(); i++) {
-                cout << eqConsts.equilibrium_constants[i] << "\n";
+            for (int i = 0; i < eqConsts.log_eq_consts.size(); i++) {
+                cout << eqConsts.log_eq_consts[i] << "\n";
             }
             cout << "\n";
         }
@@ -103,13 +103,13 @@ int main(int argc, char* argv[]) {
 
         // 2) Get model time steps
         const int startTime = 0.0;
-        const int endTime = modelInputs.chem().endTime();
-        const int numSteps = modelInputs.chem().numSteps();
+        const int endTime = modelInputs.chem().end_time();
+        const int numSteps = modelInputs.chem().num_steps();
         const double dt = (endTime - startTime) / (double)numSteps;
         const vec timeSteps = arma::linspace(dt, endTime, numSteps);
 
         // 3) Construct model outputs
-        vector<pair<double, ChemicalState>> results(modelInputs.chem().numSteps() + 1);
+        vector<pair<double, ChemicalState>> results(modelInputs.chem().num_steps() + 1);
         results[0] = {0.0, chem};
 
         // 4) Run the model

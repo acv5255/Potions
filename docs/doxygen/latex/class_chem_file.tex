@@ -1,0 +1,176 @@
+\doxysection{Chem\+File Class Reference}
+\label{class_chem_file}\index{ChemFile@{ChemFile}}
+
+
+Chemical system parameters The class that contains the complete information about the primary species. This file contains the list of primary species including the total concentrations for each primary species. The Primary\+Species block requires both the name of the primary species and the total concentration. This section also requires the secondary species block to be populated with at least 1 secondary species. For a kinetic simulation, this requires the Mineral\+Kinetic block to have at least one mineral entry which contains both a mineral name and a mineral surface area.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+inputs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Chem\+File} ()
+\item 
+\textbf{ Potions\+Run\+Type} \textbf{ run\+\_\+type} ()
+\item 
+map$<$ string, double $>$ \textbf{ primary\+\_\+species} ()
+\begin{DoxyCompactList}\small\item\em Primary species map getter. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \textbf{ secondary\+\_\+species} ()
+\begin{DoxyCompactList}\small\item\em Secondary species vector getter. \end{DoxyCompactList}\item 
+map$<$ string, double $>$ \textbf{ mineral\+\_\+surface\+\_\+areas} ()
+\begin{DoxyCompactList}\small\item\em Mineral surface area vector getter. \end{DoxyCompactList}\item 
+map$<$ string, unsigned int $>$ \textbf{ mineral\+\_\+map} ()
+\begin{DoxyCompactList}\small\item\em Mineral index map getter. \end{DoxyCompactList}\item 
+double \textbf{ end\+\_\+time} ()
+\begin{DoxyCompactList}\small\item\em End time getter. \end{DoxyCompactList}\item 
+int \textbf{ num\+\_\+steps} ()
+\begin{DoxyCompactList}\small\item\em Getter for the number of steps in the kinetic simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Chem\+File} \textbf{ from\+\_\+file} (const string \&file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Load \textquotesingle{}chem.\+yaml\textquotesingle{} from a file Read a \textquotesingle{}chem.\+yaml\textquotesingle{} file and produce a \doxyref{Chem\+File}{p.}{class_chem_file} object. This function exits if the \textquotesingle{}chem.\+yaml\textquotesingle{} file is not formatted correctly. \end{DoxyCompactList}\item 
+static \textbf{ Chem\+File} \textbf{ from\+\_\+string} (const string \&yaml\+\_\+string)
+\begin{DoxyCompactList}\small\item\em Produce a \doxyref{Chem\+File}{p.}{class_chem_file} object from a string containing the contents of a \textquotesingle{}chem.\+yaml\textquotesingle{} file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Chemical system parameters The class that contains the complete information about the primary species. This file contains the list of primary species including the total concentrations for each primary species. The Primary\+Species block requires both the name of the primary species and the total concentration. This section also requires the secondary species block to be populated with at least 1 secondary species. For a kinetic simulation, this requires the Mineral\+Kinetic block to have at least one mineral entry which contains both a mineral name and a mineral surface area. 
+
+Token specifying the kinetic rate constant in \textquotesingle{}cdbs.\+yaml\textquotesingle{} 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chem_file_a55ebceadfffb0eb23b3c8619bae6ba14}} 
+\index{ChemFile@{ChemFile}!ChemFile@{ChemFile}}
+\index{ChemFile@{ChemFile}!ChemFile@{ChemFile}}
+\doxysubsubsection{ChemFile()}
+{\footnotesize\ttfamily Chem\+File\+::\+Chem\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Number of steps to run the simulation 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chem_file_a0044eeff0feb61b76d80d00d320d214f}} 
+\index{ChemFile@{ChemFile}!end\_time@{end\_time}}
+\index{end\_time@{end\_time}!ChemFile@{ChemFile}}
+\doxysubsubsection{end\_time()}
+{\footnotesize\ttfamily double Chem\+File\+::end\+\_\+time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+End time getter. 
+
+\begin{DoxyReturn}{Returns}
+double The final time (in seconds) of a kinetic simulation 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_a3a3e5613d8688308bc530735eea3adfb}} 
+\index{ChemFile@{ChemFile}!from\_file@{from\_file}}
+\index{from\_file@{from\_file}!ChemFile@{ChemFile}}
+\doxysubsubsection{from\_file()}
+{\footnotesize\ttfamily static \textbf{ Chem\+File} Chem\+File\+::from\+\_\+file (\begin{DoxyParamCaption}\item[{const string \&}]{file\+\_\+path }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Load \textquotesingle{}chem.\+yaml\textquotesingle{} from a file Read a \textquotesingle{}chem.\+yaml\textquotesingle{} file and produce a \doxyref{Chem\+File}{p.}{class_chem_file} object. This function exits if the \textquotesingle{}chem.\+yaml\textquotesingle{} file is not formatted correctly. 
+
+Enum value for whether this is an equilibrium or kinetic simulation 
+\begin{DoxyParams}{Parameters}
+{\em file\+\_\+path} & The file path to the \textquotesingle{}chem.\+yaml\textquotesingle{} file. \\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_chem_file_a4237589408d7ad0ae72285d10f6c6852}} 
+\index{ChemFile@{ChemFile}!from\_string@{from\_string}}
+\index{from\_string@{from\_string}!ChemFile@{ChemFile}}
+\doxysubsubsection{from\_string()}
+{\footnotesize\ttfamily static \textbf{ Chem\+File} Chem\+File\+::from\+\_\+string (\begin{DoxyParamCaption}\item[{const string \&}]{yaml\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Produce a \doxyref{Chem\+File}{p.}{class_chem_file} object from a string containing the contents of a \textquotesingle{}chem.\+yaml\textquotesingle{} file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em yaml\+\_\+string} & A string containing the entire contents of \textquotesingle{}chem.\+yaml\textquotesingle{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxyref{Chem\+File}{p.}{class_chem_file} 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_a0e19d64e415a5091be89c5010a0349de}} 
+\index{ChemFile@{ChemFile}!mineral\_map@{mineral\_map}}
+\index{mineral\_map@{mineral\_map}!ChemFile@{ChemFile}}
+\doxysubsubsection{mineral\_map()}
+{\footnotesize\ttfamily map$<$string, unsigned int$>$ Chem\+File\+::mineral\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Mineral index map getter. 
+
+\begin{DoxyReturn}{Returns}
+map$<$string, unsigned int$>$ 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_a9f17255d7b3de3a73a6353f9d888ba97}} 
+\index{ChemFile@{ChemFile}!mineral\_surface\_areas@{mineral\_surface\_areas}}
+\index{mineral\_surface\_areas@{mineral\_surface\_areas}!ChemFile@{ChemFile}}
+\doxysubsubsection{mineral\_surface\_areas()}
+{\footnotesize\ttfamily map$<$string, double$>$ Chem\+File\+::mineral\+\_\+surface\+\_\+areas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Mineral surface area vector getter. 
+
+\begin{DoxyReturn}{Returns}
+map$<$string, double$>$ 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_a8558cf073b501e537fd3f8f31812a13f}} 
+\index{ChemFile@{ChemFile}!num\_steps@{num\_steps}}
+\index{num\_steps@{num\_steps}!ChemFile@{ChemFile}}
+\doxysubsubsection{num\_steps()}
+{\footnotesize\ttfamily int Chem\+File\+::num\+\_\+steps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for the number of steps in the kinetic simulation. 
+
+\begin{DoxyReturn}{Returns}
+int The number of steps for a kinetic simulation 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_aa9f95beb19dc081bde439575544597f5}} 
+\index{ChemFile@{ChemFile}!primary\_species@{primary\_species}}
+\index{primary\_species@{primary\_species}!ChemFile@{ChemFile}}
+\doxysubsubsection{primary\_species()}
+{\footnotesize\ttfamily map$<$string, double$>$ Chem\+File\+::primary\+\_\+species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Primary species map getter. 
+
+\begin{DoxyReturn}{Returns}
+map$<$string, double$>$ 
+\end{DoxyReturn}
+\mbox{\label{class_chem_file_a66361a7dc88550aa13684e8f09a0a761}} 
+\index{ChemFile@{ChemFile}!run\_type@{run\_type}}
+\index{run\_type@{run\_type}!ChemFile@{ChemFile}}
+\doxysubsubsection{run\_type()}
+{\footnotesize\ttfamily \textbf{ Potions\+Run\+Type} Chem\+File\+::run\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Default constructor \mbox{\label{class_chem_file_aced1a1a266435c8dc7fcf65d330b3e3e}} 
+\index{ChemFile@{ChemFile}!secondary\_species@{secondary\_species}}
+\index{secondary\_species@{secondary\_species}!ChemFile@{ChemFile}}
+\doxysubsubsection{secondary\_species()}
+{\footnotesize\ttfamily vector$<$string$>$ Chem\+File\+::secondary\+\_\+species (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Secondary species vector getter. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$string$>$ 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ model\+\_\+inputs.\+hpp}\end{DoxyCompactItemize}

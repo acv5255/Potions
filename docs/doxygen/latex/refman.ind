@@ -1,0 +1,275 @@
+\begin{theindex}
+
+  \item {chem}
+    \subitem {ModelInputs}, 21
+  \item {ChemFile}, 5
+    \subitem {ChemFile}, 6
+    \subitem {end\_time}, 6
+    \subitem {from\_file}, 6
+    \subitem {from\_string}, 7
+    \subitem {mineral\_map}, 7
+    \subitem {mineral\_surface\_areas}, 7
+    \subitem {num\_steps}, 7
+    \subitem {primary\_species}, 8
+    \subitem {run\_type}, 8
+    \subitem {secondary\_species}, 8
+  \item {ChemicalState}, 8
+    \subitem {ChemicalState}, 9
+    \subitem {total\_concentration}, 9
+  \item {compare\_doubles}
+    \subitem {utils.hpp}, 39
+  \item {conc\_particular\_solution}
+    \subitem {EquilibriumConstants}, 14
+  \item {constants.hpp}, 31
+
+  \indexspace
+
+  \item {Database}, 10
+    \subitem {Database}, 11
+    \subitem {from\_file}, 11
+    \subitem {from\_string}, 11
+    \subitem {get\_mineral\_species}, 12
+    \subitem {get\_primary\_species}, 12
+    \subitem {get\_secondary\_species}, 12
+  \item {database}
+    \subitem {ModelInputs}, 21
+  \item {DBS\_ID\_TOKEN}
+    \subitem {model\_inputs.hpp}, 35
+  \item {DBS\_LOGK\_TOKEN}
+    \subitem {model\_inputs.hpp}, 35
+  \item {DBS\_MINERAL\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 35
+  \item {DBS\_MOLAR\_MASS\_TOKEN}
+    \subitem {model\_inputs.hpp}, 35
+  \item {DBS\_MOLAR\_VOLUME\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {DBS\_PRIMARY\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {DBS\_RATE\_CONST\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {DBS\_SECONDARY\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {DBS\_STOICHIOMETRY\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+
+  \indexspace
+
+  \item {end\_time}
+    \subitem {ChemFile}, 6
+  \item {END\_TIME\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {eq\_const}
+    \subitem {KineticConstants}, 15
+  \item {equilibrium.hpp}, 31
+    \subitem {solve\_equilibrium}, 31
+  \item {equilibrium\_constants}
+    \subitem {ModelInputs}, 21
+  \item {EquilibriumConstants}, 13
+    \subitem {conc\_particular\_solution}, 14
+    \subitem {EquilibriumConstants}, 13
+    \subitem {log\_eq\_consts}, 14
+    \subitem {stoich\_null\_space}, 14
+
+  \indexspace
+
+  \item {from\_arguments}
+    \subitem {RunOptions}, 25
+  \item {from\_file}
+    \subitem {ChemFile}, 6
+    \subitem {Database}, 11
+  \item {from\_string}
+    \subitem {ChemFile}, 7
+    \subitem {Database}, 11
+  \item {from\_yaml}
+    \subitem {MineralSpecies}, 18
+    \subitem {SecondarySpecies}, 27
+
+  \indexspace
+
+  \item {get\_charge}
+    \subitem {utils.hpp}, 39
+  \item {get\_mineral\_species}
+    \subitem {Database}, 12
+  \item {get\_output\_file\_path}
+    \subitem {utils.hpp}, 39
+  \item {get\_primary\_species}
+    \subitem {Database}, 12
+  \item {get\_secondary\_species}
+    \subitem {Database}, 12
+
+  \indexspace
+
+  \item {initial\_chem\_state}
+    \subitem {ModelInputs}, 22
+
+  \indexspace
+
+  \item {kin\_const}
+    \subitem {KineticConstants}, 15
+  \item {kinetic.hpp}, 32
+    \subitem {kinetic\_rate}, 32
+  \item {kinetic\_constants}
+    \subitem {ModelInputs}, 22
+  \item {kinetic\_rate}
+    \subitem {kinetic.hpp}, 32
+  \item {KineticConstants}, 14
+    \subitem {eq\_const}, 15
+    \subitem {kin\_const}, 15
+    \subitem {KineticConstants}, 15
+
+  \indexspace
+
+  \item {log\_eq\_const}
+    \subitem {MineralSpecies}, 19
+    \subitem {SecondarySpecies}, 27
+  \item {log\_eq\_consts}
+    \subitem {EquilibriumConstants}, 14
+  \item {log\_kin\_const}
+    \subitem {MineralSpecies}, 19
+
+  \indexspace
+
+  \item {mineral\_map}
+    \subitem {ChemFile}, 7
+  \item {MINERAL\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 36
+  \item {mineral\_surface\_areas}
+    \subitem {ChemFile}, 7
+  \item {MineralSpecies}, 16
+    \subitem {from\_yaml}, 18
+    \subitem {log\_eq\_const}, 19
+    \subitem {log\_kin\_const}, 19
+    \subitem {MineralSpecies}, 16
+    \subitem {molar\_mass}, 19
+    \subitem {molar\_volume}, 19
+    \subitem {operator==}, 18
+  \item {model\_inputs.hpp}, 33
+    \subitem {DBS\_ID\_TOKEN}, 35
+    \subitem {DBS\_LOGK\_TOKEN}, 35
+    \subitem {DBS\_MINERAL\_SECTION\_TOKEN}, 35
+    \subitem {DBS\_MOLAR\_MASS\_TOKEN}, 35
+    \subitem {DBS\_MOLAR\_VOLUME\_TOKEN}, 36
+    \subitem {DBS\_PRIMARY\_SECTION\_TOKEN}, 36
+    \subitem {DBS\_RATE\_CONST\_TOKEN}, 36
+    \subitem {DBS\_SECONDARY\_SECTION\_TOKEN}, 36
+    \subitem {DBS\_STOICHIOMETRY\_TOKEN}, 36
+    \subitem {END\_TIME\_TOKEN}, 36
+    \subitem {MINERAL\_SECTION\_TOKEN}, 36
+    \subitem {NUM\_STEPS}, 36
+    \subitem {operator==}, 34, 35
+    \subitem {PRIMARY\_SECTION\_TOKEN}, 37
+    \subitem {SECONDARY\_SECTION\_TOKEN}, 37
+    \subitem {SIMTYPE\_EQ\_TOKEN}, 37
+    \subitem {SIMTYPE\_KIN\_TOKEN}, 37
+  \item {ModelInputs}, 19
+    \subitem {chem}, 21
+    \subitem {database}, 21
+    \subitem {equilibrium\_constants}, 21
+    \subitem {initial\_chem\_state}, 22
+    \subitem {kinetic\_constants}, 22
+    \subitem {ModelInputs}, 20
+    \subitem {read\_inputs}, 22
+    \subitem {run\_type}, 23
+    \subitem {species\_map}, 23
+    \subitem {species\_names}, 23
+    \subitem {surface\_areas}, 23
+    \subitem {total\_constants}, 24
+  \item {molar\_mass}
+    \subitem {MineralSpecies}, 19
+  \item {molar\_volume}
+    \subitem {MineralSpecies}, 19
+
+  \indexspace
+
+  \item {NUM\_STEPS}
+    \subitem {model\_inputs.hpp}, 36
+  \item {num\_steps}
+    \subitem {ChemFile}, 7
+
+  \indexspace
+
+  \item {operator==}
+    \subitem {MineralSpecies}, 18
+    \subitem {model\_inputs.hpp}, 34, 35
+    \subitem {SecondarySpecies}, 27
+    \subitem {utils.hpp}, 40
+  \item {output\_name}
+    \subitem {RunOptions}, 25
+
+  \indexspace
+
+  \item {plot\_results}
+    \subitem {utils.hpp}, 40
+  \item {potions\_input.hpp}, 37
+  \item {PRIMARY\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 37
+  \item {primary\_species}
+    \subitem {ChemFile}, 8
+  \item {print\_matrix}
+    \subitem {utils.hpp}, 41
+
+  \indexspace
+
+  \item {read\_inputs}
+    \subitem {ModelInputs}, 22
+  \item {run\_type}
+    \subitem {ChemFile}, 8
+    \subitem {ModelInputs}, 23
+  \item {RunOptions}, 24
+    \subitem {from\_arguments}, 25
+    \subitem {output\_name}, 25
+    \subitem {RunOptions}, 25
+
+  \indexspace
+
+  \item {save\_equilibrium\_results}
+    \subitem {utils.hpp}, 41
+  \item {save\_kinetic\_results}
+    \subitem {utils.hpp}, 41
+  \item {SECONDARY\_SECTION\_TOKEN}
+    \subitem {model\_inputs.hpp}, 37
+  \item {secondary\_species}
+    \subitem {ChemFile}, 8
+  \item {SecondarySpecies}, 26
+    \subitem {from\_yaml}, 27
+    \subitem {log\_eq\_const}, 27
+    \subitem {operator==}, 27
+    \subitem {SecondarySpecies}, 26
+  \item {SIMTYPE\_EQ\_TOKEN}
+    \subitem {model\_inputs.hpp}, 37
+  \item {SIMTYPE\_KIN\_TOKEN}
+    \subitem {model\_inputs.hpp}, 37
+  \item {solution.hpp}, 37
+  \item {solve\_equilibrium}
+    \subitem {equilibrium.hpp}, 31
+  \item {species\_map}
+    \subitem {ModelInputs}, 23
+  \item {species\_names}
+    \subitem {ModelInputs}, 23
+  \item {stoich\_null\_space}
+    \subitem {EquilibriumConstants}, 14
+  \item {surface\_areas}
+    \subitem {ModelInputs}, 23
+
+  \indexspace
+
+  \item {total\_concentration}
+    \subitem {ChemicalState}, 9
+  \item {total\_constants}
+    \subitem {ModelInputs}, 24
+  \item {TotalConstants}, 28
+    \subitem {TotalConstants}, 28
+
+  \indexspace
+
+  \item {utils.hpp}, 38
+    \subitem {compare\_doubles}, 39
+    \subitem {get\_charge}, 39
+    \subitem {get\_output\_file\_path}, 39
+    \subitem {operator==}, 40
+    \subitem {plot\_results}, 40
+    \subitem {print\_matrix}, 41
+    \subitem {save\_equilibrium\_results}, 41
+    \subitem {save\_kinetic\_results}, 41
+
+\end{theindex}

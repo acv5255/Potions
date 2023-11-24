@@ -8,4 +8,3 @@ SecondarySpecies:
   - CO3--
   - CO2(aq)
 MineralSpecies:
-  Calcite: 1.0  # Surface area: m^2/g

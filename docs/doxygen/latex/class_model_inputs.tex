@@ -1,0 +1,235 @@
+\doxysection{Model\+Inputs Class Reference}
+\label{class_model_inputs}\index{ModelInputs@{ModelInputs}}
+
+
+Wrapper for the model inputs Data structure containing the input data to run the simulations. This is a way to interface with both the \doxyref{Chem\+File}{p.}{class_chem_file} and \doxyref{Database}{p.}{class_database} objects to simplify the model interface, as this class contains methods to construct the mass conservation, equilibrium, and kinetic constants.  
+
+
+
+
+{\ttfamily \#include $<$model\+\_\+inputs.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Model\+Inputs} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \doxyref{Model\+Inputs}{p.}{class_model_inputs}. \end{DoxyCompactList}\item 
+\textbf{ Model\+Inputs} (\textbf{ Chem\+File} \textbf{ chem}, \textbf{ Database} cdbs)
+\begin{DoxyCompactList}\small\item\em Construct the model inputs from a \doxyref{Chem\+File}{p.}{class_chem_file} and \doxyref{Database}{p.}{class_database}. \end{DoxyCompactList}\item 
+\textbf{ Potions\+Run\+Type} \textbf{ run\+\_\+type} ()
+\begin{DoxyCompactList}\small\item\em Returns the the model run type, Equilibrium or Kinetic. \end{DoxyCompactList}\item 
+\textbf{ Chemical\+State} \textbf{ initial\+\_\+chem\+\_\+state} ()
+\begin{DoxyCompactList}\small\item\em Determine initial chemical state. \end{DoxyCompactList}\item 
+\textbf{ Equilibrium\+Constants} \textbf{ equilibrium\+\_\+constants} ()
+\begin{DoxyCompactList}\small\item\em Construct the equilibrium parameters for this chemical system. \end{DoxyCompactList}\item 
+\textbf{ Total\+Constants} \textbf{ total\+\_\+constants} ()
+\begin{DoxyCompactList}\small\item\em Construct the mass conservation matrix. \end{DoxyCompactList}\item 
+\textbf{ Kinetic\+Constants} \textbf{ kinetic\+\_\+constants} ()
+\begin{DoxyCompactList}\small\item\em Construct the kinetic mass constants. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \textbf{ species\+\_\+names} ()
+\begin{DoxyCompactList}\small\item\em Get a vector of the species names for this chemical system in the order that they appear in the solution. \end{DoxyCompactList}\item 
+map$<$ string, unsigned int $>$ \textbf{ species\+\_\+map} ()
+\begin{DoxyCompactList}\small\item\em Get a map of aqueous species names and indices in the system. \end{DoxyCompactList}\item 
+\textbf{ Chem\+File} \textbf{ chem} ()
+\begin{DoxyCompactList}\small\item\em Getter for the \doxyref{Chem\+File}{p.}{class_chem_file} object. \end{DoxyCompactList}\item 
+\textbf{ Database} \textbf{ database} ()
+\begin{DoxyCompactList}\small\item\em Getter for the \doxyref{Database}{p.}{class_database} object. \end{DoxyCompactList}\item 
+map$<$ string, double $>$ \textbf{ surface\+\_\+areas} ()
+\begin{DoxyCompactList}\small\item\em Getter for the mineral surface areas for this chemical system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ Model\+Inputs} \textbf{ read\+\_\+inputs} (const string \&input\+Name)
+\begin{DoxyCompactList}\small\item\em Read input files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Wrapper for the model inputs Data structure containing the input data to run the simulations. This is a way to interface with both the \doxyref{Chem\+File}{p.}{class_chem_file} and \doxyref{Database}{p.}{class_database} objects to simplify the model interface, as this class contains methods to construct the mass conservation, equilibrium, and kinetic constants. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_model_inputs_a68a37d7b0cbfa051bd99be7048cd0a75}} 
+\index{ModelInputs@{ModelInputs}!ModelInputs@{ModelInputs}}
+\index{ModelInputs@{ModelInputs}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{ModelInputs()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Model\+Inputs\+::\+Model\+Inputs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor for \doxyref{Model\+Inputs}{p.}{class_model_inputs}. 
+
+The \doxyref{Database}{p.}{class_database} object for the simulation \mbox{\label{class_model_inputs_a657bb0fe6b1cae040ca05e5dc5b34b8c}} 
+\index{ModelInputs@{ModelInputs}!ModelInputs@{ModelInputs}}
+\index{ModelInputs@{ModelInputs}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{ModelInputs()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Model\+Inputs\+::\+Model\+Inputs (\begin{DoxyParamCaption}\item[{\textbf{ Chem\+File}}]{chem,  }\item[{\textbf{ Database}}]{cdbs }\end{DoxyParamCaption})}
+
+
+
+Construct the model inputs from a \doxyref{Chem\+File}{p.}{class_chem_file} and \doxyref{Database}{p.}{class_database}. 
+
+Construct the model inputs from a \doxyref{Chem\+File}{p.}{class_chem_file} object and \doxyref{Database}{p.}{class_database} object. There is post-\/processing with some of this data to be done. 
+\begin{DoxyParams}{Parameters}
+{\em chem} & The \doxyref{Chem\+File}{p.}{class_chem_file} read from an \textquotesingle{}chem.\+yaml\textquotesingle{} file \\
+\hline
+{\em cdbs} & The \doxyref{Database}{p.}{class_database} read from the \textquotesingle{}cdbs.\+yaml\textquotesingle{} file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_model_inputs_aebcf8feb57c87cb17a97c26bfe1e18da}} 
+\index{ModelInputs@{ModelInputs}!chem@{chem}}
+\index{chem@{chem}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{chem()}
+{\footnotesize\ttfamily \textbf{ Chem\+File} Model\+Inputs\+::chem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for the \doxyref{Chem\+File}{p.}{class_chem_file} object. 
+
+\begin{DoxyReturn}{Returns}
+The \doxyref{Chem\+File}{p.}{class_chem_file} object for this chemical system 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_ae18c19c5e4b82b70e06a80d871ae9f92}} 
+\index{ModelInputs@{ModelInputs}!database@{database}}
+\index{database@{database}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{database()}
+{\footnotesize\ttfamily \textbf{ Database} Model\+Inputs\+::database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for the \doxyref{Database}{p.}{class_database} object. 
+
+\begin{DoxyReturn}{Returns}
+The \doxyref{Database}{p.}{class_database} object for this chemical system 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_a77a4d6a2e9d1921e5afc74699efd4782}} 
+\index{ModelInputs@{ModelInputs}!equilibrium\_constants@{equilibrium\_constants}}
+\index{equilibrium\_constants@{equilibrium\_constants}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{equilibrium\_constants()}
+{\footnotesize\ttfamily \textbf{ Equilibrium\+Constants} Model\+Inputs\+::equilibrium\+\_\+constants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct the equilibrium parameters for this chemical system. 
+
+This function reads the list of primary and secondary species from the \doxyref{Chem\+File}{p.}{class_chem_file} object and determines the stoichiometry and equilibrium parameters from the \doxyref{Database}{p.}{class_database} object. The stoichiometry matrix describes how changes in concentrations propagate throughout the system, and the equilibrium parameters sets the requirement for a system at equilibrium. \begin{DoxyReturn}{Returns}
+The \doxyref{Equilibrium\+Constants}{p.}{struct_equilibrium_constants} object for this chemical system 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_ad277073668aeb4397d1bd579b6d4495b}} 
+\index{ModelInputs@{ModelInputs}!initial\_chem\_state@{initial\_chem\_state}}
+\index{initial\_chem\_state@{initial\_chem\_state}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{initial\_chem\_state()}
+{\footnotesize\ttfamily \textbf{ Chemical\+State} Model\+Inputs\+::initial\+\_\+chem\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Determine initial chemical state. 
+
+Read the initial total concentrations from the chem.\+yaml file and initialize the total concentration vector. The concentration vector is set at a uniform value of 1e-\/7 moles per liter. This number is arbitrary and only intended so that the concentrations are not zero, which could be a problem later on. \begin{DoxyReturn}{Returns}
+Returns the total concentrations at the start and a uniform concentration vector 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_a0cae88656f8363837390f0ed06158d06}} 
+\index{ModelInputs@{ModelInputs}!kinetic\_constants@{kinetic\_constants}}
+\index{kinetic\_constants@{kinetic\_constants}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{kinetic\_constants()}
+{\footnotesize\ttfamily \textbf{ Kinetic\+Constants} Model\+Inputs\+::kinetic\+\_\+constants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct the kinetic mass constants. 
+
+This function construct the kinetic constants data structures for this chemical system. This function takes the minerals listed in the \doxyref{Chem\+File}{p.}{class_chem_file} object and reads the stoichiometry, rate constant, and kinetic equilibrium parameters from the \doxyref{Database}{p.}{class_database} object. These parameters are used in the kinetic portions of the model, which uses a Transition-\/\+State-\/\+Theory-\/type rate law. \begin{DoxyReturn}{Returns}
+The \doxyref{Kinetic\+Constants}{p.}{struct_kinetic_constants} object for this chemical system 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_a198a0cb6f66dca7e2dd91d548eab5a7a}} 
+\index{ModelInputs@{ModelInputs}!read\_inputs@{read\_inputs}}
+\index{read\_inputs@{read\_inputs}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{read\_inputs()}
+{\footnotesize\ttfamily static \textbf{ Model\+Inputs} Model\+Inputs\+::read\+\_\+inputs (\begin{DoxyParamCaption}\item[{const string \&}]{input\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Read input files. 
+
+Static method for reading the input files 
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+name} & The name of the folder in the input folder containing your input files \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The model inputs object after having read the inputs 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_afd95c0f199ae876f224b3dab432ffd85}} 
+\index{ModelInputs@{ModelInputs}!run\_type@{run\_type}}
+\index{run\_type@{run\_type}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{run\_type()}
+{\footnotesize\ttfamily \textbf{ Potions\+Run\+Type} Model\+Inputs\+::run\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the the model run type, Equilibrium or Kinetic. 
+
+\begin{DoxyReturn}{Returns}
+The enum type of the model run 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_a050bccaba47483acf8e524852765a149}} 
+\index{ModelInputs@{ModelInputs}!species\_map@{species\_map}}
+\index{species\_map@{species\_map}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{species\_map()}
+{\footnotesize\ttfamily map$<$string, unsigned int$>$ Model\+Inputs\+::species\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a map of aqueous species names and indices in the system. 
+
+\begin{DoxyReturn}{Returns}
+A map of aqueous species in this system. 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_abe5b38197cb94e61eb35c2c661c99f75}} 
+\index{ModelInputs@{ModelInputs}!species\_names@{species\_names}}
+\index{species\_names@{species\_names}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{species\_names()}
+{\footnotesize\ttfamily vector$<$string$>$ Model\+Inputs\+::species\+\_\+names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get a vector of the species names for this chemical system in the order that they appear in the solution. 
+
+\begin{DoxyReturn}{Returns}
+An ordered vector of species names 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_ad69c2faf8d3733ac1079a40c69192e3c}} 
+\index{ModelInputs@{ModelInputs}!surface\_areas@{surface\_areas}}
+\index{surface\_areas@{surface\_areas}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{surface\_areas()}
+{\footnotesize\ttfamily map$<$string, double$>$ Model\+Inputs\+::surface\+\_\+areas (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Getter for the mineral surface areas for this chemical system. 
+
+\begin{DoxyReturn}{Returns}
+The vector of mineral surface areas for this chemical system 
+\end{DoxyReturn}
+\mbox{\label{class_model_inputs_a2c794b60fd823a8a74403b77e9295fd6}} 
+\index{ModelInputs@{ModelInputs}!total\_constants@{total\_constants}}
+\index{total\_constants@{total\_constants}!ModelInputs@{ModelInputs}}
+\doxysubsubsection{total\_constants()}
+{\footnotesize\ttfamily \textbf{ Total\+Constants} Model\+Inputs\+::total\+\_\+constants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct the mass conservation matrix. 
+
+This function constructs the mass conservation matrix from the list of primary species in this model. This matrix represents how each of the secondary species relate to the primary species. This model does not explicitly track H+ and instead uses a charge balance for all species for the entire solution. This allows the system to have closure while also imposing another physical law on the system. \begin{DoxyReturn}{Returns}
+The \doxyref{Total\+Constants}{p.}{struct_total_constants} object for this chemical system 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ model\+\_\+inputs.\+hpp}\end{DoxyCompactItemize}

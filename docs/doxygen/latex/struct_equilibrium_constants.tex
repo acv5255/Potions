@@ -1,0 +1,89 @@
+\doxysection{Equilibrium\+Constants Struct Reference}
+\label{struct_equilibrium_constants}\index{EquilibriumConstants@{EquilibriumConstants}}
+
+
+Data structure containing the constants relating to the equilibrium parameters.  
+
+
+
+
+{\ttfamily \#include $<$solution.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Equilibrium\+Constants} ()
+\begin{DoxyCompactList}\small\item\em Construct a new Equilibrium Constants object. \end{DoxyCompactList}\item 
+\textbf{ Equilibrium\+Constants} (const mat \&stoich\+\_\+mat, const vec \&eq\+\_\+consts)
+\begin{DoxyCompactList}\small\item\em Construct a new Equilibrium Constants object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{struct_equilibrium_constants_afb48f81101be1f20b2c873fc512863f4}} 
+mat {\bfseries stoichiometry\+\_\+matrix}
+\item 
+mat \textbf{ stoich\+\_\+null\+\_\+space}
+\item 
+vec \textbf{ conc\+\_\+particular\+\_\+solution}
+\item 
+vec \textbf{ log\+\_\+eq\+\_\+consts}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data structure containing the constants relating to the equilibrium parameters. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{struct_equilibrium_constants_aab9069d57f98535f4d3cbcb79c1ca57b}} 
+\index{EquilibriumConstants@{EquilibriumConstants}!EquilibriumConstants@{EquilibriumConstants}}
+\index{EquilibriumConstants@{EquilibriumConstants}!EquilibriumConstants@{EquilibriumConstants}}
+\doxysubsubsection{EquilibriumConstants()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Equilibrium\+Constants\+::\+Equilibrium\+Constants (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct a new Equilibrium Constants object. 
+
+Vector of the Base-\/10 logarithms of the equilibrium constants \mbox{\label{struct_equilibrium_constants_a14e74b46177f92f2f968149dc76b9ad8}} 
+\index{EquilibriumConstants@{EquilibriumConstants}!EquilibriumConstants@{EquilibriumConstants}}
+\index{EquilibriumConstants@{EquilibriumConstants}!EquilibriumConstants@{EquilibriumConstants}}
+\doxysubsubsection{EquilibriumConstants()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Equilibrium\+Constants\+::\+Equilibrium\+Constants (\begin{DoxyParamCaption}\item[{const mat \&}]{stoich\+\_\+mat,  }\item[{const vec \&}]{eq\+\_\+consts }\end{DoxyParamCaption})}
+
+
+
+Construct a new Equilibrium Constants object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stoich\+\_\+mat} & \\
+\hline
+{\em eq\+\_\+consts} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\label{struct_equilibrium_constants_acb3cdde16ab6fb54b9c49e7995f1337f}} 
+\index{EquilibriumConstants@{EquilibriumConstants}!conc\_particular\_solution@{conc\_particular\_solution}}
+\index{conc\_particular\_solution@{conc\_particular\_solution}!EquilibriumConstants@{EquilibriumConstants}}
+\doxysubsubsection{conc\_particular\_solution}
+{\footnotesize\ttfamily vec Equilibrium\+Constants\+::conc\+\_\+particular\+\_\+solution}
+
+Null space of the stoichiometry matrix, used in solving the system \mbox{\label{struct_equilibrium_constants_a49a6790900cd3126f12b510268e5f1a8}} 
+\index{EquilibriumConstants@{EquilibriumConstants}!log\_eq\_consts@{log\_eq\_consts}}
+\index{log\_eq\_consts@{log\_eq\_consts}!EquilibriumConstants@{EquilibriumConstants}}
+\doxysubsubsection{log\_eq\_consts}
+{\footnotesize\ttfamily vec Equilibrium\+Constants\+::log\+\_\+eq\+\_\+consts}
+
+Particular solution of the underdetermined equilibrium constants \mbox{\label{struct_equilibrium_constants_a5921206942b7279670fee4f7a9d3f527}} 
+\index{EquilibriumConstants@{EquilibriumConstants}!stoich\_null\_space@{stoich\_null\_space}}
+\index{stoich\_null\_space@{stoich\_null\_space}!EquilibriumConstants@{EquilibriumConstants}}
+\doxysubsubsection{stoich\_null\_space}
+{\footnotesize\ttfamily mat Equilibrium\+Constants\+::stoich\+\_\+null\+\_\+space}
+
+Stoichiometry matrix with shape (number of species)x(number of secondary species) 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\textbf{ solution.\+hpp}\end{DoxyCompactItemize}

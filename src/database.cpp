@@ -16,28 +16,28 @@ Database Database::from_file(const string& filePath) {
 
 SecondarySpecies::SecondarySpecies() {
     stoichiometry = {};
-    equilibrium_constant = 1.0;
+    log_eq_const = 1.0;
 }
 
 bool SecondarySpecies::operator==(const SecondarySpecies& other) {
-    return (compare_doubles(this->equilibrium_constant, other.equilibrium_constant))
+    return (compare_doubles(this->log_eq_const, other.log_eq_const))
     && (this->stoichiometry == other.stoichiometry);
 }
 
 MineralSpecies::MineralSpecies() {
     stoichiometry = {};
-    equilibrium_constant = 1.0;
-    rate_constant = 1.0;
+    log_eq_const = 1.0;
+    log_kin_const = 1.0;
     molar_mass = 0.0;
     molar_volume = 0.0;
 }
 
 bool MineralSpecies::operator==(const MineralSpecies& other) {
     return (this->stoichiometry == other.stoichiometry) 
-    && (compare_doubles(this->equilibrium_constant, other.equilibrium_constant))
+    && (compare_doubles(this->log_eq_const, other.log_eq_const))
     && (compare_doubles(this->molar_mass, other.molar_mass))
     && (compare_doubles(this->molar_volume, other.molar_volume))
-    && (compare_doubles(this->rate_constant, other.rate_constant));
+    && (compare_doubles(this->log_kin_const, other.log_kin_const));
 }
 
 bool operator==(const map<string, SecondarySpecies>& l, const map<string, SecondarySpecies>& r) {
