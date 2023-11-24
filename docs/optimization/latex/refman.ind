@@ -1,0 +1,23 @@
+\begin{theindex}
+
+  \item {f64}
+    \subitem {optimization.hpp}, 3
+
+  \indexspace
+
+  \item {jacobian}
+    \subitem {optimization.hpp}, 4
+
+  \indexspace
+
+  \item {optimization.hpp}, 3
+    \subitem {f64}, 3
+    \subitem {jacobian}, 4
+    \subitem {root}, 4
+
+  \indexspace
+
+  \item {root}
+    \subitem {optimization.hpp}, 4
+
+\end{theindex}

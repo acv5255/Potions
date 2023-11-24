@@ -1,0 +1,20 @@
+\begin{theindex}
+
+  \item {ode.hpp}, 3
+    \subitem {runge\_kutta\_explicit}, 3
+    \subitem {runge\_kutta\_implicit}, 4
+    \subitem {solve\_ode}, 5
+
+  \indexspace
+
+  \item {runge\_kutta\_explicit}
+    \subitem {ode.hpp}, 3
+  \item {runge\_kutta\_implicit}
+    \subitem {ode.hpp}, 4
+
+  \indexspace
+
+  \item {solve\_ode}
+    \subitem {ode.hpp}, 5
+
+\end{theindex}

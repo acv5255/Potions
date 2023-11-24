@@ -1,0 +1,90 @@
+\doxysection{optimization.\+hpp File Reference}
+\label{optimization_8hpp}\index{optimization.hpp@{optimization.hpp}}
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$optional$>$}\newline
+{\ttfamily \#include \char`\"{}armadillo\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \textbf{ f64} = double
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\Mat$<$ T $>$ \textbf{ jacobian} (const function$<$ Col$<$ T $>$(Col$<$ T $>$)$>$ \&func, const Col$<$ T $>$ \&x)
+\begin{DoxyCompactList}\small\item\em Numerically approximate the jacobian matrix for a vector function Compute the numerical approximation for the Jacobian matrix using the centered-\/difference approximation. This requires the size of the function \textquotesingle{}f\textquotesingle{} to be the number of input parameters so that the corresponding Jacobian matrix is square. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\optional$<$ Col$<$ T $>$ $>$ \textbf{ root} (const function$<$ Col$<$ T $>$(Col$<$ T $>$)$>$ \&func, const function$<$ Mat$<$ T $>$(Col$<$ T $>$)$>$ \&jac, const Col$<$ T $>$ \&x0)
+\begin{DoxyCompactList}\small\item\em Determine the root of a general vector function Determine the root of a general vector function using Newton-\/\+Raphson iteration. Newton-\/\+Raphson iteration requires evaluating a Jacobian and then solving the resulting linear system. The iterative method looks like\+: x$^\wedge$\{i+1\} = x$^\wedge$\{i\} -\/ J(x$^\wedge$\{i\})$^\wedge$\{-\/1\}f(x$^\wedge$\{i\}) This method has quadratic convergence, though may be unstable and therefore requires an initial guess that is sufficiently close to the root. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{optimization_8hpp_ab2eefb7dbd59d675b28340dc59289fdf}} 
+const unsigned int {\bfseries MAX\+\_\+\+ITERATIONS} = 50
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\label{optimization_8hpp_abc2f107791bd7c1d49ecf0f168c085a3}} 
+\index{optimization.hpp@{optimization.hpp}!f64@{f64}}
+\index{f64@{f64}!optimization.hpp@{optimization.hpp}}
+\doxysubsubsection{f64}
+{\footnotesize\ttfamily using \textbf{ f64} =  double}
+
+Maximum number of iterations before failing 
+
+\doxysubsection{Function Documentation}
+\mbox{\label{optimization_8hpp_a4955d99eb3eea1ed08cd5f2c07c8ab0b}} 
+\index{optimization.hpp@{optimization.hpp}!jacobian@{jacobian}}
+\index{jacobian@{jacobian}!optimization.hpp@{optimization.hpp}}
+\doxysubsubsection{jacobian()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Mat$<$T$>$ jacobian (\begin{DoxyParamCaption}\item[{const function$<$ Col$<$ T $>$(Col$<$ T $>$)$>$ \&}]{func,  }\item[{const Col$<$ T $>$ \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Numerically approximate the jacobian matrix for a vector function Compute the numerical approximation for the Jacobian matrix using the centered-\/difference approximation. This requires the size of the function \textquotesingle{}f\textquotesingle{} to be the number of input parameters so that the corresponding Jacobian matrix is square. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & A floating point data type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The continuous function whose Jacobian to approximate \\
+\hline
+{\em x} & The value at which to approximate the Jacobian of \textquotesingle{}f\textquotesingle{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat$<$\+T$>$ 
+\end{DoxyReturn}
+\mbox{\label{optimization_8hpp_a75540cf718ce2203dd797f7052217f45}} 
+\index{optimization.hpp@{optimization.hpp}!root@{root}}
+\index{root@{root}!optimization.hpp@{optimization.hpp}}
+\doxysubsubsection{root()}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+optional$<$Col$<$T$>$ $>$ root (\begin{DoxyParamCaption}\item[{const function$<$ Col$<$ T $>$(Col$<$ T $>$)$>$ \&}]{func,  }\item[{const function$<$ Mat$<$ T $>$(Col$<$ T $>$)$>$ \&}]{jac,  }\item[{const Col$<$ T $>$ \&}]{x0 }\end{DoxyParamCaption})}
+
+
+
+Determine the root of a general vector function Determine the root of a general vector function using Newton-\/\+Raphson iteration. Newton-\/\+Raphson iteration requires evaluating a Jacobian and then solving the resulting linear system. The iterative method looks like\+: x$^\wedge$\{i+1\} = x$^\wedge$\{i\} -\/ J(x$^\wedge$\{i\})$^\wedge$\{-\/1\}f(x$^\wedge$\{i\}) This method has quadratic convergence, though may be unstable and therefore requires an initial guess that is sufficiently close to the root. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em func} & The function to find the root of \\
+\hline
+{\em jac} & The function that generates the jacobian matrix \\
+\hline
+{\em x0} & The initial guess for the root \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+optional$<$Col$<$\+T$>$$>$ 
+\end{DoxyReturn}
