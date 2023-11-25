@@ -45,10 +45,6 @@ target_link_directories(
     ../build/my_libs/ode/
 )
 
-add_compile_options(
-    # -g
-    -O3
-)
 
 set_target_properties(
     potions PROPERTIES
