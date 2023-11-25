@@ -6,6 +6,7 @@ command prompt in the root directory and change
 into that directory. Then, run the following CMake commands:
 
 ```
+mkdir build && cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 ```
